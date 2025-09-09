@@ -1,0 +1,160 @@
+.todo {
+    margin-bottom: 10px;
+}
+
+.h3 {
+    text-align: center;
+    font-size: 3rem;
+    margin: 2px;
+}
+p{
+    font-size: 1.5rem;
+    text-align: justify;
+}
+.parra {
+    text-align: center;
+    display: block;
+    font-size: 1.5rem;
+    margin: 10px;
+}
+
+.sectores-Industria {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    height: 600px;
+}
+
+.card-container {
+    width: 45%;
+    height: 100%;
+}
+
+.centro {
+    width: 100%;
+    height: 100%;
+}
+
+.contenido-centro {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+
+.carta {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.carta-cara {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 20px;
+}
+
+.carta-cara h3 {
+    color: #fff;
+    z-index: 30;
+}
+
+.carta-frente {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+
+.carta-atras {
+    background-color: #315ee3;
+    transform: rotateY(180deg);
+    
+}
+
+.carta-atras-cont {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0px 30px;
+    height: 100%;
+    width: 100%;
+}
+
+.img-carta-atras {
+    width: 100%;
+    height: 100%;
+}
+
+.rotate:hover .carta {
+    transform: rotateY(180deg);
+}
+
+.industria {
+    background-image: url(https://admin.divisiondigital.co/uploads/userfiles/744/files/Inicio/QuienesSomos/industria.jpg);
+}
+
+.comercial {
+    background-image: url(https://admin.divisiondigital.co/uploads/userfiles/744/files/Inicio/QuienesSomos/comercial.jpg);
+}
+
+.residencial {
+    background-image: url(https://admin.divisiondigital.co/uploads/userfiles/744/files/Inicio/QuienesSomos/residencial.jpg);
+}
+
+.construccion {
+    background-image: url(https://admin.divisiondigital.co/uploads/userfiles/744/files/Inicio/QuienesSomos/construccion.jpg);
+}
+
+.todo p {
+    margin: 0;
+    color: #fff;
+    padding: 10px;
+}
+
+.img {
+    height: 100%;
+    width: 100%;
+}
+
+@media (max-width: 850px) {
+    .sectores-Industria {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .carta-atras-cont {
+        font-size: 0.71rem;
+    }
+
+    .card-container {
+        width: 60%;
+        height: 50%;
+    }
+
+    .contenido-centro {
+        width: 60%;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-container {
+        width: 85%;
+    }
+
+    .contenido-centro {
+        width: 85%;
+    }
+}

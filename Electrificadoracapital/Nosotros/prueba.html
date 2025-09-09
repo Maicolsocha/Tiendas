@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <div class="all">
+        <h4 class="titu">Tu Eres Primero</h4>
+        <p class="parra">En ElectrificadoraCapital, lo más importante para nosotros eres tú. Por eso, ofrecemos servicios pensados para brindarte comodidad y una experiencia excelente en cada interacción. ¡Estamos aquí para ayudarte siempre!</p>
+    </div>
+    <div class="images">
+        <img src="https://admin.divisiondigital.co/uploads/userfiles/285/files/BANNERS/2.png" alt="banner-ventas" class="bann">
+        <img src="https://admin.divisiondigital.co/uploads/userfiles/285/files/BANNERS/1.png" alt="banner-entrega" class="bann">
+    </div>
+
+    <div class="slideshow-container">
+
+      <section id="image-carousel" class="splide" aria-label="Beautiful Images">
+        <div class="splide__track">
+              <ul class="splide__list">
+                  <li class="splide__slide">
+                      <img src="https://admin.divisiondigital.co/uploads/userfiles/285/files/BANNERS/2.png" alt="">
+                  </li>
+                  <li class="splide__slide">
+                      <img src="https://admin.divisiondigital.co/uploads/userfiles/285/files/BANNERS/1.png" alt="">
+                  </li>
+              </ul>
+        </div>
+      </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script>
+        document.addEventListener( 'DOMContentLoaded', function () {
+            new Splide( '#image-carousel' ).mount();
+        } );
+
+        
+    </script>
+    
+
+<style>
+  .slideshow-container{
+    display: none;
+    margin-bottom: 10px;
+  }
+.splide__slide img {
+    width: 100%;
+    height: auto;
+}
+
+/* ---------------------------------------------------- */
+
+
+.titu{
+    color: #f01800;
+    font-size: 30px;
+    margin: 3px;
+    font-family: "Open Sans", sans-serif;
+}
+
+.parra{
+    margin: 10px;
+    font-size: 12px;
+    font-family: "Open Sans", sans-serif;
+}
+
+.images{
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.bann{
+    width: 48%;
+    height: auto;
+    border-radius: 30px;
+    margin: 3px
+}
+
+@media (max-width: 800px) {
+    .titu{
+        font-size: 20px;
+    }
+
+    .parra{
+        font-size: 10px;
+    }
+    .bann{
+        border-radius: 20px;
+    }
+
+    .images{
+        display: none;
+    }
+
+    .slideshow-container, .dots{
+        display: block;
+    }
+
+
+}
+
+@media (max-width: 500px) {
+    .titu{
+        font-size: 15px;
+    }
+
+    .parra{
+        font-size: 9px;
+    }
+    .images{
+        flex-direction: column;
+    }
+    .bann{
+        width: 100%;
+        border-radius: 10px;
+    }
+}
+</style>
+
+</body>
+</html>

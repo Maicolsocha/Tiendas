@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gana Con Nosotros</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+        .h3, .par-refs p, .parrafo-ganar-nosotros p, .contactanos{
+            font-family: "Noto Sans", sans-serif;
+        }
+
+        
+        .banner-img{
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+        .cont-banner-img, .con-pie{
+            width: 100%;
+        }
+        
+        .cont-banner-img img, .cont-pie-img img{
+            width: 100%;
+            height: 100%;
+        }
+
+
+        .h3{
+            text-align: center;
+            color: #e81818;
+        }
+        .con1{
+            display: flex;
+            justify-content: center;
+        }
+
+        .refs{
+            margin: 3px;
+            width: 25%;
+            height: auto;
+            position: relative;
+        }
+
+        .fondo{
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .par-refs{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            transition: 0.5S;
+            background-color: #13141455;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+
+        }
+        .refs:hover .par-refs{
+            opacity: 1;
+            .contactanos{
+                display: flex;
+            }
+
+        }
+        .refs:hover .fondo{
+            filter: blur(5px);
+        }
+
+        .text{
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%);
+            font-size: 1.1vw;
+            color: #fff;
+            width: 80%;
+            text-align: center;
+        }
+
+        .contactanos{
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%);
+            
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #30d54f;
+            border-radius: 10px;
+            width: 50%;
+            display: none;
+        }
+        .text-contactanos{
+            margin: 10px;
+            font-size: 1.2vw;
+            font-weight: 700;
+        }
+        .whatsapp{
+            width: 100%;
+            height: auto;
+            margin-right: 12px;
+            
+        }
+        .imagen-whats{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+
+        .img-refs{
+            width: 100%;
+            height: auto;
+            z-index: 50;
+        }
+
+        .breadcrumb-nav{
+            display: none;
+        }
+
+        @media (max-width: 850px) {
+            .referencias{
+                display: flex;
+                justify-content: space-around;
+            }
+            .parrafo-ganar-nosotros p{
+                font-size:  2.5vw;
+            }
+            .con1{
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .text{
+                font-size: 1.2rem;
+            }
+            .refs{
+                width: 40vw;
+            }
+            .whatsapp{
+                width: 40%;
+                display: block;
+                margin: 0;
+            }
+            .text-contactanos{
+                display: none;
+            }
+        }
+
+        @media (max-width: 615px) {
+            .text{
+                font-size: .7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+<div class="content-all">
+    <div class="banner-img">
+        <div class="cont-banner-img">
+            <img  src="https://admin.divisiondigital.co/uploads/userfiles/285/files/Menu/Campa%C3%B1as/demo1/banner.png" alt="Banner Campañas">
+        </div>
+    </div>
+    <div class="referencias">
+
+        <div class="con1">
+            <div class="refs">
+
+                <img src="https://admin.divisiondigital.co/uploads/userfiles/285/files/Menu/Campa%C3%B1as/demo1/comision-referido.png" alt="Gana Por Comision" class="fondo">
+
+                <div class="par-refs">
+                    <p class="text">¿Quieres Saber Mas?</p>
+                    <a href="https://wa.me/573158411487/?text=Hola,%20me%20gustaría%20obtener%20información%20sobre%20cómo%20puedo%20ganar%20comisiones%20mediante%20referidos." class="contactanos">
+                        <span class="text-contactanos">Comunícate</span> 
+                        <div class="imagen-whats"> 
+                            <img src="https://admin.divisiondigital.co/uploads/userfiles/285/files/Menu/Campa%C3%B1as/demo1/whatsapp.png" alt="whatsapp" class="whatsapp"> 
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="refs">
+
+                <img src="https://admin.divisiondigital.co/uploads/userfiles/285/files/Menu/Campa%C3%B1as/demo1/vende-nosotros.png" alt="Vende Con Nosotros" class="fondo">
+
+                <div class="par-refs">
+                    <p class="text">¿Quieres Saber Mas?</p>
+                    <a href="https://wa.me/573158411487/?text=Hola, %20me %20interesa %20saber %20cómo %20puedo %20vender %20mis %20productos %20con %20ustedes." class="contactanos">
+                        <span class="text-contactanos">Comunícate</span> 
+                        <div class="imagen-whats"> 
+                            <img src="https://admin.divisiondigital.co/uploads/userfiles/285/files/Menu/Campa%C3%B1as/demo1/whatsapp.png" alt="whatsapp" class="whatsapp"> 
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="refs">
+
+                <img src="https://admin.divisiondigital.co/uploads/userfiles/285/files/Menu/Campa%C3%B1as/demo1/carro-pago.png" alt="Tu Carro Como Parte De Pago" class="fondo">
+
+                <div class="par-refs">
+                    <p class="text">¿Quieres Saber Mas?</p>
+                    <a href="https://wa.me/573158411487/?text=Hola,%20me%20gustaría%20obtener%20información%20sobre%20cómo%20puedo%20usar%20mi%20carro%20como%20forma%20de%20pago." class="contactanos">
+                        <span class="text-contactanos">Comunícate</span> 
+                        <div class="imagen-whats"> 
+                            <img src="https://admin.divisiondigital.co/uploads/userfiles/285/files/Menu/Campa%C3%B1as/demo1/whatsapp.png" alt="whatsapp" class="whatsapp"> 
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="con1">
+            <div class="refs">
+
+                <img src="https://admin.divisiondigital.co/uploads/userfiles/285/files/Menu/Campa%C3%B1as/demo1/cotizacion.png" alt="Mejoramos Tu cotizacion" class="fondo">
+
+                <div class="par-refs">
+                    <p class="text">¿Quieres Saber Mas?</p>
+                    <a href="https://wa.me/573158411487/?text=Hola,%20estoy%20interesado%20en%20conocer%20cómo%20pueden%20ayudarme%20a%20mejorar%20mi%20cotización." class="contactanos">
+                        <span class="text-contactanos">Comunícate</span> 
+                        <div class="imagen-whats"> 
+                            <img src="https://admin.divisiondigital.co/uploads/userfiles/285/files/Menu/Campa%C3%B1as/demo1/whatsapp.png" alt="whatsapp" class="whatsapp"> 
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="refs">
+
+                <img src="https://admin.divisiondigital.co/uploads/userfiles/285/files/Menu/Campa%C3%B1as/demo1/credito.png" alt="Credito Materiales Electricos" class="fondo">
+
+                <div class="par-refs">
+                    <p class="text">¿Quieres Saber Mas?</p>
+                    <a href="https://wa.me/573158411487/?text=Hola,%20me%20gustaría%20recibir%20información%20sobre%20cómo%20puedo%20obtener%20un%20crédito%20para%20materiales%20eléctricos." class="contactanos">
+                        <span class="text-contactanos">Comunícate</span> 
+                        <div class="imagen-whats"> 
+                            <img src="https://admin.divisiondigital.co/uploads/userfiles/285/files/Menu/Campa%C3%B1as/demo1/whatsapp.png" alt="whatsapp" class="whatsapp"> 
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="refs">
+
+                <img src="https://admin.divisiondigital.co/uploads/userfiles/285/files/Menu/Campa%C3%B1as/demo1/distribuidor.png" alt="Gana Por Comision" class="fondo">
+
+                <div class="par-refs">
+                    <p class="text">¿Quieres Saber Mas?</p>
+                    <a href="https://wa.me/573158411487/?text=Hola,%20estoy%20interesado%20en%20conocer%20cómo%20puedo%20acceder%20a%20su%20tecnología." class="contactanos">
+                        <span class="text-contactanos">Comunícate</span> 
+                        <div class="imagen-whats"> 
+                            <img src="https://admin.divisiondigital.co/uploads/userfiles/285/files/Menu/Campa%C3%B1as/demo1/whatsapp.png" alt="whatsapp" class="whatsapp"> 
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="con-pie">
+        <div class="cont-pie-img">
+            <img  src="https://admin.divisiondigital.co/uploads/userfiles/285/files/Menu/Campa%C3%B1as/demo1/pie-de-pagina2.png" alt="Banner Pie De Pagina">
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

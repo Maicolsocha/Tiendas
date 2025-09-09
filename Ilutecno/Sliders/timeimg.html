@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.mySlides {display:none;}
+</style>
+<body>
+
+<h2 class="w3-center">HTML slides</h2>
+
+<div class="w3-content" style="max-width:400px">
+
+  <img class="mySlides" src="img/venecia.jpg" style="width:400px">
+
+  <img class="mySlides" src="img/party.jpeg" style="width:100%">
+
+  <img class="mySlides" src="img/donas.png" alt="" style="width:100%">
+
+  <img class="mySlides" src="img/Pacman.jpg" style="width:100%">
+
+</div>
+
+<script>
+var slideIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) { x[i].style.display = "none";}
+  slideIndex++;
+  if (slideIndex > x.length) {slideIndex = 1} 
+  x[slideIndex-1].style.display = "block"; 
+  setTimeout(carousel, 2000); 
+}
+
+
+
+
+
+let timeoutId;
+
+var slideIndex = 0;
+
+function carousel() {
+  var i;
+  t = 2000;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none"; 
+  }
+  slideIndex++;
+  if (slideIndex > x.length) {slideIndex = 1} 
+  x[slideIndex-1].style.display = "block";
+  startTimer();
+}
+
+const imgs = document.getElementsByClassName("sliders-img");
+const botons = document.getElementsByClassName("buttons");
+
+carousel();
+
+function startTimer() {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(carousel, 3000); 
+}
+  
+for(let i = 0; i < imgs.length; i++){
+  imgs[i].addEventListener('click', carousel);
+}
+
+for(let i = 0; i < botons.length; i++){
+  botons[i].addEventListener('click', carousel);
+}
+</script>
+
+
+</body>
+</html>

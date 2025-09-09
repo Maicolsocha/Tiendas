@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lol</title>
+</head>
+<body>
+    <style>
+         #sidebar_main::-webkit-scrollbar-thumb,#contenido-principal::-webkit-scrollbar-thumb {
+                background-color: #f5672f;
+                /* color of the scroll thumb */
+                border-radius: 20px;
+                /* roundness of the scroll thumb */
+                border: 1px solid #315ee3;
+                /* creates padding around scroll thumb */
+            }
+            .banner-container{
+                position: relative; 
+                display: inline-block; 
+                width: 100%;
+                margin-top: 10px;
+                transition: all 0.2s ease;
+            }
+
+            .banner-container:hover .banner-img{
+                filter: none;
+                
+            }
+            .banner-container:hover .text-banner{
+                color: #0001;
+            }
+
+            .banner-img{
+                display: block;
+                width: 100%;
+                height: auto;
+                filter: blur(0.1em) hue-rotate(180deg);
+                transition: all 1s ease;
+            }
+            .text-banner{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 4rem;
+                color: #fff;
+                transition: all 1s ease;
+            }
+
+
+
+
+    </style>
+    
+        <section class="banner-container">
+            <img class="banner-img" src="img/banner.png" alt="">
+            <h4 class="text-banner">Explora Nuestro Catalogo Aca</h4>
+        </section>
+    
+</body>
+
+
+
+</html>

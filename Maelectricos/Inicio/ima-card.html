@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="todo">
+        <div>
+            <h3 class="h3">Sectores De La Industria De <span style="color: #315ee3;">Quienes Somos</span></h3>
+            <span class="parra">Distribuidores de materiales eléctricos en Colombia. Almacenes eléctricos</span>
+        </div>
+        <div class="sectores-Industria">
+            <div>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-face card-front">
+                        <p>
+                            Frente
+                        </p>
+                    </div>
+                    <div class="card-face card-back">
+                        <p>
+                            Atras ajdoskfjosjospgjoije
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="centro">
+                <div class="comercial img">
+                    <p>
+                        Comercial Saber más Apoyamos su crecimiento empresarial con soluciones adaptadas a sus necesidades, impulsando la rentabilidad y competitividad como proveedores eléctricos.
+                    </p>
+                </div>
+                <div class="residencial img">
+                    <p>
+                        Ofrecemos soluciones diseñadas para optimizar la eficiencia energética en los hogares, con un enfoque en preservar el entorno. Nuestros materiales eléctricos están especialmente seleccionados para mejorar el rendimiento energético y garantizar la protección del medio ambiente.
+                    </p>
+                </div>
+            </div>
+            <div class="lados">
+                <div class="construccion img">
+                    <p>
+                        Construcción Saber más Como distribuidor mayorista de materiales eléctricos bajo las mejores marcas del mercado, nos enorgullece ofrecer productos respaldados por las principales marcas a nivel mundial. Nuestro portafolio de soluciones está garantizado por la calidad y confiabilidad de estos productos, asegurando así el éxito en el desarrollo de sus proyectos.
+                    </p>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+
+    
+</body>
+
+<style>
+
+    .h3{
+        text-align: center;
+        font-size: 2rem;
+        margin: 2px;
+    }
+    .parra{
+        text-align: center;
+        display: block;
+        margin: 10px;
+    }
+    .sectores-Industria{
+        display: flex;
+        justify-content: center;
+    }
+
+    .card-container{
+        width: 400px;
+        height: 500px;
+    }
+    .card{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.6s ease;
+    }
+    .card-container:hover .card{
+        transform: rotateY(180deg);
+    }
+    .card-face{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+    }
+
+    .card-front{
+        background-color: #f14a08;
+    }
+    .card-back{
+        background-color: #315ee3;
+        color: #fff;
+        transform: rotateY(180deg);
+    }
+
+    .industria{
+        background-image: url(img/industria.jpg);
+    }
+    
+    .comercial{
+        background-image: url(img/comercial.jpg);
+    }
+
+    .residencial{
+        background-image: url(img/residencial.jpg);
+    }
+    .construccion{
+        background-image: url(img/construccion.jpg);
+    }
+    
+
+
+    
+</style>
+</html>

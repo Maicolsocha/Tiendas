@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<body>
+  <div class="all">
+    
+    <div class="nuestras-categorias">
+      <span>NUESTRAS CATEGORIAS</span>
+    </div>
+    
+    <div class="tit-imgprin">
+      <div class="buttons">
+        <button class="buttonsSlider" onclick="plusDivs(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="imgPrincipal">
+          <div class="imgs" id="sub-img-principal" style="max-width:700px;">
+            
+            <a href="https://electrificadoracapital.com/categoria/baja-media-y-alta-tension"><img class="mySlides" src="https://admin.divisiondigital.co/uploads/userfiles/180/files/categoriaspeque%C3%B1as/alta-tension.png" style="width:100%;display:none"></a>
+            <a href="https://electrificadoracapital.com/categoria/energia-solar"><img class="mySlides" src="https://admin.divisiondigital.co/uploads/userfiles/180/files/categoriaspeque%C3%B1as/energia-solar.png" style="width:100%;display:none"></a>
+            <a href="https://electrificadoracapital.com/categoria/herramientas"><img class="mySlides" src="https://admin.divisiondigital.co/uploads/userfiles/180/files/categoriaspeque%C3%B1as/herramientas.png" style="width:100%;"></a>
+            <a href="https://electrificadoracapital.com/categoria/maniobra"><img class="mySlides" src="https://admin.divisiondigital.co/uploads/userfiles/180/files/categoriaspeque%C3%B1as/maniobra.png" style="width:100%;display:none"></a>
+            <a href="https://electrificadoracapital.com/categoria/tuberia-metalica"><img class="mySlides" src="https://admin.divisiondigital.co/uploads/userfiles/180/files/categoriaspeque%C3%B1as/tuberia-metalica.png" style="width:100%;display:none"></a>
+            <a href="https://electrificadoracapital.com/categoria/iluminacion"><img class="mySlides" src="https://admin.divisiondigital.co/uploads/userfiles/180/files/categoriaspeque%C3%B1as/iluminacion.png" style="width:100%;display:none"></a>
+          </div>
+        </div>
+        <button class="buttonsSlider" onclick="plusDivs(1)"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="sub-content">
+        <div class="sliders-img" id="1">
+          <img class="demo w3-opacity w3-hover-opacity-off" src="https://admin.divisiondigital.co/uploads/userfiles/180/files/categoriaspeque%C3%B1as/alta-tension.png"  style="width:100%;cursor:pointer;" onclick="currentDiv(1)">
+        </div>
+        <div class="sliders-img" id="2">
+          <img class="demo w3-opacity w3-hover-opacity-off" src="https://admin.divisiondigital.co/uploads/userfiles/180/files/categoriaspeque%C3%B1as/energia-solar.png" style="width:100%;cursor:pointer" onclick="currentDiv(2)">
+        </div>
+        <div class="sliders-img" id="3">
+          <img class="demo w3-opacity w3-hover-opacity-off" src="https://admin.divisiondigital.co/uploads/userfiles/180/files/categoriaspeque%C3%B1as/herramientas.png" style="width:100%;cursor:pointer;" onclick="currentDiv(3)">
+        </div>
+        <div class="sliders-img" id="4">
+          <img class="demo w3-opacity w3-hover-opacity-off" src="https://admin.divisiondigital.co/uploads/userfiles/180/files/categoriaspeque%C3%B1as/maniobra.png" style="width:100%;cursor:pointer" onclick="currentDiv(4)">
+        </div>
+        <div class="sliders-img" id="5">
+          <img class="demo w3-opacity w3-hover-opacity-off" src="https://admin.divisiondigital.co/uploads/userfiles/180/files/categoriaspeque%C3%B1as/tuberia-metalica.png" style="width:100%;cursor:pointer;" onclick="currentDiv(5)">
+        </div>
+        <div class="sliders-img" id="6">
+          <img class="demo w3-opacity w3-hover-opacity-off" src="https://admin.divisiondigital.co/uploads/userfiles/180/files/categoriaspeque%C3%B1as/iluminacion.png" style="width:100%;cursor:pointer;" onclick="currentDiv(6)">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+  .all{
+    display: grid;
+    place-items: center;
+  }
+  .tit-imgprin{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .nuestras-categorias{
+    font-size: 30px;
+    font-weight: 300;
+    background-color: #f01800;
+    padding: 4px 15px;
+    border-radius: 10px;
+    font-family: "Bebas Neue", sans-serif;
+    
+    span{
+      color: #FFF;
+    }
+  }
+  .mySlides:hover{
+    opacity: .7;
+  }
+  #sub-img-principal{
+    display: grid;
+    justify-content: center;
+  }
+  .buttons{
+    display: flex;
+    align-items: center;
+  }
+  .buttonsSlider{
+    width: 30px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background-color: #77777730;
+    margin: 0 30px;
+    transition: all .3S;
+  }
+  .buttonsSlider:active{
+    background-color: #f01800;
+  }
+  .sub-content{
+    display: flex;
+    flex-grow: 1;
+    background-color: #00000022;
+    border-radius: 15px;
+  }
+  .imgPrincipal{
+    display: grid;
+    justify-content: center;
+    margin: 10px;
+  }
+  .sliders-img{
+    margin: 10px;
+  }
+  .w3-opacity,.w3-hover-opacity:hover{
+    opacity:0.60
+  }
+  .w3-opacity-off,.w3-hover-opacity-off:hover{
+    opacity:1
+  }
+  @media (max-width:990px) {
+    .titulo{
+      font-size: 5vw;
+    }
+    .sliders-img{
+      margin: .5vh;
+    }
+    .nuestras-categorias{
+      font-size: 2rem;
+    }
+  }
+
+  @media (min-width: 991px)  and  (max-width: 1080px) {
+    .titulo h2{
+      font-size: 45px;
+    }
+  }
+
+</style>
+</body>
+
+  <script>
+
+    var slideIndex = 3;
+
+    showDivs(slideIndex);
+
+    function currentDiv(n) {
+      showDivs(slideIndex = n);
+    }
+    function plusDivs(n) {
+      showDivs(slideIndex += n);
+    }
+
+    
+    
+    function showDivs(n) {
+      
+      var i;
+      var x = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("demo");
+      if (n > x.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = x.length}
+      for (i = 0; i < x.length; i++) {x[i].style.display = "none";}
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+      }
+
+      function ocultar(){
+        let maximg = 3;
+        let img = document.getElementsByClassName("sliders-img");
+        
+      }
+      
+      x[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " w3-opacity-off";
+    }
+    
+    /*--------------------------------------------------------------------------------------------------------*/
+    
+
+    /*--------------------------------------------------------------------------------------------------------*/
+    
+  </script>
+<img src="" alt="">
+</html>
+
+
+
+
+<!--
+
+<div class="container-all">
+<div class="tit-imgprin">
+<div class="titulo">
+<h2>NUESTRAS MARCAS ALIADAS</h2>
+</div>
+
+<div class="buttons"><button class="buttonsSlider" onclick="plusDivs(-1)"></button>
+
+<div class="imgPrincipal">
+<div class="imgs" id="sub-img-principal" style="max-width:700px;"><img alt="" class="mySlides" src="https://admin.divisiondigital.co/uploads/userfiles/276/files/ImagenesMarcasNueva/BIROT.png" style="width:100%;display:none" /> <img alt="" class="mySlides" src="https://admin.divisiondigital.co/uploads/userfiles/276/files/ImagenesMarcasNueva/ECOLITE.png" style="width:100% ; " /> <img alt="" class="mySlides" src="https://admin.divisiondigital.co/uploads/userfiles/276/files/ImagenesMarcasNueva/FINDER.png" style="width:100%; display:none" /> <img alt="" class="mySlides" src="https://admin.divisiondigital.co/uploads/userfiles/276/files/ImagenesMarcasNueva/ILUMAX.png" style="width:100%;display:none" /> <img alt="" class="mySlides" src="https://admin.divisiondigital.co/uploads/userfiles/276/files/ImagenesMarcasNueva/LEDVANCE.png" style="width:100%;display:none" /> <img alt="" class="mySlides" src="https://admin.divisiondigital.co/uploads/userfiles/276/files/ImagenesMarcasNueva/SKL.png" style="width:100%;display:none" /> <img alt="" class="mySlides" src="https://admin.divisiondigital.co/uploads/userfiles/276/files/ImagenesMarcasNueva/TECNOLITE.png" style="width:100%;display:none" /> <img alt="" class="mySlides" src="https://admin.divisiondigital.co/uploads/userfiles/276/files/ImagenesMarcasNueva/VETO.png" style="width:100%;display:none" /></div>
+</div>
+<button class="buttonsSlider" onclick="plusDivs(1)"></button></div>
+</div>
+
+<div class="content">
+<div class="sub-content">
+<div class="sliders-img"><img alt="" class="demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(1)" src="https://admin.divisiondigital.co/uploads/userfiles/276/files/ImagenesMarcas/BIROT.png" style="width:100%;cursor:pointer" /></div>
+
+<div class="sliders-img"><img alt="" class="demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(2)" src="https://admin.divisiondigital.co/uploads/userfiles/276/files/ImagenesMarcas/ECOLITE.png" style="width:100%;cursor:pointer" /></div>
+
+<div class="sliders-img"><img alt="" class="demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(3)" src="https://admin.divisiondigital.co/uploads/userfiles/276/files/ImagenesMarcas/FINDER.png" style="width:100%;cursor:pointer" /></div>
+
+<div class="sliders-img"><img alt="" class="demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(4)" src="https://admin.divisiondigital.co/uploads/userfiles/276/files/ImagenesMarcas/ILUMAX.png" style="width:100%;cursor:pointer" /></div>
+
+<div class="sliders-img"><img alt="" class="demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(5)" src="https://admin.divisiondigital.co/uploads/userfiles/276/files/ImagenesMarcas/LEDVANCE.png" style="width:100%;cursor:pointer" /></div>
+
+<div class="sliders-img"><img alt="" class="demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(6)" src="https://admin.divisiondigital.co/uploads/userfiles/276/files/ImagenesMarcas/SKL.png" style="width:100%;cursor:pointer" /></div>
+
+<div class="sliders-img"><img alt="" class="demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(7)" src="https://admin.divisiondigital.co/uploads/userfiles/276/files/ImagenesMarcas/TECNOLITE.png" style="width:100%;cursor:pointer" /></div>
+
+<div class="sliders-img"><img alt="" class="demo w3-opacity w3-hover-opacity-off" onclick="currentDiv(8)" src="https://admin.divisiondigital.co/uploads/userfiles/276/files/ImagenesMarcas/VETO.png" style="width:100%;cursor:pointer" /></div>
+</div>
+</div>
+</div>
+<style type="text/css">.container-all{
+    display: grid;
+    place-items: center;
+  }
+  .tit-imgprin{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .titulo{
+    display: flex;
+    align-items: end;
+    height: 100px;
+    color: #7469c9;
+  }
+  .titulo h2{
+    font-size: 50px;
+    font-family: "Poppins", sans-serif; 
+  }
+  #sub-img-principal{
+    position: relative;
+    display: grid;
+    justify-content: center;
+  }
+  .buttons{
+    display: flex;
+    align-items: center;
+  }
+  .buttonsSlider{
+    width: 30px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background-color: #77777730;
+    margin: 0 30px;
+  }
+  .sub-content{
+    display: flex;
+    flex-grow: 1;
+    background-color: #7469c930;
+    border-radius: 15px;
+  }
+  .imgPrincipal{
+    display: grid;
+    justify-content: center;
+    margin: 20px;
+  }
+  .sliders-img{
+    margin: 10px;
+  }
+</style>
+<script>
+
+var slideIndex = [];
+
+    let timeoutId;
+    function currentDiv(n) {
+      showDivs(slideIndex = n);
+    }
+
+    showDivs(0);
+    
+    function showDivs(n) {
+      var i;
+      var x = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("demo");
+      if (n > x.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = x.length}
+      for (i = 0; i < x.length; i++) {x[i].style.display = "none";}
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+      }
+      x[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " w3-opacity-off";
+    }
+    
+    /*--------------------------------------------------------------------------------------------------------*/
+    
+    function plusDivs(n) {
+      showDivs(slideIndex += n);
+    }
+
+    /*--------------------------------------------------------------------------------------------------------*/
+   
+  </script>
+
+
+
+  -->

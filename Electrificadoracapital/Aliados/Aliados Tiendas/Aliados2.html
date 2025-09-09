@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba Aliados</title>
+</head>
+<body>
+    <h2>Nuestros Aliados</h2>
+    <div class="con">
+        <div class="sub-con">
+            <div class="med">
+                <a href="https://electrificadoracapital.com">
+                    <img alt="electrificadoracapital" src="https://admin.divisiondigital.co/uploads/userfiles/285/files/Medios%20de%20pago/Aliados/electrificadoracapital.png">
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    h2{
+        text-align: center;
+        font-family: "Bebas Neue", sans-serif;
+        color: #ffbb07;
+        font-size: 4rem;
+        margin: 10px;
+    }
+    
+    .sub-con{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 600px;
+    }
+    .sub-con a{
+        width: 100%;
+    }
+    .med{
+        width: 45%;
+        margin: 15px 0px;
+        border-radius: 30px;
+        transition: all .5s ease-out;
+        background-color: #fff;
+    }
+
+    .med img{
+        width: 100%;
+        height: auto;
+    }
+    .med:hover {
+        box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+        transform: scale(1.01);
+    }
+
+    .breadcrumb-nav{
+        display: none;
+    }
+
+    @media (max-width:1000px){
+        h1{
+            font-size: 3rem;
+        }
+        .med{
+            width: 80%;
+            border-radius: 11px;
+        }
+    }
+</style>

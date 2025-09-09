@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Ecce</title>
+</head>
+<body>
+    <div class="contenido">
+        <div class="bienvenido">
+            <img src="img/Bienvenido A Ecce.png" alt="">
+        </div>
+        <class class="asesor">
+            <div class="contenedor-asesor">
+                <div class="contenedor-img-asesor">
+                    <img alt="Asesores" src="img/1.png" />
+                </div>
+                <div class="contenedor-texto-asesor">
+                    <h3 class="titulo-asesor">Nuestros Asesores</h3>
+                    <p class="asesor"> 
+                        En ECCE, entendemos que la calidad y el conocimiento son esenciales cuando se trata de materiales eléctricos. Por eso, no solo ofrecemos una amplia gama de productos de alta calidad, sino que también contamos con un equipo de asesores altamente capacitados y experimentados, listos para ayudarte a encontrar exactamente lo que necesitas.
+                        <br><br>
+                        Nuestro equipo de expertos está compuesto por profesionales que han recibido una formación exhaustiva en las últimas tecnologías y tendencias del sector eléctrico. Ya sea que estés trabajando en un proyecto residencial, comercial o industrial, nuestros asesores pueden guiarte en la elección de los productos más adecuados para tus necesidades específicas.
+                        <br><br>
+                        ¿No estás seguro de qué producto es el mejor para tu proyecto? No te preocupes, nuestros asesores están aquí para proporcionarte recomendaciones personalizadas basadas en tus requisitos y presupuesto. Desde el momento en que entras en nuestra tienda, te recibirán con una sonrisa y estarán listos para responder a todas tus preguntas, asegurándose de que salgas con la solución perfecta para tu proyecto.
+                    </p>
+                </div>
+            </div>
+            <div class="contenedor-equipo">
+                <div class="contenedor-texto-equipo">
+                    <h3 class="titulo-equipo">Nuestro Equipo</h3>
+                    <p class="equipo"> 
+                        En ECCE, creemos que la satisfacción del cliente es la clave del éxito. Por eso, hemos reunido un equipo excepcional de profesionales dedicados a garantizar que cada uno de nuestros clientes reciba el mejor servicio posible.
+                        <br><br>
+                        Nuestro equipo está compuesto por personas altamente capacitadas y apasionadas por su trabajo, comprometidas a ayudarte en cada paso del camino. Desde el momento en que entras en nuestra tienda o nos contactas en línea, serás atendido por expertos que entienden tus necesidades y están listos para ofrecerte soluciones a medida.
+                        <br><br>
+                        Ya sea que necesites asesoramiento técnico, ayuda para elegir el producto adecuado, o soporte postventa, nuestro equipo está aquí para ti. Nos tomamos el tiempo para escuchar tus inquietudes y responder a todas tus preguntas, asegurándonos de que tengas toda la información que necesitas para tomar decisiones informadas.
+                    </p>
+                </div>
+                <div class="contenedor-img-equipo">
+                    <img alt="equipo" src="img/2.png" />
+                </div>
+            </div>
+        </class>
+        <div class="contenido-formulario">
+            <form id="formulario" class="formulario">
+                <h3>Contactanos</h3>
+                <div class="box-input">
+                    <input name="nombre" id="nombre" type="text" required>
+                    <span data-placeholder="Nombre"></span>
+                </div>
+                <div class="box-input">
+                    <input name="apellidos" id="apellidos" type="text" required>
+                    <span data-placeholder="Apellidos"></span>
+                </div>
+                <div class="box-input">
+                    <input name="telefono" id="telefono" type="number" required>
+                    <span data-placeholder="Telefono"></span>
+                </div>
+                <div class="box-input">
+                    <input name="email" id="email" type="email" required>
+                    <span data-placeholder="Correo Electrónico"></span>
+                </div>
+                <button id="submit" type="submit" class="boton"><i class="fab fa-whatsapp"></i> Enviar</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        $(".box-input input").on("focus", function(){
+            $(this).addClass("focus");
+        });
+
+        $(".box-input input").on("blur", function(){
+            if($(this).val() == ""){
+                $(this).removeClass("focus");
+            }
+        });
+    </script>
+    <script src="js/js.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+body{
+    margin: 0;
+}
+
+.ma-distribuidor{
+    text-align: center;
+}
+
+.ma-distribuidor-h2{
+    font-size: 3rem;
+}
+.ma-distribuidor p{
+    font-size: 1.5rem;
+}
+/* ----------------------------------------- */
+.ma-productosDestacados{
+    text-align: center;
+}
+
+.ma-productosDestacados-h2{
+    font-size: 3rem;
+}
+
+.ma-productosDestacados-h3{
+    font-size: 2rem;
+}
+
+.ma-productosDestacados p{
+    font-size: 1.5rem;
+}
+
+/* -------------------------------------------- */
+
+.ma-calificaciones{
+    text-align: center;
+}
+
+.ma-calificaciones-h2{
+    font-size: 3rem;
+}
+.ma-calificaciones-numeros{
+    display: flex;
+    justify-content: center;
+}
+.ma-calificaciones-numeros-info{
+    font-size: 4rem;
+    color: #315ee3;
+    margin: 0 50px;
+}
+
+.ma-calificaciones-cont{
+    display: flex;
+    flex-direction: column;
+}
+.ma-calificaciones-cont span{
+    justify-content: center;
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<body>
+
+
+<div class="imgPrincipal">
+
+  <div class="imgs" id="sub-img-principal" style="max-width:700px">
+    
+    <img class="mySlides" src="img/Nuevas/BIROT.png" style="width:100%;display:none">
+    <img class="mySlides" src="img/Nuevas/ECOLITE.png" style="width:100%">
+    <img class="mySlides" src="img/Nuevas/FINDER.png" style="width:100%;display:none">
+    <img class="mySlides" src="img/Nuevas/ILUMAX.png" style="width:100%;display:none">
+    <img class="mySlides" src="img/Nuevas/LEDVANCE.png" style="width:100%;display:none">
+    <img class="mySlides" src="img/Nuevas/SKL.png" style="width:100%;display:none">
+    <img class="mySlides" src="img/Nuevas/TECNOLITE.png" style="width:100%;display:none">
+    <img class="mySlides" src="img/Nuevas/VETO.png" style="width:100%;display:none">
+  </div>
+
+  <div class="buttons">
+    <button class="buttonsSlider" onclick="plusDivs(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="buttonsSlider" onclick="plusDivs(1)"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+
+</div>
+
+<div class="content">
+  <div class="sub-content">
+
+    <div class="sliders-img">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="img/nuevas/BIROT.png" style="width:100%;cursor:pointer" onclick="currentDiv(1)">
+    </div>
+
+    <div class="sliders-img">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="img/nuevas/ECOLITE.png" style="width:100%;cursor:pointer" onclick="currentDiv(2)">
+    </div>
+
+    <div class="sliders-img">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="img/nuevas/FINDER.png" style="width:100%;cursor:pointer" onclick="currentDiv(3)">
+    </div>
+
+    <div class="sliders-img">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="img/nuevas/ILUMAX.png" style="width:100%;cursor:pointer" onclick="currentDiv(4)">
+    </div>
+
+    <div class="sliders-img">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="img/nuevas/LEDVANCE.png" style="width:100%;cursor:pointer" onclick="currentDiv(5)">
+    </div>
+
+    <div class="sliders-img">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="img/nuevas/SKL.png" style="width:100%;cursor:pointer" onclick="currentDiv(6)">
+    </div>
+
+    <div class="sliders-img">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="img/nuevas/TECNOLITE.png" style="width:100%;cursor:pointer" onclick="currentDiv(7)">
+    </div>
+
+    <div class="sliders-img">
+      <img class="demo w3-opacity w3-hover-opacity-off" src="img/nuevas/VETO.png" style="width:100%;cursor:pointer" onclick="currentDiv(8)">
+    </div>
+  </div>
+</div>
+
+<style>
+  body{
+    margin: 10px;
+  }
+  #sub-img-principal{
+    position: relative;
+    display: grid;
+    justify-content: center;
+  }
+  .buttons{
+    display: flex;
+    justify-content: center;
+  }
+  .buttonsSlider{
+    width: 30px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background-color: #77777730;
+    margin: 0 30px;
+  }
+  .sub-content{
+    display: flex;
+    flex-grow: 1;
+    background-color: #7b12bf30;
+    border-radius: 15px;
+  }
+  .imgPrincipal{
+    display: grid;
+    justify-content: center;
+    margin: 20px;
+  }
+  .sliders-img{
+    margin: 10px;
+  }
+</style>
+</body>
+
+<script>
+
+var slideIndex = [];
+
+    let timeoutId;
+    function currentDiv(n) {
+      showDivs(slideIndex = n);
+    }
+
+    showDivs(0);
+    
+    function showDivs(n) {
+      var i;
+      var x = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("demo");
+      if (n > x.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = x.length}
+      for (i = 0; i < x.length; i++) {x[i].style.display = "none";}
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+      }
+      x[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " w3-opacity-off";
+      startTimer();
+    }
+    
+    /*--------------------------------------------------------------------------------------------------------*/
+    
+    function plusDivs(n) {
+      showDivs(slideIndex += n);
+    }
+
+    /*--------------------------------------------------------------------------------------------------------*/
+    const imgs = document.getElementsByClassName("sliders-img");
+    const botons = document.getElementsByClassName("buttons");
+
+    
+
+    function startTimer() {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(showDivs, 3000); 
+    }
+      
+    for(let i = 0; i < imgs.length; i++){
+      imgs[i].addEventListener('click', showDivs);
+    }
+
+    for(let i = 0; i < botons.length; i++){
+      botons[i].addEventListener('click', showDivs);
+    }
+   
+  </script>
+</html>
+
