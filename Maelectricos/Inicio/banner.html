@@ -6,8 +6,8 @@
     <title>Lol</title>
 </head>
 <body>
-    <style>
-         #sidebar_main::-webkit-scrollbar-thumb,#contenido-principal::-webkit-scrollbar-thumb {
+
+    #sidebar_main::-webkit-scrollbar-thumb,#contenido-principal::-webkit-scrollbar-thumb {
                 background-color: #f5672f;
                 /* color of the scroll thumb */
                 border-radius: 20px;
@@ -15,11 +15,13 @@
                 border: 1px solid #315ee3;
                 /* creates padding around scroll thumb */
             }
+    <style>
             .banner-container{
                 position: relative; 
                 display: inline-block; 
                 width: 100%;
                 margin-top: 10px;
+              
                 transition: all 0.2s ease;
             }
 
@@ -35,6 +37,7 @@
                 display: block;
                 width: 100%;
                 height: auto;
+                border-radius: 10px;
                 filter: blur(0.1em) hue-rotate(180deg);
                 transition: all 1s ease;
             }
@@ -46,18 +49,37 @@
                 font-size: 4rem;
                 color: #fff;
                 transition: all 1s ease;
+                text-align: center;
+            }
+            @media (max-width:1300px) {
+                .text-banner{
+                    font-size: 3rem;
+                }
             }
 
+            @media (max-width:900px) {
+                .text-banner{
+                    font-size: 2.5rem;
+                }
+            }
+            @media (max-width:700px) {
+                .text-banner{
+                    font-size: 2.5rem;
+                }
+            }
 
-
-
+            @media (max-width:500px) {
+                .text-banner{
+                    font-size: 2rem;
+                }
+            }
     </style>
-    
+    <a href="https://maelectricos.com">
         <section class="banner-container">
-            <img class="banner-img" src="img/banner.png" alt="">
-            <h4 class="text-banner">Explora Nuestro Catalogo Aca</h4>
+            <img class="banner-img" src="https://multimedia01.s3.us-east-2.amazonaws.com/Produccion/uploads/userfiles/744/images/Sin%20t%C3%ADtulo%20(1500%20x%20900%20px)%20(3).png" alt="">
+            <h4 class="text-banner">Visita Nuestro Showroom</h4>
         </section>
-    
+    </a>
 </body>
 
 

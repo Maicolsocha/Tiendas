@@ -7,8 +7,8 @@
     font-size: 3rem;
     margin: 2px;
 }
-p{
-    font-size: 1.5rem;
+.textos{
+    font-size: 2rem;
     text-align: justify;
 }
 .parra {
@@ -82,7 +82,6 @@ p{
 }
 
 .carta-atras-cont {
-    font-size: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -133,19 +132,20 @@ p{
     .sectores-Industria {
         flex-direction: column;
         align-items: center;
+        height: 900px;
     }
 
-    .carta-atras-cont {
-        font-size: 0.71rem;
+    .textos{
+        font-size: 0.70rem;
     }
 
     .card-container {
-        width: 60%;
+        width: 90%;
         height: 50%;
     }
 
     .contenido-centro {
-        width: 60%;
+        width: 90%;
     }
 }
 
