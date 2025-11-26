@@ -1,0 +1,533 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style type="text/css">:root {
+  /* Colores principales */
+  --primary-color: #e62020;
+  --primary-hover: #8b9599;
+  --accent-color: #161616;
+  --accent-hover: #0029af;
+  /* Colores neutros */
+  --white: #ffffff;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  /* Colores de estado */
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --warning-color: #f59e0b;
+  /* Tipografía */
+  --font-heading: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  /* Espaciado */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  /* Bordes */
+  --border-radius: 0.5rem;
+  --border-radius-lg: 0.75rem;
+  --border-radius-xl: 1rem;
+  /* Sombras */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+  /* Reset básico */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html{
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--gray-800);
+  }
+  .cont {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+  }
+  .hero-certi {
+    padding: calc(10px + var(--spacing-3xl)) 0 var(--spacing-3xl);
+    background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+  }
+  .hero-content-certi {
+    display: flex;
+    gap: var(--spacing-3xl);
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-title-certi {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.2;
+  }
+  .hero-description-certi {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+    margin-bottom: var(--spacing-2xl);
+    line-height: 1.6;
+  }
+  .hero-stats-certi {
+    display: flex;
+    gap: var(--spacing-xl);
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+  }
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-xl);
+  }
+  .contact {
+    padding: var(--spacing-3xl) 0;
+    background: var(--gray-50);
+  }
+  .contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-3xl);
+    align-items: start;
+  }
+  .contact-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--spacing-lg);
+  }
+  .contact-description-certi {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+    margin-bottom: var(--spacing-2xl);
+    line-height: 1.6;
+  }
+  .contact-features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  .feature {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  .feature-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--primary-color);
+    flex-shrink: 0;
+  }
+  .services {
+    padding: var(--spacing-3xl) 0;
+    background: var(--white);
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+  }
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--spacing-md);
+  }
+  .section-description {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+  }
+  .service-card {
+    background: var(--white);
+    padding: var(--spacing-2xl);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+  }
+  .service-card:hover {
+    box-shadow: var(--shadow-xl);
+  }
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--primary-color);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-lg);
+    color: var(--white);
+  }
+  .service-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: var(--spacing-sm);
+  }
+  .service-description {
+    color: var(--gray-600);
+    line-height: 1.6;
+    text-align: justify;
+  }
+  /* Form Styles */
+  .form-cont {
+    background: var(--white);
+    padding: var(--spacing-2xl);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-lg);
+  }
+  .contact-formu {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  .form-label {
+    font-weight: 600;
+    color: var(--gray-700);
+    font-size: 0.875rem;
+  }
+  .form-input,
+  .form-textarea {
+    padding: var(--spacing-md);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: var(--white);
+  }
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+  }
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  .error-message {
+    color: var(--error-color);
+    font-size: 0.875rem;
+    display: none;
+  }
+  .error-message.show {
+    display: block;
+  }
+  .form-input.error,
+  .form-textarea.error {
+    border-color: var(--error-color);
+  }
+  .submit-btn {
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+  }
+  .submit-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+  }
+  .submit-btn:disabled {
+    background: var(--gray-400);
+    cursor: not-allowed;
+    transform: none;
+  }
+  .btn-loader {
+    display: none;
+  }
+  .btn-loader.show {
+    display: block;
+  }
+  .spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid var(--white);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .success-message {
+    display: none;
+    text-align: center;
+    padding: var(--spacing-2xl);
+    background: var(--white);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-lg);
+  }
+  .success-message.show {
+    display: block;
+  }
+  .success-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--success-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-lg);
+    color: var(--white);
+  }
+  .success-message h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: var(--spacing-sm);
+  }
+  .success-message p {
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+  .breadcrumb-nav{
+    display: none;
+  }
+  @media (max-width:1000px){
+    .hero-content-certi{
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    .hero-text-certi{
+      text-align: center;
+    }
+    .hero-stats-certi{
+      justify-content: center;
+    }
+    .contact-content{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .contact-info-certi{
+      text-align: center;
+    }
+    .contact-features{
+      align-items: center;
+    }
+    .form-group{
+      width: 300px;
+    }
+  }
+</style>
+
+<div class="content-certi">
+  <section class="hero-certi" id="inicio">
+    <div class="cont">
+      <div class="hero-content-certi">
+        <div class="hero-image">
+            <a href="#contacto">
+                <img alt="Certificación de Calidad"
+                src="https://multimedia01.s3.us-east-2.amazonaws.com/Produccion/uploads/userfiles/277/images/Certificados/Certif%C3%ADcate.png"
+                />
+            </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Services Section -->
+  <section class="services" id="servicios">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Nuestros Servicios
+        </h2>
+        <p class="section-description">Ofrecemos certificaciones especializadas para diferentes industrias
+        </p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"> 
+              <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> 
+              </rect> 
+              <circle cx="9" cy="10" r="1.5" fill="currentColor"> 
+              </circle> 
+              <circle cx="15" cy="10" r="1.5" fill="currentColor"> 
+              </circle> 
+              <line x1="12" y1="13" x2="12" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"> 
+              </line> 
+              <path d="M9 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"> 
+              </path> 
+            </svg>
+          </div>
+          <h3 class="service-title">Certificaci&oacute;n RETIE
+          </h3>
+          <p class="service-description">La certificación RETIE confirma que instalaciones y equipos eléctricos cumplen la normativa colombiana mediante inspección, pruebas y documentación técnica, garantizando la seguridad de personas y bienes y ofreciendo respaldo confiable ante autoridades y aseguradoras.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"> 
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> 
+              </path> 
+            </svg>
+          </div>
+          <h3 class="service-title">Certificaci&oacute;n RETILAP
+          </h3>
+          <p class="service-description">La certificación RETILAP avala que instalaciones y equipos de alumbrado público cumplen la normativa colombiana mediante inspecciones y ensayos fotométricos, garantizando visibilidad, eficiencia energética y respaldo ante autoridades.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"> 
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> 
+              </path> 
+            </svg>
+          </div>
+          <h3 class="service-title">Certificaci&oacute;n RETIQ
+          </h3>
+          <p class="service-description">La certificación RETIQ avala que equipos y aparatos que consumen energía cumplen el Reglamento Técnico de Etiquetado mediante ensayos de eficiencia y verificación de etiquetas, garantizando ahorro energético, información clara al consumidor y cumplimiento ante autoridades.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"> 
+              <path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> 
+              </path> 
+            </svg>
+          </div>
+          <h3 class="service-title">Normas Voluntarias
+          </h3>
+          <p class="service-description">La certificación Normas Voluntarias reconoce que productos y procesos cumplen especificaciones técnicas no obligatorias mediante ensayos y documentación, garantizando calidad, seguridad y confianza ante consumidores y el mercado.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="contact" id="contacto">
+    <div class="cont">
+      <div class="contact-content">
+        <div class="contact-info-certi">
+          <h2 class="contact-title">Solicite su Certificaci&oacute;n
+          </h2>
+          <p class="contact-description-certi">Complete el formulario y nuestro equipo de expertos se pondr&aacute; en contacto con usted para evaluar sus necesidades de certificaci&oacute;n.
+          </p>
+          <div class="contact-features">
+            <div class="feature">
+              <div class="feature-icon">
+                <svg fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"> 
+                  <path d="M9 11a3 3 0 106 0 3 3 0 00-6 0z" stroke="currentColor" stroke-width="2"> 
+                  </path> 
+                  <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke="currentColor" stroke-width="2"> 
+                  </path> 
+                </svg>
+              </div>
+              <span>Informes Técnicos Claros y Completos</span>
+            </div>
+            <div class="feature">
+              <div class="feature-icon">
+                <svg fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"> 
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> 
+                  </path> 
+                  <polyline points="22,4 12,14.01 9,11.01" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> 
+                  </polyline> 
+                </svg>
+              </div>
+              <span>Procedimientos Documentados y Controlados</span>
+            </div>
+            <div class="feature">
+              <div class="feature-icon">
+                <svg fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"> 
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> 
+                  </path> 
+                </svg>
+              </div>
+              <span>Excelente Cobertura Normativa y Alcance del Servicio</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-cont">[[formulario id=1 mail_admin=&quot;1&quot; mail_user=&quot;1&quot; cols=&quot;1&quot; {boton label=&quot;Enviar Solicitud&quot; background=&quot;#ff6600&quot; color=&quot;#fff&quot; 		border_radius=&quot;12px&quot; font_size=&quot;16px&quot; padding=&quot;12px 20px&quot;} ]]
+          <div class="success-message" id="successMessage">
+            <div class="success-icon">
+              <svg fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"> 
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> 
+                </path>
+                <polyline points="22,4 12,14.01 9,11.01" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> 
+                </polyline>
+              </svg>
+            </div>
+            <h3>&iexcl;Solicitud Enviada!
+            </h3>
+            <p>Gracias por contactarnos. Nuestro equipo revisar&aacute; su solicitud y se pondr&aacute; en contacto con usted dentro de las pr&oacute;ximas 24 horas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>
+
+
+
