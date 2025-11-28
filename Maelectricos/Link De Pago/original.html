@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oferta Especial - Haz Clic para Acceder</title>
+    <!-- Fuente Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            --bg-color: #111827;
+            /* Gris muy oscuro (fondo) */
+            --text-main: #ffffff;
+            /* Blanco */
+            --text-muted: #9ca3af;
+            /* Gris claro */
+            --accent-blue: #60a5fa;
+            /* Azul brillante */
+            --accent-purple: #a855f7;
+            /* Morado */
+            --accent-pink: #ec4899;
+            /* Rosa */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            /* Evita scroll horizontal */
+            position: relative;
+        }
+
+        /* Enlaces */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- FONDO DECORATIVO (BLOBS) --- */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            /* Desenfoque fuerte */
+            opacity: 0.2;
+            z-index: 0;
+            width: 400px;
+            height: 400px;
+        }
+
+        .blob-purple {
+            top: 0;
+            left: 0;
+            background-color: var(--accent-purple);
+            transform: translate(-30%, -30%);
+            animation: pulseBlob 8s infinite alternate;
+        }
+
+        .blob-blue {
+            bottom: 0;
+            right: 0;
+            background-color: #2563eb;
+            transform: translate(30%, 30%);
+            animation: pulseBlob 8s infinite alternate-reverse;
+        }
+
+        @keyframes pulseBlob {
+            0% {
+                transform: translate(-30%, -30%) scale(1);
+            }
+
+            100% {
+                transform: translate(-30%, -30%) scale(1.1);
+            }
+        }
+
+        /* --- LAYOUT PRINCIPAL --- */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+            /* Por encima del fondo */
+        }
+
+        /* Navbar */
+        nav {
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            /* Texto con gradiente */
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .social-icons a {
+            color: var(--text-muted);
+            margin-left: 1rem;
+            font-size: 1.25rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: white;
+        }
+
+        /* Sección Principal (Main) */
+        main {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+            width: 100%;
+        }
+
+        /* Desktop Layout */
+        @media (min-width: 1024px) {
+            .content-wrapper {
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 5rem;
+            }
+
+            .text-section {
+                width: 50%;
+                text-align: left;
+            }
+
+            .image-section {
+                width: 50%;
+            }
+        }
+
+        /* --- SECCIÓN DE TEXTO (IZQUIERDA) --- */
+        .text-section {
+            text-align: center;
+            /* Centrado en móvil */
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: rgba(96, 165, 250, 0.1);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            color: var(--accent-blue);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            h1 {
+                font-size: 3.75rem;
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .description {
+            font-size: 1.125rem;
+            color: #d1d5db;
+            /* Gris claro */
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 1024px) {
+            .description {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+
+        .features {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        @media (min-width: 1024px) {
+            .features {
+                justify-content: flex-start;
+            }
+        }
+
+        .feature-item i {
+            margin-right: 0.5rem;
+        }
+
+        /* --- TARJETA DE IMAGEN (DERECHA - EL LINK) --- */
+        .image-section {
+            perspective: 1000px;
+            /* Para efectos 3D si quisieras agregarlos */
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .card-link {
+            display: block;
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            /* Corta la imagen si se sale */
+            /* Bordes y sombras estilo Glassmorphism */
+            background-color: #1f2937;
+            border: 1px solid #374151;
+            box-shadow: 0 20px 25px -5px rgba(168, 85, 247, 0.2);
+            /* Sombra morada */
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            cursor: pointer;
+        }
+
+        /* Hover Principal de la Tarjeta */
+        .card-link:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 25px 30px -5px rgba(168, 85, 247, 0.4);
+        }
+
+        .card-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            opacity: 0.9;
+            transition: opacity 0.5s, transform 0.7s;
+        }
+
+        .card-link:hover .card-image {
+            opacity: 1;
+            transform: scale(1.05);
+            /* Zoom suave */
+        }
+
+        /* Overlay oscuro sobre la imagen */
+        .overlay {
+            position: absolute;
+            inset: 0;
+            /* top,right,bottom,left: 0 */
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .card-link:hover .overlay {
+            opacity: 0.6;
+        }
+
+        /* Contenido dentro de la tarjeta */
+        .card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            transform: translateY(10px);
+            transition: transform 0.3s;
+        }
+
+        .card-link:hover .card-title {
+            transform: translateY(0);
+        }
+
+        .card-cta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cta-text {
+            color: #d1d5db;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .card-link:hover .cta-text {
+            color: white;
+        }
+
+        .cta-icon {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            color: black;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translateX(0);
+            transition: transform 0.3s;
+        }
+
+        .card-link:hover .cta-icon {
+            transform: translateX(5px);
+        }
+
+        /* Efecto de Brillo (Shine) */
+        .shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            /* Empieza fuera a la izquierda */
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-25deg);
+            z-index: 20;
+            pointer-events: none;
+            transition: left 0.7s;
+        }
+
+        .card-link:hover .shine {
+            left: 100%;
+            /* Se mueve a la derecha al pasar el mouse */
+        }
+
+        /* Decoración detrás de la tarjeta (Glow) */
+        .card-glow {
+            position: absolute;
+            top: -5px;
+            bottom: -5px;
+            left: -5px;
+            right: -5px;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
+            border-radius: 1.2rem;
+            z-index: -1;
+            filter: blur(15px);
+            opacity: 0.3;
+            transition: opacity 0.5s;
+        }
+
+        .card-link:hover+.card-glow,
+        .card-link:hover~.card-glow {
+            /* Si estuviera adyacente */
+            opacity: 0.6;
+        }
+
+        /* Animación de flotación automática */
+        .float-anim {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Elementos decorativos de fondo (Blobs) -->
+    <div class="blob blob-purple"></div>
+    <div class="blob blob-blue"></div>
+
+    <!-- Contenedor Principal -->
+    <div class="container">
+
+        <!-- Navbar -->
+        <nav>
+            <div class="logo">TuMarca</div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            <div class="content-wrapper">
+
+                <!-- Lado Izquierdo: Información -->
+                <div class="text-section">
+                    <span class="badge">Oferta Limitada</span>
+                    <h1>
+                        Accede a nuestro <br>
+                        <span class="gradient-text">Contenido Exclusivo</span>
+                    </h1>
+                    <p class="description">
+                        Hemos preparado algo increíble para ti. Haz clic en la imagen de la derecha para asegurar tu
+                        cupo y completar tu inscripción de forma segura.
+                    </p>
+
+                    <div class="features">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle" style="color: #4ade80;"></i> Acceso Inmediato
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt" style="color: #60a5fa;"></i> Pago 100% Seguro
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lado Derecho: LA IMAGEN (El Link) -->
+                <div class="image-section float-anim">
+                    <!-- ENVOLTORIO PARA EL EFECTO GLOW -->
+                    <div style="position: relative;">
+                        <!-- Fondo brillante decorativo detrás -->
+                        <div class="card-glow"></div>
+
+                        <!-- 
+                            AQUÍ PONES TU LINK DE PAGO 
+                            Reemplaza el href="#" por tu link real
+                        -->
+                        <a href="https://tu-link-de-pago.com" class="card-link" target="_blank" rel="nofollow">
+
+                            <!-- Imagen Principal -->
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop"
+                                alt="Acceso Premium" class="card-image">
+
+                            <!-- Capa oscura -->
+                            <div class="overlay"></div>
+
+                            <!-- Texto sobre la imagen -->
+                            <div class="card-content">
+                                <h3 class="card-title">Pase VIP 2024</h3>
+                                <div class="card-cta">
+                                    <span class="cta-text">Click para comprar</span>
+                                    <span class="cta-icon">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Brillo animado -->
+                            <div class="shine"></div>
+                        </a>
+                    </div>
+
+                    <p style="text-align: center; font-size: 0.75rem; color: #6b7280; margin-top: 1rem;">
+                        *Al hacer clic serás redirigido a nuestra pasarela de pagos.
+                    </p>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        &copy; 2024 Tu Empresa. Todos los derechos reservados.
+    </footer>
+
+</body>
+
+</html>

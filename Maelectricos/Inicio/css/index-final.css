@@ -295,3 +295,14 @@
     }
 
 }
+
+/*
+#sidebar_main::-webkit-scrollbar-thumb,#contenido-principal::-webkit-scrollbar-thumb {
+    background-color: #f5672f;
+     color of the scroll thumb 
+    border-radius: 20px;
+    /* roundness of the scroll thumb 
+    border: 1px solid #315ee3;
+    /* creates padding around scroll thumb 
+}
+    */
