@@ -1,0 +1,497 @@
+<!-- LANDING: solo contenido (sin <html>, sin <body>, sin nav) -->
+<section class="ilu-landing" aria-label="Landing Ilutecno">
+    <!-- HERO -->
+    <div class="ilu-wrap">
+        <div class="ilu-hero">
+            <div class="ilu-heroBox">
+                <p class="ilu-badge">Iluminación y tecnología</p>
+                <h1 class="ilu-title">Soluciones de iluminación para proyectos y hogar</h1>
+                <p class="ilu-subtitle">
+                    Productos seleccionados, asesoría rápida y cotización por WhatsApp. Encuentre opciones para
+                    interior, exterior,
+                    comercio e industria con soporte antes y después de la compra.
+                </p>
+
+                <div class="ilu-ctaRow">
+                    <a class="ilu-btn ilu-btnPrimary" href="https://ilutecno.com/productos" target="_blank"
+                        rel="noopener">
+                        Revisar catálogo
+                    </a>
+                    <button class="ilu-btn ilu-btnGhost" type="button" id="iluScrollForm">
+                        Cotizar por WhatsApp
+                    </button>
+                </div>
+
+                <div class="ilu-miniInfo">
+                    <div class="ilu-miniItem">
+                        <span class="ilu-dot"></span>
+                        <span>Respuesta rápida</span>
+                    </div>
+                    <div class="ilu-miniItem">
+                        <span class="ilu-dot"></span>
+                        <span>Marcas reconocidas</span>
+                    </div>
+                    <div class="ilu-miniItem">
+                        <span class="ilu-dot"></span>
+                        <span>Envíos en Colombia</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ilu-heroCard">
+                <h3 class="ilu-cardTitle">¿Qué puede solicitar hoy?</h3>
+                <ul class="ilu-checkList">
+                    <li>Recomendación de producto según espacio y uso</li>
+                    <li>Cotización para obra, comercio o residencial</li>
+                    <li>Alternativas por presupuesto y disponibilidad</li>
+                    <li>Guía de instalación y compatibilidades</li>
+                </ul>
+                <a class="ilu-link" href="https://ilutecno.com/productos" target="_blank" rel="noopener">
+                    Ver categorías del catálogo
+                </a>
+            </div>
+        </div>
+
+        <!-- TARJETAS -->
+        <div class="ilu-section">
+            <h2 class="ilu-h2">Lo que obtiene con Ilutecno</h2>
+            <p class="ilu-p">
+                Una experiencia simple: elige el producto, nos escribe por WhatsApp y recibe respuesta con opciones,
+                precio y
+                recomendaciones para comprar con seguridad.
+            </p>
+
+            <div class="ilu-grid">
+                <article class="ilu-card">
+                    <h3 class="ilu-cardTitle">Asesoría clara</h3>
+                    <p class="ilu-cardText">
+                        Le ayudamos a escoger potencia, temperatura de color y tipo de luminaria según el ambiente para
+                        evitar
+                        compras innecesarias.
+                    </p>
+                </article>
+
+                <article class="ilu-card">
+                    <h3 class="ilu-cardTitle">Catálogo organizado</h3>
+                    <p class="ilu-cardText">
+                        Navegue por categorías y marcas. Si ya tiene una referencia, la validamos y le proponemos
+                        equivalencias.
+                    </p>
+                </article>
+
+                <article class="ilu-card">
+                    <h3 class="ilu-cardTitle">Cotización rápida</h3>
+                    <p class="ilu-cardText">
+                        Envíenos cantidades y ciudad. Le respondemos con precio, alternativas y observaciones para su
+                        instalación.
+                    </p>
+                </article>
+            </div>
+        </div>
+
+        <!-- FORMULARIO -->
+        <div class="ilu-section ilu-formSection" id="iluFormSection">
+            <div class="ilu-formHeader">
+                <h2 class="ilu-h2">Cotice en 1 minuto por WhatsApp</h2>
+                <p class="ilu-p">
+                    Complete los datos y se abrirá WhatsApp con el mensaje listo para enviar. Puede pegar enlaces del
+                    producto del
+                    catálogo o escribir la referencia.
+                </p>
+            </div>
+
+            <form class="ilu-form" id="iluWhatsappForm" autocomplete="on">
+                <div class="ilu-fieldRow">
+                    <label class="ilu-label" for="iluName">Nombre</label>
+                    <input class="ilu-input" id="iluName" name="name" type="text" placeholder="Ej: Juan Pérez"
+                        required />
+                </div>
+
+                <div class="ilu-fieldRow">
+                    <label class="ilu-label" for="iluPhone">Teléfono</label>
+                    <input class="ilu-input" id="iluPhone" name="phone" type="tel" inputmode="tel"
+                        placeholder="Ej: 3001234567" required />
+                </div>
+
+                <div class="ilu-fieldRow ilu-fieldFull">
+                    <label class="ilu-label" for="iluMsg">¿Qué necesita cotizar?</label>
+                    <textarea class="ilu-textarea" id="iluMsg" name="message" rows="4"
+                        placeholder="Ej: Panel LED 60x60, 10 unidades, Bogotá. Enlace del producto (opcional): https://ilutecno.com/..."
+                        required></textarea>
+                </div>
+
+                <div class="ilu-actions">
+                    <button class="ilu-btn ilu-btnPrimary ilu-btnWide" type="submit">
+                        Enviar a WhatsApp
+                    </button>
+                    <p class="ilu-legal">
+                        Al enviar, acepta ser contactado para atender su solicitud.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Colores inspirados en el estilo de marcas del catálogo (amarillo y negro), en fondo blanco */
+    .ilu-landing {
+        --ilu-text: #121212;
+        --ilu-muted: #5a5f66;
+        --ilu-border: #e7eaee;
+        --ilu-surface: #ffffff;
+        --ilu-soft: #f6f7f9;
+
+        --ilu-accent: #6e5ed8;
+        /* amarillo */
+        --ilu-accent-2: #111111;
+        /* negro */
+        --ilu-accent-soft: rgba(139, 83, 161, 0.397);
+
+        --ilu-radius: 18px;
+        --ilu-shadow: 0 14px 34px rgba(17, 17, 17, .10);
+        --ilu-max: 1100px;
+
+        color: var(--ilu-text);
+    }
+
+    .ilu-wrap {
+        max-width: var(--ilu-max);
+        margin: 0 auto;
+        padding: 28px 18px 46px;
+    }
+
+    .ilu-hero {
+        display: grid;
+        grid-template-columns: 1.25fr .75fr;
+        gap: 18px;
+        align-items: stretch;
+    }
+
+    .ilu-heroBox,
+    .ilu-heroCard,
+    .ilu-card,
+    .ilu-formSection {
+        background: var(--ilu-surface);
+        border: 1px solid var(--ilu-border);
+        border-radius: var(--ilu-radius);
+        box-shadow: var(--ilu-shadow);
+    }
+
+    .ilu-heroBox {
+        padding: 26px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .ilu-heroBox::before {
+        content: "";
+        position: absolute;
+        inset: -40% -30% auto auto;
+        width: 380px;
+        height: 380px;
+        background: radial-gradient(circle at 30% 30%, var(--ilu-accent-soft), transparent 60%);
+        pointer-events: none;
+    }
+
+    .ilu-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 10px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: var(--ilu-soft);
+        border: 1px solid var(--ilu-border);
+        color: var(--ilu-muted);
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .ilu-title {
+        margin: 0 0 10px;
+        font-size: 34px;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+    }
+
+    .ilu-subtitle {
+        margin: 0 0 18px;
+        color: var(--ilu-muted);
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: 62ch;
+    }
+
+    .ilu-ctaRow {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 0 0 16px;
+    }
+
+    .ilu-btn {
+        appearance: none;
+        border: 1px solid var(--ilu-border);
+        background: var(--ilu-surface);
+        color: var(--ilu-text);
+        font-weight: 700;
+        padding: 12px 14px;
+        border-radius: 12px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: transform .08s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+        user-select: none;
+    }
+
+    .ilu-btn:active {
+        transform: translateY(1px);
+    }
+
+    .ilu-btnPrimary {
+        background: var(--ilu-accent);
+        border-color: rgba(0, 0, 0, .08);
+        color: #111;
+        box-shadow: 0 10px 22px rgba(176, 0, 245, 0.22);
+    }
+
+    .ilu-btnPrimary:hover {
+        background: #4e448d;
+    }
+
+    .ilu-btnGhost {
+        background: var(--ilu-surface);
+        border-color: var(--ilu-border);
+    }
+
+    .ilu-btnGhost:hover {
+        border-color: rgba(139, 83, 161, 0.397);
+        background: var(--ilu-soft);
+    }
+
+    .ilu-btnWide {
+        width: 100%;
+    }
+
+    .ilu-miniInfo {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 14px;
+        margin-top: 6px;
+    }
+
+    .ilu-miniItem {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: var(--ilu-soft);
+        border: 1px solid var(--ilu-border);
+        color: var(--ilu-muted);
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .ilu-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        background: var(--ilu-accent);
+        box-shadow: 0 0 0 4px rgba(139, 83, 161, 0.397);
+    }
+
+    .ilu-heroCard {
+        padding: 20px;
+    }
+
+    .ilu-cardTitle {
+        margin: 0 0 10px;
+        font-size: 16px;
+        letter-spacing: -0.01em;
+    }
+
+    .ilu-checkList {
+        margin: 0 0 12px;
+        padding: 0 0 0 18px;
+        color: var(--ilu-muted);
+        line-height: 1.55;
+        font-size: 14px;
+    }
+
+    .ilu-link {
+        display: inline-flex;
+        font-weight: 800;
+        color: var(--ilu-accent-2);
+        text-decoration: none;
+        border-bottom: 2px solid rgba(17, 17, 17, .12);
+        padding-bottom: 2px;
+    }
+
+    .ilu-link:hover {
+        border-bottom-color: rgba(17, 17, 17, .35);
+    }
+
+    .ilu-section {
+        margin-top: 18px;
+        padding: 22px;
+        background: var(--ilu-soft);
+        border: 1px solid var(--ilu-border);
+        border-radius: var(--ilu-radius);
+    }
+
+    .ilu-h2 {
+        margin: 0 0 10px;
+        font-size: 22px;
+        letter-spacing: -0.01em;
+    }
+
+    .ilu-p {
+        margin: 0 0 14px;
+        color: var(--ilu-muted);
+        line-height: 1.65;
+        font-size: 15px;
+        max-width: 82ch;
+    }
+
+    .ilu-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-top: 10px;
+    }
+
+    .ilu-card {
+        padding: 18px;
+        box-shadow: none;
+    }
+
+    .ilu-cardText {
+        margin: 0;
+        color: var(--ilu-muted);
+        line-height: 1.6;
+        font-size: 14px;
+    }
+
+    .ilu-formSection {
+        padding: 22px;
+        background: var(--ilu-surface);
+    }
+
+    .ilu-formHeader {
+        margin-bottom: 12px;
+    }
+
+    .ilu-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 14px;
+        margin-top: 8px;
+    }
+
+    .ilu-fieldRow {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .ilu-fieldFull {
+        grid-column: 1 / -1;
+    }
+
+    .ilu-label {
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--ilu-text);
+    }
+
+    .ilu-input,
+    .ilu-textarea {
+        width: 100%;
+        padding: 12px 12px;
+        border-radius: 12px;
+        border: 1px solid var(--ilu-border);
+        background: #fff;
+        color: var(--ilu-text);
+        outline: none;
+        transition: border-color .15s ease, box-shadow .15s ease;
+        font-size: 14px;
+    }
+
+    .ilu-input:focus,
+    .ilu-textarea:focus {
+        border-color: rgba(17, 17, 17, .25);
+        box-shadow: 0 0 0 4px rgba(245, 196, 0, .18);
+    }
+
+    .ilu-actions {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 6px;
+    }
+
+    .ilu-legal {
+        margin: 0;
+        color: var(--ilu-muted);
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px) {
+        .ilu-hero {
+            grid-template-columns: 1fr;
+        }
+
+        .ilu-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .ilu-form {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    (function () {
+        // Número detectado en la web (formato internacional). Puede cambiarlo si necesita otro.
+        var WHATSAPP_NUMBER = "573168725499";
+
+        var btnScroll = document.getElementById("iluScrollForm");
+        if (btnScroll) {
+            btnScroll.addEventListener("click", function () {
+                var target = document.getElementById("iluFormSection");
+                if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+        }
+
+        var form = document.getElementById("iluWhatsappForm");
+        if (!form) return;
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            var name = (document.getElementById("iluName").value || "").trim();
+            var phone = (document.getElementById("iluPhone").value || "").trim();
+            var msg = (document.getElementById("iluMsg").value || "").trim();
+
+            if (!name || !phone || !msg) return;
+
+            var text =
+                "Hola, soy " + name + ".\n" +
+                "Mi teléfono es: " + phone + ".\n\n" +
+                "Necesito cotizar:\n" + msg + "\n\n" +
+                "Gracias.";
+
+            var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
+            window.open(url, "_blank", "noopener");
+        });
+    })();
+</script>

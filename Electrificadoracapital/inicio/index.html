@@ -1,0 +1,1151 @@
+<section class="ec-home" data-catalog="https://electrificadoracapital.com/productos" data-wa="573102965319">
+  <style type="text/css">
+    /* ====== EC HOME: Estilos Blindados (Namespace: ec-) ====== */
+    .ec-home {
+      --bg: #fff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --primary-ed: #ffbb00;
+      --primary-dark-ed: #b98f1cfd;
+      --primary-light-ed: #f7f0e3;
+      --focus-ed: rgba(220, 38, 38, 0.25);
+      --shadow-ed: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      --radius-ed: 16px;
+      --max-w-ed: 1160px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: clamp(20px, 5vw, 40px) 20px;
+      line-height: 1.5;
+      box-sizing: border-box;
+    }
+
+    .ec-home *,
+    .ec-home *::before,
+    .ec-home *::after {
+      box-sizing: inherit;
+    }
+
+    /* Layout */
+    .ec-wrap {
+      max-width: var(--max-w-ed);
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .ec-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    @media(max-width: 900px) {
+      .ec-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Hero Section */
+    .ec-hero {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow-ed);
+      padding: clamp(24px, 4vw, 48px);
+      background: radial-gradient(circle at top right, #fef2f2 0%, #fff 40%);
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ec-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+
+    .ec-pill {
+      background: var(--primary-light-ed);
+      color: var(--primary-dark-ed);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 6px 12px;
+      border-radius: 99px;
+      border: 1px solid rgba(220, 38, 38, 0.1);
+    }
+
+    .ec-title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0 0 16px;
+      color: #1e293b;
+    }
+
+    .ec-sub {
+      font-size: clamp(16px, 1.5vw, 18px);
+      color: var(--muted);
+      margin-bottom: 24px;
+      max-width: 65ch;
+    }
+
+    .ec-sub b {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* Buttons */
+    .ec-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .ec-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+      font-size: 16px;
+    }
+
+    .ec-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .ec-btn-primary {
+      background: var(--primary-ed);
+      color: #fff;
+      box-shadow: 0 10px 20px -5px rgba(220, 38, 38, 0.4);
+    }
+
+    .ec-btn-primary:hover {
+      background: var(--primary-dark-ed);
+    }
+
+    .ec-btn-outline {
+      background: #fff;
+      color: var(--primary-ed);
+      border-color: var(--line);
+    }
+
+    .ec-btn-outline:hover {
+      border-color: var(--primary-ed);
+      background: var(--primary-light-ed);
+    }
+
+    /* Features List */
+    .ec-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-ed);
+      padding: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .ec-h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 12px;
+      color: #334155;
+    }
+
+    .ec-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .ec-li {
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fafafa;
+      font-size: 14px;
+    }
+
+    .ec-check {
+      color: var(--primary-ed);
+      font-weight: bold;
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: var(--primary-light-ed);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Form */
+    .ec-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .ec-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media(max-width: 500px) {
+      .ec-form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ec-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 6px;
+    }
+
+    .ec-input,
+    .ec-select,
+    .ec-textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      font-size: 15px;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      font-family: inherit;
+    }
+
+    .ec-input:focus,
+    .ec-select:focus,
+    .ec-textarea:focus {
+      border-color: var(--primary-ed);
+      box-shadow: 0 0 0 3px var(--focus-ed);
+    }
+
+    .ec-textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    /* Paste Area & Preview */
+    .ec-paste-area {
+      position: relative;
+    }
+
+    .ec-preview {
+      margin-top: 12px;
+      padding: 12px;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #475569;
+      white-space: pre-wrap;
+      display: none;
+      /* Hidden by default */
+    }
+
+    .ec-preview.active {
+      display: block;
+      animation: ecFadeIn 0.3s ease;
+    }
+
+    /* FAQ Accordion */
+    .ec-acc-item {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .ec-acc-btn {
+      width: 100%;
+      padding: 14px;
+      text-align: left;
+      background: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: #334155;
+      font-size: 14px;
+    }
+
+    .ec-acc-btn:hover {
+      background: #f8fafc;
+    }
+
+    .ec-acc-content {
+      display: none;
+      padding: 0 14px 14px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .ec-acc-item.open .ec-acc-content {
+      display: block;
+    }
+
+    .ec-acc-item.open .ec-acc-btn {
+      color: var(--primary-ed);
+    }
+
+    .ec-cta-box {
+      margin-top: 30px;
+      background: var(--primary-light-ed);
+      border: 1px solid rgba(220, 38, 38, 0.2);
+      border-radius: var(--radius-ed);
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    @keyframes ecFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .ec-sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  </style>
+  <div class="ec-wrap">
+    <div class="ec-hero">
+      <div class="ec-badges"><span class="ec-pill">Cat&aacute;logo +18.000 productos</span> <span class="ec-pill"
+          style="background:#f1f5f9!important; color:#475569!important; border-color:#e2e8f0!important;">B2B:
+          Empresas y Obras</span>
+      </div>
+      <h1 class="ec-title">Cotiza material el&eacute;ctrico con precios competitivos y claridad total
+      </h1>
+      <p class="ec-sub">Autogestiona tu pedido en nuestro <b>cat&aacute;logo online</b> o recibe asesor&iacute;a
+        experta por WhatsApp. Precios especiales para contratistas e industria con tiempos de entrega definidos.
+      </p>
+      <div class="ec-actions"><a class="ec-btn ec-btn-primary ec-js-catalog" href="#">Ver Cat&aacute;logo y
+          Cotizar</a> <a class="ec-btn ec-btn-outline ec-js-wa" href="#">Hablar con Asesor</a>
+      </div>
+    </div>
+    <div class="ec-grid">
+      <div style="display:grid; gap:20px;">
+        <div class="ec-card">
+          <h2 class="ec-h2">&iquest;Por qu&eacute; cotizar con Electrificadora Capital?
+          </h2>
+          <ul class="ec-list">
+            <li class="ec-li"><span class="ec-check">✓</span>
+              <div><b>Stock real y +18.000 referencias</b>
+                <br />
+                Todo lo que necesitas en un solo lugar.
+              </div>
+            </li>
+            <li class="ec-li"><span class="ec-check">✓</span>
+              <div><b>Respuesta t&eacute;cnica r&aacute;pida</b>
+                <br />
+                Validamos referencias para evitar devoluciones.
+              </div>
+            </li>
+            <li class="ec-li"><span class="ec-check">✓</span>
+              <div><b>Trabajamos en ampliar nuestro portafolio</b>
+                <br />
+                Si no esta disponible en nuestro catalogo lo buscamos por ti.
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="ec-card">
+          <h2 class="ec-h2">Preguntas Frecuentes
+          </h2>
+          <div class="ec-acc-item">
+            <button class="ec-acc-btn" type="button">&iquest;C&oacute;mo funcionan los env&iacute;os?
+              <span>+</span>
+            </button>
+            <div class="ec-acc-content">Realizamos despachos a nivel nacional. En Bogot&aacute; y
+              alrededores contamos con rutas directas.
+            </div>
+          </div>
+          <div class="ec-acc-item">
+            <button class="ec-acc-btn" type="button">&iquest;Puedo comprar como empresa? <span>+</span>
+            </button>
+            <div class="ec-acc-content">S&iacute;, somos especialistas B2B. Facturaci&oacute;n
+              electr&oacute;nica, cr&eacute;dito (sujeto a estudio) y atenci&oacute;n personalizada para
+              compras por volumen.
+            </div>
+          </div>
+          <div class="ec-acc-item">
+            <button class="ec-acc-btn" type="button">&iquest;Tienen cat&aacute;logo descargable?
+              <span>+</span>
+            </button>
+            <div class="ec-acc-content">Manejamos un cat&aacute;logo digital en vivo para asegurar que veas
+              precios y ficha t&eacute;cnica actualizados. Puedes armar tu pedido all&iacute; y
+              exportarlo.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ec-card" style="height:fit-content;">
+        <h2 class="ec-h2" style="color:var(--primary-ed)!important;">Cotizaci&oacute;n Express por WhatsApp
+        </h2>
+        <p style="font-size:14px; margin-bottom:16px; color:#64748b;">Diligencia los datos y se abrir&aacute; tu
+          WhatsApp con el mensaje listo.
+        </p>
+        <form autocomplete="on" class="ec-form" id="ec-quote-form">
+          <div class="ec-form-row">
+            <div><label class="ec-label" for="ec-name">Nombre</label>
+              <input class="ec-input" id="ec-name" name="name" placeholder="Tu nombre" required="" type="text" />
+            </div>
+            <div><label class="ec-label" for="ec-phone">Celular</label>
+              <input class="ec-input" id="ec-phone" name="phone" placeholder="Ej: 300 123 4567" required=""
+                type="tel" />
+            </div>
+          </div>
+          <div class="ec-form-row">
+            <div><label class="ec-label" for="ec-city">Ciudad</label>
+              <input class="ec-input" id="ec-city" name="city" placeholder="Ej: Bogotá" required="" type="text" />
+            </div>
+            <div><label class="ec-label" for="ec-type">Tipo de Cliente</label>
+              <select class="ec-select" id="ec-type" name="type" required="">
+                <option disabled="disabled" selected="selected" value="">Selecciona...</option>
+                <option value="Empresa">Empresa</option>
+                <option value="Contratista/Obra">Contratista / Obra</option>
+                <option value="Industria">Industria</option>
+                <option value="Independiente">Independiente</option>
+              </select>
+            </div>
+          </div>
+          <div><label class="ec-label" for="ec-need">&iquest;Qu&eacute; necesitas?</label><textarea class="ec-textarea"
+              id="ec-need" name="need" placeholder="Ej: 50m cable #12, 10 breakers 20A..."></textarea>
+          </div>
+          <div class="ec-paste-area"><label class="ec-label"
+              style="display:flex; justify-content:space-between; align-items:center;"><span>Pegar desde
+                Excel (Opcional)</span>
+              <button id="ec-btn-format"
+                style="background:none; border:none; color:var(--primary-ed); font-size:11px; font-weight:bold; cursor:pointer; text-decoration:underline;"
+                type="button">Formatear lista
+              </button> </label><textarea class="ec-textarea" id="ec-paste" name="paste"
+              placeholder="Copia las celdas de Excel y pégalas aquí..."
+              style="min-height:80px; font-family:monospace; font-size:12px;"></textarea>
+            <div class="ec-preview" id="ec-preview">&nbsp;
+            </div>
+          </div>
+          <button class="ec-btn ec-btn-primary" style="width:100%; justify-content:center; margin-top:8px;"
+            type="submit">
+            <svg fill="currentColor" height="20" style="margin-right:8px;" viewbox="0 0 24 24" width="20">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z">
+              </path>
+            </svg> Enviar a WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="ec-cta-box">
+      <div><strong style="display:block; font-size:16px; margin-bottom:4px; color:#1e293b;">&iquest;Prefieres
+          buscar t&uacute; mismo?</strong> <span style="font-size:14px; color:#64748b;">Navega nuestro
+          cat&aacute;logo con precios y stock en tiempo real.</span>
+      </div>
+      <a class="ec-btn ec-btn-outline ec-js-catalog" href="#" style="font-size:14px; padding:10px 20px!important;">Ir al
+        Cat&aacute;logo</a>
+    </div>
+  </div>
+  <script>
+    (function () {
+      // CONFIGURACIÓN: Edita esto si cambia el número
+      const CONFIG = {
+        whatsapp: "573102965319", // Tu número con código de país
+        catalogUrl: "https://electrificadoracapital.com/productos"
+      };
+      const root = document.querySelector('.ec-home');
+      if (!root) return;
+      // 1. GESTIÓN DE UTMS Y ENLACES
+      const params = new URLSearchParams(window.location.search);
+      const utms = {};
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(key => {
+        if (params.get(key)) utms[key] = params.get(key);
+      });
+      // Actualizar botones del catálogo
+      const catUrlObj = new URL(CONFIG.catalogUrl);
+      Object.keys(utms).forEach(k => catUrlObj.searchParams.set(k, utms[k]));
+      root.querySelectorAll('.ec-js-catalog').forEach(el => el.href = catUrlObj.toString());
+      // Botón WhatsApp genérico (Hero)
+      root.querySelectorAll('.ec-js-wa').forEach(el => {
+        el.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hola, quisiera recibir asesoría sobre material eléctrico.")}`;
+      });
+      // 2. LÓGICA DE ACORDEÓN (FAQ)
+      root.querySelectorAll('.ec-acc-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const item = this.parentElement;
+          const isOpen = item.classList.contains('open');
+          // Cierra otros
+          root.querySelectorAll('.ec-acc-item').forEach(i => {
+            i.classList.remove('open');
+            i.querySelector('span').textContent = '+';
+          });
+          if (!isOpen) {
+            item.classList.add('open');
+            this.querySelector('span').textContent = '–';
+          }
+        });
+      });
+      // 3. PARSEADOR EXCEL INTELIGENTE
+      const pasteInput = root.querySelector('#ec-paste');
+      const preview = root.querySelector('#ec-preview');
+      const formatBtn = root.querySelector('#ec-btn-format');
+      function parseExcel(text) {
+        if (!text.trim()) return '';
+        const lines = text.split(/\n/).filter(l => l.trim().length > 0);
+        let output = "";
+        lines.forEach((line, index) => {
+          // Detectar separador (tabulador para Excel, coma para CSV)
+          const parts = line.split(line.includes('\t') ? '\t' : /[,;]/).map(p => p.trim()).filter(p => p);
+          if (parts.length === 0) return;
+          // Lógica heurística simple:
+          // Si tiene 1 parte: asumimos es descripción
+          // Si tiene 2 partes: Cantidad | Descripción O Referencia | Cantidad
+          // Si tiene 3+: Ref | Cant | Desc (aprox)
+          let formattedLine = `• `;
+          if (parts.length === 1) {
+            formattedLine += parts[0];
+          } else {
+            // Intentar encontrar números para la cantidad
+            const numPartIndex = parts.findIndex(p => /^\d+$/.test(p.replace(/[\.\,]/g, '')) && p.length < 6);
+            if (numPartIndex > -1) {
+              const qty = parts[numPartIndex];
+              const desc = parts.filter((_, i) => i !== numPartIndex).join(' ');
+              formattedLine += `(${qty}) ${desc}`;
+            } else {
+              formattedLine += parts.join(' - ');
+            }
+          }
+          output += formattedLine + '\n';
+        });
+        return output;
+      }
+      function updatePreview() {
+        const raw = pasteInput.value;
+        const formatted = parseExcel(raw);
+        if (formatted) {
+          preview.textContent = "Vista previa lista:\n" + formatted;
+          preview.classList.add('active');
+        } else {
+          preview.classList.remove('active');
+        }
+        return formatted;
+      }
+      formatBtn.addEventListener('click', () => {
+        const formatted = updatePreview();
+        if (formatted) {
+          pasteInput.value = formatted; // Reemplaza lo pegado con lo limpio
+          formatBtn.textContent = "¡Formateado!";
+          setTimeout(() => formatBtn.textContent = "Formatear lista", 2000);
+        }
+      });
+      pasteInput.addEventListener('input', () => {
+        if (pasteInput.value.trim() === '') preview.classList.remove('active');
+      });
+      // 4. ENVÍO DEL FORMULARIO
+      const form = root.querySelector('#ec-quote-form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const fd = new FormData(form);
+        // Validación básica
+        const rawPhone = fd.get('phone') || '';
+        const cleanPhone = rawPhone.replace(/\D/g, ''); // Solo números
+        if (cleanPhone.length < 7) {
+          alert("Por favor verifica el número de celular.");
+          return;
+        }
+        let msg = `Hola, Electrificadora Capital. Solicito cotización:
+? *Datos:*
+- Nombre: ${fd.get('name')}
+- Empresa: ${fd.get('type')}
+- Ciudad: ${fd.get('city')}
+? *Requerimiento:*
+${fd.get('need') || 'No especificado en texto'}
+? *Lista adjunta:*
+${parseExcel(fd.get('paste')) || 'N/A'}
+(Enviado desde web)`;
+        // Agregar UTMs al final para rastreo interno
+        if (Object.keys(utms).length > 0) {
+          msg += `\n\n[Info Marketing]: ${JSON.stringify(utms)}`;
+        }
+        const url = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+        window.open(url, '_blank');
+      });
+    })();
+  </script>
+</section>
+
+
+
+
+<!-- 
+
+
+<section class="ec-home" data-catalog="https://electrificadoracapital.com/productos" data-wa="573102965319">
+  <style type="text/css">/* ====== EC HOME: Estilos Blindados (Namespace: ec-) ====== */
+    .ec-home {
+      --bg: #fff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --primary: #dc2626;
+      --primary-dark: #b91c1c;
+      --primary-light: #fef2f2;
+      --focus: rgba(220, 38, 38, 0.25);
+      --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+      --max-w: 1160px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: clamp(20px, 5vw, 40px) 20px;
+      line-height: 1.5;
+      box-sizing: border-box;
+    }
+    .ec-home *, .ec-home *::before, .ec-home *::after {
+      box-sizing: inherit;
+    }
+    /* Layout */
+    .ec-wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      width: 100%;
+    }
+    .ec-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    @media(max-width: 900px) {
+      .ec-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    /* Hero Section */
+    .ec-hero {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: clamp(24px, 4vw, 48px);
+      background: radial-gradient(circle at top right, #fef2f2 0%, #fff 40%);
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    .ec-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+    .ec-pill {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 6px 12px;
+      border-radius: 99px;
+      border: 1px solid rgba(220,38,38,0.1);
+    }
+    .ec-title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0 0 16px;
+      color: #1e293b;
+    }
+    .ec-sub {
+      font-size: clamp(16px, 1.5vw, 18px);
+      color: var(--muted);
+      margin-bottom: 24px;
+      max-width: 65ch;
+    }
+    .ec-sub b {
+      color: var(--text);
+      font-weight: 600;
+    }
+    /* Buttons */
+    .ec-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .ec-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+      font-size: 16px;
+    }
+    .ec-btn:hover {
+      transform: translateY(-2px);
+    }
+    .ec-btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 10px 20px -5px rgba(220, 38, 38, 0.4);
+    }
+    .ec-btn-primary:hover {
+      background: var(--primary-dark);
+    }
+    .ec-btn-outline {
+      background: #fff;
+      color: var(--primary);
+      border-color: var(--line);
+    }
+    .ec-btn-outline:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+    /* Features List */
+    .ec-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .ec-h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 12px;
+      color: #334155;
+    }
+    .ec-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+    .ec-li {
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fafafa;
+      font-size: 14px;
+    }
+    .ec-check {
+      color: var(--primary);
+      font-weight: bold;
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: var(--primary-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Form */
+    .ec-form {
+      display: grid;
+      gap: 16px;
+    }
+    .ec-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media(max-width: 500px) {
+      .ec-form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+    .ec-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 6px;
+    }
+    .ec-input, .ec-select, .ec-textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      font-size: 15px;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      font-family: inherit;
+    }
+    .ec-input:focus, .ec-select:focus, .ec-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--focus);
+    }
+    .ec-textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    /* Paste Area & Preview */
+    .ec-paste-area {
+      position: relative;
+    }
+    .ec-preview {
+      margin-top: 12px;
+      padding: 12px;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #475569;
+      white-space: pre-wrap;
+      display: none;
+      /* Hidden by default */
+    }
+    .ec-preview.active {
+      display: block;
+      animation: ecFadeIn 0.3s ease;
+    }
+    /* FAQ Accordion */
+    .ec-acc-item {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .ec-acc-btn {
+      width: 100%;
+      padding: 14px;
+      text-align: left;
+      background: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: #334155;
+      font-size: 14px;
+    }
+    .ec-acc-btn:hover {
+      background: #f8fafc;
+    }
+    .ec-acc-content {
+      display: none;
+      padding: 0 14px 14px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .ec-acc-item.open .ec-acc-content {
+      display: block;
+    }
+    .ec-acc-item.open .ec-acc-btn {
+      color: var(--primary);
+    }
+    /* CTA Bottom */
+    .ec-cta-box {
+      margin-top: 30px;
+      background: var(--primary-light);
+      border: 1px solid rgba(220,38,38,0.2);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    @keyframes ecFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .ec-sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+  </style>
+  <div class="ec-wrap">
+    <div class="ec-hero">
+      <div class="ec-badges"><span class="ec-pill">Cat&aacute;logo +18.000 productos</span> <span class="ec-pill" style="background:#f1f5f9!important; color:#475569!important; border-color:#e2e8f0!important;">B2B: Empresas y Obras</span>
+      </div>
+      <h1 class="ec-title">Cotiza material el&eacute;ctrico con precios competitivos y claridad total
+      </h1>
+      <p class="ec-sub">Autogestiona tu pedido en nuestro <b>cat&aacute;logo online</b> o recibe asesor&iacute;a experta por WhatsApp. Precios especiales para contratistas e industria con tiempos de entrega definidos.
+      </p>
+      <div class="ec-actions"><a class="ec-btn ec-btn-primary ec-js-catalog" href="#">Ver Cat&aacute;logo y Cotizar</a> <a class="ec-btn ec-btn-outline ec-js-wa" href="#">Hablar con Asesor</a>
+      </div>
+    </div>
+    <div class="ec-grid">
+      <div style="display:grid; gap:20px;">
+        <div class="ec-card">
+          <h2 class="ec-h2">&iquest;Por qu&eacute; cotizar con Electrificadora Capital?
+          </h2>
+          <ul class="ec-list">
+            <li class="ec-li"><span class="ec-check">✓</span>
+              <div><b>Stock real y +18.000 referencias</b>
+                <br />
+                Todo lo que necesitas en un solo lugar.
+              </div>
+            </li>
+            <li class="ec-li"><span class="ec-check">✓</span>
+              <div><b>Respuesta t&eacute;cnica r&aacute;pida</b>
+                <br />
+                Validamos referencias para evitar devoluciones.
+              </div>
+            </li>
+            <li class="ec-li"><span class="ec-check">✓</span>
+              <div><b>Trabajamos en ampliar nuestro portafolio</b>
+                <br />
+                Si no esta disponible en nuestro catalogo lo buscamos por ti.
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="ec-card">
+          <h2 class="ec-h2">Preguntas Frecuentes
+          </h2>
+          <div class="ec-acc-item">
+            <button class="ec-acc-btn" type="button">&iquest;C&oacute;mo funcionan los env&iacute;os? <span>+</span>
+            </button>
+            <div class="ec-acc-content">Realizamos despachos a nivel nacional. En Bogot&aacute; y alrededores contamos con rutas directas.
+            </div>
+          </div>
+          <div class="ec-acc-item">
+            <button class="ec-acc-btn" type="button">&iquest;Puedo comprar como empresa? <span>+</span>
+            </button>
+            <div class="ec-acc-content">S&iacute;, somos especialistas B2B. Facturaci&oacute;n electr&oacute;nica, cr&eacute;dito (sujeto a estudio) y atenci&oacute;n personalizada para compras por volumen.
+            </div>
+          </div>
+          <div class="ec-acc-item">
+            <button class="ec-acc-btn" type="button">&iquest;Tienen cat&aacute;logo descargable? <span>+</span>
+            </button>
+            <div class="ec-acc-content">Manejamos un cat&aacute;logo digital en vivo para asegurar que veas precios y ficha t&eacute;cnica actualizados. Puedes armar tu pedido all&iacute; y exportarlo.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ec-card" style="height:fit-content;">
+        <h2 class="ec-h2" style="color:var(--primary)!important;">Cotizaci&oacute;n Express por WhatsApp
+        </h2>
+        <p style="font-size:14px; margin-bottom:16px; color:#64748b;">Diligencia los datos y se abrir&aacute; tu WhatsApp con el mensaje listo.
+        </p>
+        <form autocomplete="on" class="ec-form" id="ec-quote-form">
+          <div class="ec-form-row">
+            <div><label class="ec-label" for="ec-name">Nombre</label> 
+              <input class="ec-input" id="ec-name" name="name" placeholder="Tu nombre" required="" type="text" />
+            </div>
+            <div><label class="ec-label" for="ec-phone">Celular</label> 
+              <input class="ec-input" id="ec-phone" name="phone" placeholder="Ej: 300 123 4567" required="" type="tel" />
+            </div>
+          </div>
+          <div class="ec-form-row">
+            <div><label class="ec-label" for="ec-city">Ciudad</label> 
+              <input class="ec-input" id="ec-city" name="city" placeholder="Ej: Bogotá" required="" type="text" />
+            </div>
+            <div><label class="ec-label" for="ec-type">Tipo de Cliente</label> 
+              <select class="ec-select" id="ec-type" name="type" required=""><option disabled="disabled" selected="selected" value="">Selecciona...</option><option value="Empresa">Empresa</option><option value="Contratista/Obra">Contratista / Obra</option><option value="Industria">Industria</option><option value="Independiente">Independiente</option> 
+              </select>
+            </div>
+          </div>
+          <div><label class="ec-label" for="ec-need">&iquest;Qu&eacute; necesitas?</label><textarea class="ec-textarea" id="ec-need" name="need" placeholder="Ej: 50m cable #12, 10 breakers 20A..."></textarea>
+          </div>
+          <div class="ec-paste-area"><label class="ec-label" style="display:flex; justify-content:space-between; align-items:center;"><span>Pegar desde Excel (Opcional)</span>
+            <button id="ec-btn-format" style="background:none; border:none; color:var(--primary); font-size:11px; font-weight:bold; cursor:pointer; text-decoration:underline;" type="button">Formatear lista
+            </button> </label><textarea class="ec-textarea" id="ec-paste" name="paste" placeholder="Copia las celdas de Excel y pégalas aquí..." style="min-height:80px; font-family:monospace; font-size:12px;"></textarea>
+            <div class="ec-preview" id="ec-preview">&nbsp;
+            </div>
+          </div>
+          <button class="ec-btn ec-btn-primary" style="width:100%; justify-content:center; margin-top:8px;" type="submit">
+            <svg fill="currentColor" height="20" style="margin-right:8px;" viewbox="0 0 24 24" width="20"> 
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"> 
+              </path> 
+            </svg> Enviar a WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="ec-cta-box">
+      <div><strong style="display:block; font-size:16px; margin-bottom:4px; color:#1e293b;">&iquest;Prefieres buscar t&uacute; mismo?</strong> <span style="font-size:14px; color:#64748b;">Navega nuestro cat&aacute;logo con precios y stock en tiempo real.</span>
+      </div>
+      <a class="ec-btn ec-btn-outline ec-js-catalog" href="#" style="font-size:14px; padding:10px 20px!important;">Ir al Cat&aacute;logo</a>
+    </div>
+  </div>
+  <script>
+    (function() {
+      // CONFIGURACIÓN: Edita esto si cambia el número
+      const CONFIG = {
+        whatsapp: "573102965319", // Tu número con código de país
+        catalogUrl: "https://electrificadoracapital.com/productos"
+      };
+      const root = document.querySelector('.ec-home');
+      if(!root) return;
+      // 1. GESTIÓN DE UTMS Y ENLACES
+      const params = new URLSearchParams(window.location.search);
+      const utms = {};
+      ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(key => {
+        if(params.get(key)) utms[key] = params.get(key);
+      });
+      // Actualizar botones del catálogo
+      const catUrlObj = new URL(CONFIG.catalogUrl);
+      Object.keys(utms).forEach(k => catUrlObj.searchParams.set(k, utms[k]));
+      root.querySelectorAll('.ec-js-catalog').forEach(el => el.href = catUrlObj.toString());
+      // Botón WhatsApp genérico (Hero)
+      root.querySelectorAll('.ec-js-wa').forEach(el => {
+        el.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hola, quisiera recibir asesoría sobre material eléctrico.")}`;
+      });
+      // 2. LÓGICA DE ACORDEÓN (FAQ)
+      root.querySelectorAll('.ec-acc-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const item = this.parentElement;
+          const isOpen = item.classList.contains('open');
+          // Cierra otros
+          root.querySelectorAll('.ec-acc-item').forEach(i => {
+            i.classList.remove('open');
+            i.querySelector('span').textContent = '+';
+          });
+          if(!isOpen) {
+            item.classList.add('open');
+            this.querySelector('span').textContent = '–';
+          }
+        });
+      });
+      // 3. PARSEADOR EXCEL INTELIGENTE
+      const pasteInput = root.querySelector('#ec-paste');
+      const preview = root.querySelector('#ec-preview');
+      const formatBtn = root.querySelector('#ec-btn-format');
+      function parseExcel(text) {
+        if(!text.trim()) return '';
+        const lines = text.split(/\n/).filter(l => l.trim().length > 0);
+        let output = "";
+        lines.forEach((line, index) => {
+          // Detectar separador (tabulador para Excel, coma para CSV)
+          const parts = line.split(line.includes('\t') ? '\t' : /[,;]/).map(p => p.trim()).filter(p => p);
+          if(parts.length === 0) return;
+          // Lógica heurística simple:
+          // Si tiene 1 parte: asumimos es descripción
+          // Si tiene 2 partes: Cantidad | Descripción O Referencia | Cantidad
+          // Si tiene 3+: Ref | Cant | Desc (aprox)
+          let formattedLine = `• `;
+          if(parts.length === 1) {
+            formattedLine += parts[0];
+          } else {
+            // Intentar encontrar números para la cantidad
+            const numPartIndex = parts.findIndex(p => /^\d+$/.test(p.replace(/[\.\,]/g,'')) && p.length < 6);
+            if(numPartIndex > -1) {
+              const qty = parts[numPartIndex];
+              const desc = parts.filter((_, i) => i !== numPartIndex).join(' ');
+              formattedLine += `(${qty}) ${desc}`;
+            } else {
+              formattedLine += parts.join(' - ');
+            }
+          }
+          output += formattedLine + '\n';
+        });
+        return output;
+      }
+      function updatePreview() {
+        const raw = pasteInput.value;
+        const formatted = parseExcel(raw);
+        if(formatted) {
+          preview.textContent = "Vista previa lista:\n" + formatted;
+          preview.classList.add('active');
+        } else {
+          preview.classList.remove('active');
+        }
+        return formatted;
+      }
+      formatBtn.addEventListener('click', () => {
+        const formatted = updatePreview();
+        if(formatted) {
+          pasteInput.value = formatted; // Reemplaza lo pegado con lo limpio
+          formatBtn.textContent = "¡Formateado!";
+          setTimeout(() => formatBtn.textContent = "Formatear lista", 2000);
+        }
+      });
+      pasteInput.addEventListener('input', () => {
+        if(pasteInput.value.trim() === '') preview.classList.remove('active');
+      });
+      // 4. ENVÍO DEL FORMULARIO
+      const form = root.querySelector('#ec-quote-form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const fd = new FormData(form);
+        // Validación básica
+        const rawPhone = fd.get('phone') || '';
+        const cleanPhone = rawPhone.replace(/\D/g, ''); // Solo números
+        if(cleanPhone.length < 7) {
+          alert("Por favor verifica el número de celular.");
+          return;
+        }
+        let msg = `Hola, Electrificadora Capital. Solicito cotización:
+? *Datos:*
+- Nombre: ${fd.get('name')}
+- Empresa: ${fd.get('type')}
+- Ciudad: ${fd.get('city')}
+? *Requerimiento:*
+${fd.get('need') || 'No especificado en texto'}
+? *Lista adjunta:*
+${parseExcel(fd.get('paste')) || 'N/A'}
+(Enviado desde web)`;
+        // Agregar UTMs al final para rastreo interno
+        if(Object.keys(utms).length > 0) {
+          msg += `\n\n[Info Marketing]: ${JSON.stringify(utms)}`;
+        }
+        const url = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+        window.open(url, '_blank');
+      });
+    })();
+  </script>
+</section> -->

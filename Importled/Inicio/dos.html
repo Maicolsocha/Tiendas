@@ -1,0 +1,1378 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Iluminación | Landing E-commerce</title>
+    <meta name="description"
+        content="E-commerce de iluminación: compra fácil, asesoría rápida y productos modernos para hogar, comercio e industria." />
+
+    <style>
+        :root {
+            --bg: #0b1020;
+            --card: rgba(255, 255, 255, .06);
+            --card2: rgba(255, 255, 255, .10);
+            --text: #eaf0ff;
+            --muted: rgba(234, 240, 255, .75);
+            --line: rgba(255, 255, 255, .12);
+            --accent: #64ffda;
+            --accent2: #7aa7ff;
+            --danger: #ff6b6b;
+            --ok: #29d17c;
+            --shadow: 0 20px 60px rgba(0, 0, 0, .45);
+            --radius: 18px;
+            --radius2: 24px;
+            --max: 1120px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            background: radial-gradient(1200px 700px at 10% 10%, rgba(122, 167, 255, .18), transparent 60%),
+                radial-gradient(900px 600px at 90% 20%, rgba(100, 255, 218, .16), transparent 55%),
+                radial-gradient(900px 600px at 50% 100%, rgba(255, 255, 255, .05), transparent 55%),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(var(--max), calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(14px);
+            background: rgba(11, 16, 32, .55);
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            transition: box-shadow .2s ease, background .2s ease;
+        }
+
+        header.scrolled {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+            background: rgba(11, 16, 32, .78);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 750;
+            letter-spacing: .2px;
+        }
+
+        .logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 14px;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(100, 255, 218, .9), transparent 55%),
+                radial-gradient(circle at 70% 70%, rgba(122, 167, 255, .9), transparent 55%),
+                rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .12);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
+        }
+
+        .navlinks {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .navlinks a {
+            padding: 10px 12px;
+            border-radius: 12px;
+            color: var(--muted);
+            border: 1px solid transparent;
+            transition: background .2s ease, color .2s ease, border-color .2s ease;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .navlinks a:hover {
+            background: rgba(255, 255, 255, .06);
+            color: var(--text);
+            border-color: rgba(255, 255, 255, .10);
+        }
+
+        .cta {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(255, 255, 255, .06);
+            color: var(--text);
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform .12s ease, background .2s ease, border-color .2s ease;
+            user-select: none;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, .10);
+            border-color: rgba(255, 255, 255, .22);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, rgba(100, 255, 218, .22), rgba(122, 167, 255, .22));
+            border-color: rgba(100, 255, 218, .35);
+        }
+
+        .btn.primary:hover {
+            background: linear-gradient(135deg, rgba(100, 255, 218, .28), rgba(122, 167, 255, .28));
+            border-color: rgba(100, 255, 218, .55);
+        }
+
+        .menuBtn {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(255, 255, 255, .06);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menuIcon {
+            width: 18px;
+            height: 12px;
+            position: relative;
+        }
+
+        .menuIcon span {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(234, 240, 255, .9);
+            border-radius: 4px;
+            transition: transform .2s ease, top .2s ease, opacity .2s ease;
+        }
+
+        .menuIcon span:nth-child(1) {
+            top: 0;
+        }
+
+        .menuIcon span:nth-child(2) {
+            top: 5px;
+        }
+
+        .menuIcon span:nth-child(3) {
+            top: 10px;
+        }
+
+        /* Mobile menu */
+        .mobilePanel {
+            display: none;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            padding: 10px 0 16px;
+        }
+
+        .mobilePanel a {
+            display: block;
+            padding: 12px 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .10);
+            background: rgba(255, 255, 255, .05);
+            color: var(--text);
+            font-weight: 650;
+            margin-top: 10px;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .sectionTitle {
+            font-size: clamp(22px, 2.4vw, 32px);
+            margin: 0 0 10px;
+            letter-spacing: .2px;
+        }
+
+        .sectionLead {
+            margin: 0;
+            color: var(--muted);
+            max-width: 70ch;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 58px 0 86px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heroGrid {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(255, 255, 255, .06);
+            color: var(--muted);
+            font-weight: 650;
+            font-size: 13px;
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+
+        .badge .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, var(--accent), var(--accent2));
+            box-shadow: 0 0 0 6px rgba(100, 255, 218, .08);
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 4.2vw, 56px);
+            line-height: 1.05;
+            margin: 0 0 14px;
+            letter-spacing: -0.4px;
+        }
+
+        .hero p {
+            margin: 0 0 22px;
+            color: var(--muted);
+            font-size: 16px;
+            max-width: 70ch;
+        }
+
+        .heroActions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .trustRow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .pill {
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(255, 255, 255, .05);
+            color: var(--muted);
+            font-weight: 650;
+            font-size: 13px;
+        }
+
+        .heroCard {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .04));
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: var(--radius2);
+            box-shadow: var(--shadow);
+            padding: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heroCard::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background: radial-gradient(500px 240px at 20% 20%, rgba(100, 255, 218, .22), transparent 60%),
+                radial-gradient(500px 240px at 80% 40%, rgba(122, 167, 255, .22), transparent 60%);
+            pointer-events: none;
+            opacity: .9;
+        }
+
+        .heroCardInner {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            gap: 12px;
+        }
+
+        .miniGrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .mini {
+            background: rgba(0, 0, 0, .22);
+            border: 1px solid rgba(255, 255, 255, .10);
+            border-radius: 18px;
+            padding: 14px;
+        }
+
+        .mini strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .mini span {
+            display: block;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .preview {
+            height: 170px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background:
+                radial-gradient(120px 90px at 25% 30%, rgba(100, 255, 218, .35), transparent 60%),
+                radial-gradient(120px 90px at 70% 55%, rgba(122, 167, 255, .35), transparent 60%),
+                linear-gradient(135deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .02));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview::after {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            border-radius: 14px;
+            border: 1px dashed rgba(255, 255, 255, .18);
+            background: rgba(0, 0, 0, .18);
+        }
+
+        .previewLabel {
+            position: absolute;
+            left: 18px;
+            bottom: 18px;
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(11, 16, 32, .55);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* Features (cards) */
+        .cards {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: var(--radius);
+            padding: 16px;
+            min-height: 150px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, .25);
+            transition: transform .16s ease, background .2s ease, border-color .2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, .08);
+            border-color: rgba(255, 255, 255, .18);
+        }
+
+        .icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: linear-gradient(135deg, rgba(100, 255, 218, .14), rgba(122, 167, 255, .14));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: 16px;
+            letter-spacing: .1px;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13.5px;
+        }
+
+        /* Gallery */
+        .gallery {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 12px;
+        }
+
+        .tile {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(255, 255, 255, .05);
+            min-height: 160px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, .25);
+        }
+
+        .tile .tag {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            padding: 8px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(11, 16, 32, .55);
+            font-size: 12px;
+            font-weight: 750;
+            color: var(--text);
+            z-index: 2;
+        }
+
+        .tile svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            filter: saturate(1.05);
+        }
+
+        .span-4 {
+            grid-column: span 4;
+        }
+
+        .span-5 {
+            grid-column: span 5;
+        }
+
+        .span-7 {
+            grid-column: span 7;
+        }
+
+        .span-6 {
+            grid-column: span 6;
+        }
+
+        /* Form */
+        .formWrap {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: 1fr .9fr;
+            gap: 16px;
+            align-items: start;
+        }
+
+        form {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: var(--radius2);
+            box-shadow: var(--shadow);
+            padding: 18px;
+        }
+
+        .grid2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .field {
+            background: rgba(0, 0, 0, .22);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 14px;
+            padding: 12px 12px;
+            color: var(--text);
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+
+        .field:focus {
+            border-color: rgba(100, 255, 218, .55);
+            box-shadow: 0 0 0 5px rgba(100, 255, 218, .10);
+        }
+
+        .error {
+            border-color: rgba(255, 107, 107, .65) !important;
+            box-shadow: 0 0 0 5px rgba(255, 107, 107, .10) !important;
+        }
+
+        .help {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 12.5px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .counter {
+            font-weight: 750;
+            color: rgba(234, 240, 255, .78);
+        }
+
+        .counter.bad {
+            color: rgba(255, 107, 107, .95);
+        }
+
+        .formActions {
+            margin-top: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .note {
+            color: var(--muted);
+            font-size: 12.5px;
+            max-width: 60ch;
+        }
+
+        .sideInfo {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: var(--radius2);
+            padding: 18px;
+        }
+
+        .sideInfo h3 {
+            margin: 0 0 10px;
+            font-size: 16px;
+        }
+
+        .sideInfo ul {
+            margin: 0;
+            padding-left: 18px;
+            color: var(--muted);
+        }
+
+        .sideInfo li {
+            margin: 8px 0;
+        }
+
+        /* Catalog CTA */
+        .catalog {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 26px;
+            align-items: center;
+        }
+
+        .catalogCard {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .04));
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: var(--radius2);
+            padding: 18px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .catalogCard::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background: radial-gradient(600px 300px at 20% 20%, rgba(122, 167, 255, .18), transparent 55%),
+                radial-gradient(600px 300px at 80% 50%, rgba(100, 255, 218, .18), transparent 55%);
+            opacity: .95;
+            pointer-events: none;
+        }
+
+        .catalogCard>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .chip {
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(0, 0, 0, .18);
+            color: var(--muted);
+            font-weight: 650;
+            font-size: 13px;
+        }
+
+        footer {
+            padding: 28px 0 36px;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* Reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity .5s ease, transform .5s ease;
+        }
+
+        .reveal.on {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 980px) {
+            .heroGrid {
+                grid-template-columns: 1fr;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .formWrap {
+                grid-template-columns: 1fr;
+            }
+
+            .catalog {
+                grid-template-columns: 1fr;
+            }
+
+            .span-7 {
+                grid-column: span 12;
+            }
+
+            .span-6 {
+                grid-column: span 12;
+            }
+
+            .span-5 {
+                grid-column: span 6;
+            }
+
+            .span-4 {
+                grid-column: span 6;
+            }
+        }
+
+        @media (max-width: 720px) {
+            section {
+                padding: 64px 0;
+            }
+
+            .navlinks,
+            .cta {
+                display: none;
+            }
+
+            .menuBtn {
+                display: inline-flex;
+            }
+
+            .mobilePanel {
+                display: block;
+            }
+
+            .grid2 {
+                grid-template-columns: 1fr;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .span-5,
+            .span-4 {
+                grid-column: span 12;
+            }
+
+            .tile {
+                min-height: 170px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="nav">
+                <a class="brand" href="#inicio" aria-label="Ir al inicio">
+                    <div class="logo" aria-hidden="true"></div>
+                    <div>
+                        <div style="font-size:14px; opacity:.95;">E-commerce Iluminación</div>
+                        <div style="font-size:12px; color:rgba(234,240,255,.68); font-weight:650;">Compra rápida y
+                            asesoría</div>
+                    </div>
+                </a>
+
+                <nav class="navlinks" aria-label="Navegación principal">
+                    <a href="#inicio">Inicio</a>
+                    <a href="#caracteristicas">Características</a>
+                    <a href="#galeria">Galería</a>
+                    <a href="#contacto">Cotizar</a>
+                    <a href="#catalogo">Catálogo</a>
+                </nav>
+
+                <div class="cta">
+                    <a class="btn" href="#contacto">Solicitar asesoría</a>
+                    <a class="btn primary" href="#catalogo">Ver catálogo</a>
+                </div>
+
+                <button class="menuBtn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false"
+                    aria-controls="mobilePanel">
+                    <div class="menuIcon" aria-hidden="true">
+                        <span></span><span></span><span></span>
+                    </div>
+                </button>
+            </div>
+
+            <div class="mobilePanel" id="mobilePanel" hidden>
+                <a href="#inicio" data-close>Inicio</a>
+                <a href="#caracteristicas" data-close>Características</a>
+                <a href="#galeria" data-close>Galería</a>
+                <a href="#contacto" data-close>Cotizar</a>
+                <a href="#catalogo" data-close>Catálogo</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1) Primera sección: Hero -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="heroGrid">
+                <div class="reveal">
+                    <div class="badge">
+                        <span class="dot" aria-hidden="true"></span>
+                        <span>Iluminación moderna para hogar, comercio e industria</span>
+                    </div>
+
+                    <h1>Ilumina tus proyectos con productos confiables y compra fácil</h1>
+                    <p>
+                        Encuentra paneles LED, reflectores, lámparas decorativas, luminarias industriales y más.
+                        Te ayudamos a elegir la opción correcta con asesoría rápida y un catálogo organizado.
+                    </p>
+
+                    <div class="heroActions">
+                        <a class="btn primary" href="#catalogo">Explorar catálogo</a>
+                        <a class="btn" href="#contacto">Recibir cotización</a>
+                    </div>
+
+                    <div class="trustRow">
+                        <span class="pill">Respuesta rápida</span>
+                        <span class="pill">Productos con alta rotación</span>
+                        <span class="pill">Soporte para proyectos</span>
+                        <span class="pill">Atención a empresas y público</span>
+                    </div>
+                </div>
+
+                <div class="heroCard reveal" aria-label="Resumen de ventajas">
+                    <div class="heroCardInner">
+                        <div class="preview" aria-hidden="true">
+                            <div class="previewLabel">Vista previa de categorías</div>
+                        </div>
+
+                        <div class="miniGrid">
+                            <div class="mini">
+                                <strong>Variedad</strong>
+                                <span>Iluminación residencial, comercial e industrial</span>
+                            </div>
+                            <div class="mini">
+                                <strong>Asesoría</strong>
+                                <span>Ayuda para elegir potencia, tipo y aplicación</span>
+                            </div>
+                            <div class="mini">
+                                <strong>Compra simple</strong>
+                                <span>Catálogo claro y proceso rápido</span>
+                            </div>
+                            <div class="mini">
+                                <strong>Confianza</strong>
+                                <span>Contenido pensado para decisiones seguras</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2) Segunda sección: Cards de características -->
+    <section id="caracteristicas">
+        <div class="container">
+            <div class="reveal">
+                <h2 class="sectionTitle">Características del e-commerce</h2>
+                <p class="sectionLead">Diseñado para convertir visitas en compras, y consultas en ventas, con
+                    información clara y una experiencia moderna.</p>
+            </div>
+
+            <div class="cards">
+                <article class="card reveal">
+                    <div class="icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M7 17l10-10" stroke="currentColor" stroke-width="2" opacity=".9" />
+                            <path d="M9 7h8v8" stroke="currentColor" stroke-width="2" opacity=".9" />
+                        </svg>
+                    </div>
+                    <h3>Catálogo organizado</h3>
+                    <p>Acceso rápido por categorías, productos destacados y opciones para distintos proyectos.</p>
+                </article>
+
+                <article class="card reveal">
+                    <div class="icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 12a8 8 0 1016 0 8 8 0 10-16 0Z" stroke="currentColor" stroke-width="2"
+                                opacity=".9" />
+                            <path d="M12 7v6l4 2" stroke="currentColor" stroke-width="2" opacity=".9" />
+                        </svg>
+                    </div>
+                    <h3>Respuesta ágil</h3>
+                    <p>Formulario corto y claro para acelerar cotizaciones y asesoría personalizada.</p>
+                </article>
+
+                <article class="card reveal">
+                    <div class="icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2l4 8-4 12-4-12 4-8Z" stroke="currentColor" stroke-width="2" opacity=".9" />
+                            <path d="M8.5 10h7" stroke="currentColor" stroke-width="2" opacity=".9" />
+                        </svg>
+                    </div>
+                    <h3>Diseño moderno</h3>
+                    <p>Estética premium con enfoque en lectura, confianza y llamados a la acción.</p>
+                </article>
+
+                <article class="card reveal">
+                    <div class="icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M8 12h8" stroke="currentColor" stroke-width="2" opacity=".9" />
+                            <path d="M12 8v8" stroke="currentColor" stroke-width="2" opacity=".9" />
+                            <path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="2" opacity=".9" />
+                        </svg>
+                    </div>
+                    <h3>Optimizado para móvil</h3>
+                    <p>Responsive real: navegación simple, grillas fluidas y botones táctiles.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3) Tercera sección: Grid de imágenes -->
+    <section id="galeria">
+        <div class="container">
+            <div class="reveal">
+                <h2 class="sectionTitle">Galería visual</h2>
+                <p class="sectionLead">Un mosaico moderno para reforzar marca, categorías y estilo de producto.</p>
+            </div>
+
+            <div class="gallery">
+                <div class="tile span-7 reveal">
+                    <div class="tag">Paneles LED</div>
+                    <svg viewBox="0 0 900 420" preserveAspectRatio="none" role="img"
+                        aria-label="Ilustración paneles LED">
+                        <defs>
+                            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="rgba(122,167,255,.55)" />
+                                <stop offset="1" stop-color="rgba(100,255,218,.40)" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="900" height="420" fill="rgba(255,255,255,.04)" />
+                        <circle cx="220" cy="160" r="140" fill="url(#g1)" opacity=".85" />
+                        <circle cx="620" cy="240" r="190" fill="rgba(255,255,255,.06)" />
+                        <rect x="420" y="80" width="360" height="120" rx="22" fill="rgba(0,0,0,.28)"
+                            stroke="rgba(255,255,255,.16)" />
+                        <rect x="460" y="220" width="280" height="120" rx="22" fill="rgba(0,0,0,.22)"
+                            stroke="rgba(255,255,255,.12)" />
+                    </svg>
+                </div>
+
+                <div class="tile span-5 reveal">
+                    <div class="tag">Decorativo</div>
+                    <svg viewBox="0 0 600 420" preserveAspectRatio="none" role="img"
+                        aria-label="Ilustración lámparas decorativas">
+                        <defs>
+                            <linearGradient id="g2" x1="0" y1="1" x2="1" y2="0">
+                                <stop offset="0" stop-color="rgba(100,255,218,.45)" />
+                                <stop offset="1" stop-color="rgba(255,255,255,.06)" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="600" height="420" fill="rgba(255,255,255,.04)" />
+                        <rect x="80" y="80" width="440" height="260" rx="26" fill="rgba(0,0,0,.22)"
+                            stroke="rgba(255,255,255,.14)" />
+                        <circle cx="220" cy="210" r="85" fill="url(#g2)" />
+                        <circle cx="390" cy="210" r="65" fill="rgba(122,167,255,.35)" />
+                        <path d="M300 40v70" stroke="rgba(255,255,255,.55)" stroke-width="6" stroke-linecap="round" />
+                        <circle cx="300" cy="140" r="46" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.18)" />
+                    </svg>
+                </div>
+
+                <div class="tile span-4 reveal">
+                    <div class="tag">Industrial</div>
+                    <svg viewBox="0 0 520 420" preserveAspectRatio="none" role="img"
+                        aria-label="Ilustración luminaria industrial">
+                        <rect width="520" height="420" fill="rgba(255,255,255,.04)" />
+                        <rect x="70" y="70" width="380" height="280" rx="26" fill="rgba(0,0,0,.22)"
+                            stroke="rgba(255,255,255,.14)" />
+                        <rect x="120" y="120" width="280" height="70" rx="18" fill="rgba(122,167,255,.28)" />
+                        <rect x="120" y="210" width="280" height="150" rx="18" fill="rgba(100,255,218,.20)" />
+                    </svg>
+                </div>
+
+                <div class="tile span-4 reveal">
+                    <div class="tag">Reflectores</div>
+                    <svg viewBox="0 0 520 420" preserveAspectRatio="none" role="img"
+                        aria-label="Ilustración reflectores LED">
+                        <rect width="520" height="420" fill="rgba(255,255,255,.04)" />
+                        <circle cx="210" cy="220" r="120" fill="rgba(122,167,255,.30)" />
+                        <circle cx="350" cy="190" r="90" fill="rgba(100,255,218,.22)" />
+                        <rect x="150" y="120" width="220" height="210" rx="26" fill="rgba(0,0,0,.22)"
+                            stroke="rgba(255,255,255,.14)" />
+                        <path d="M260 340v48" stroke="rgba(255,255,255,.55)" stroke-width="6" stroke-linecap="round" />
+                    </svg>
+                </div>
+
+                <div class="tile span-4 reveal">
+                    <div class="tag">Cinta LED</div>
+                    <svg viewBox="0 0 520 420" preserveAspectRatio="none" role="img" aria-label="Ilustración cinta LED">
+                        <rect width="520" height="420" fill="rgba(255,255,255,.04)" />
+                        <path d="M90 240c70-110 270-110 340 0" fill="none" stroke="rgba(122,167,255,.55)"
+                            stroke-width="18" stroke-linecap="round" />
+                        <path d="M110 255c60-80 240-80 300 0" fill="none" stroke="rgba(100,255,218,.45)"
+                            stroke-width="12" stroke-linecap="round" />
+                        <circle cx="150" cy="252" r="6" fill="rgba(255,255,255,.75)" />
+                        <circle cx="200" cy="220" r="6" fill="rgba(255,255,255,.75)" />
+                        <circle cx="250" cy="206" r="6" fill="rgba(255,255,255,.75)" />
+                        <circle cx="300" cy="220" r="6" fill="rgba(255,255,255,.75)" />
+                        <circle cx="350" cy="252" r="6" fill="rgba(255,255,255,.75)" />
+                    </svg>
+                </div>
+
+                <div class="tile span-6 reveal">
+                    <div class="tag">Proyectos</div>
+                    <svg viewBox="0 0 720 420" preserveAspectRatio="none" role="img"
+                        aria-label="Ilustración proyecto de iluminación">
+                        <rect width="720" height="420" fill="rgba(255,255,255,.04)" />
+                        <rect x="70" y="90" width="580" height="240" rx="28" fill="rgba(0,0,0,.22)"
+                            stroke="rgba(255,255,255,.14)" />
+                        <rect x="110" y="130" width="220" height="60" rx="16" fill="rgba(122,167,255,.25)" />
+                        <rect x="110" y="210" width="500" height="36" rx="14" fill="rgba(255,255,255,.06)" />
+                        <rect x="110" y="260" width="420" height="36" rx="14" fill="rgba(255,255,255,.06)" />
+                        <circle cx="590" cy="160" r="50" fill="rgba(100,255,218,.22)" />
+                    </svg>
+                </div>
+
+                <div class="tile span-6 reveal">
+                    <div class="tag">Calidad</div>
+                    <svg viewBox="0 0 720 420" preserveAspectRatio="none" role="img"
+                        aria-label="Ilustración calidad y confianza">
+                        <rect width="720" height="420" fill="rgba(255,255,255,.04)" />
+                        <circle cx="250" cy="210" r="140" fill="rgba(100,255,218,.18)" />
+                        <circle cx="480" cy="210" r="140" fill="rgba(122,167,255,.18)" />
+                        <path d="M360 110l90 40-90 170-90-170 90-40Z" fill="rgba(0,0,0,.22)"
+                            stroke="rgba(255,255,255,.14)" stroke-width="2" />
+                        <path d="M320 215l30 30 60-80" fill="none" stroke="rgba(234,240,255,.85)" stroke-width="8"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4) Cuarta sección: Formulario -->
+    <section id="contacto">
+        <div class="container">
+            <div class="reveal">
+                <h2 class="sectionTitle">Solicitar asesoría o cotización</h2>
+                <p class="sectionLead">Complete el formulario y un asesor le responderá con una recomendación según su
+                    necesidad.</p>
+            </div>
+
+            <div class="formWrap">
+                <form id="leadForm" class="reveal" novalidate>
+                    <div class="grid2">
+                        <div>
+                            <label for="fullName">Nombre completo</label>
+                            <input class="field" id="fullName" name="fullName" type="text" placeholder="Ej: Juan Pérez"
+                                required />
+                            <div class="help" id="nameHelp" aria-live="polite"></div>
+                        </div>
+
+                        <div>
+                            <label for="phone">Celular</label>
+                            <input class="field" id="phone" name="phone" type="tel" inputmode="numeric"
+                                placeholder="Ej: 3001234567" required />
+                            <div class="help" id="phoneHelp" aria-live="polite"></div>
+                        </div>
+
+                        <div>
+                            <label for="city">Ciudad</label>
+                            <input class="field" id="city" name="city" type="text" placeholder="Ej: Bogotá" required />
+                            <div class="help" id="cityHelp" aria-live="polite"></div>
+                        </div>
+
+                        <div>
+                            <label for="clientType">Tipo de cliente</label>
+                            <select class="field" id="clientType" name="clientType" required>
+                                <option value="" selected disabled>Seleccione una opción</option>
+                                <option value="Residencial">Residencial</option>
+                                <option value="Comercial">Comercial</option>
+                                <option value="Industria">Industria</option>
+                                <option value="Constructor">Constructor</option>
+                                <option value="Mayorista">Mayorista</option>
+                            </select>
+                            <div class="help" id="typeHelp" aria-live="polite"></div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:12px;">
+                        <label for="details">Descripción (máximo 150 caracteres)</label>
+                        <textarea class="field" id="details" name="details" rows="4" maxlength="150"
+                            placeholder="Ej: Necesito paneles LED para oficina, 6500K, 60x60, 20 unidades."
+                            required></textarea>
+                        <div class="help">
+                            <span>Describa su necesidad en una frase corta.</span>
+                            <span class="counter" id="counter">0/150</span>
+                        </div>
+                        <div class="help" id="detailsHelp" aria-live="polite"></div>
+                    </div>
+
+                    <div class="formActions">
+                        <button class="btn primary" type="submit" id="submitBtn">Enviar solicitud</button>
+                        <div class="note">
+                            Al enviar, guardaremos su solicitud en el navegador para facilitar seguimiento (local).
+                        </div>
+                    </div>
+                </form>
+
+                <aside class="sideInfo reveal">
+                    <h3>Qué recibirá</h3>
+                    <ul>
+                        <li>Recomendación según uso (hogar, comercio o industria).</li>
+                        <li>Opciones por potencia, tipo de luminaria y ambiente.</li>
+                        <li>Alternativas si busca ahorro o mayor desempeño.</li>
+                    </ul>
+                    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+                        <a class="btn" href="#catalogo">Ver categorías</a>
+                        <a class="btn" href="#inicio">Volver arriba</a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5) Quinta sección: CTA a catálogo -->
+    <section id="catalogo">
+        <div class="container">
+            <div class="reveal">
+                <h2 class="sectionTitle">Visite el catálogo de productos</h2>
+                <p class="sectionLead">Acceda a categorías principales y encuentre el producto ideal para su proyecto.
+                </p>
+            </div>
+
+            <div class="catalog">
+                <div class="catalogCard reveal">
+                    <h3 style="margin:0 0 10px;">Categorías destacadas</h3>
+                    <p style="margin:0; color:var(--muted);">
+                        Paneles LED, reflectores, cintas LED, lámparas decorativas, industrial y más.
+                    </p>
+                    <div class="chips">
+                        <span class="chip">Paneles</span>
+                        <span class="chip">Reflectores</span>
+                        <span class="chip">Cintas LED</span>
+                        <span class="chip">Industrial</span>
+                        <span class="chip">Decorativo</span>
+                    </div>
+                </div>
+
+                <div class="catalogCard reveal">
+                    <h3 style="margin:0 0 10px;">Ir al catálogo</h3>
+                    <p style="margin:0; color:var(--muted);">
+                        Cambie el enlace por la URL real de su tienda. Puede abrirlo en la misma pestaña o en una nueva.
+                    </p>
+                    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+                        <a class="btn primary" id="catalogLink" href="https://tusitio.com/catalogo" target="_blank"
+                            rel="noopener">
+                            Abrir catálogo
+                        </a>
+                        <button class="btn" id="copyCatalog">Copiar enlace</button>
+                    </div>
+                    <div class="help" id="catalogHelp" aria-live="polite" style="margin-top:10px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div style="display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+                <div>© <span id="year"></span> E-commerce Iluminación. Todos los derechos reservados.</div>
+                <div>Hecho con HTML, CSS y JavaScript. Diseño responsive.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Utilidades
+        const $ = (sel, parent = document) => parent.querySelector(sel);
+        const $$ = (sel, parent = document) => [...parent.querySelectorAll(sel)];
+
+        // Año
+        $("#year").textContent = new Date().getFullYear();
+
+        // Header sombra al hacer scroll
+        const header = $("#header");
+        const onScroll = () => {
+            header.classList.toggle("scrolled", window.scrollY > 6);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        // Menú móvil
+        const menuBtn = $("#menuBtn");
+        const mobilePanel = $("#mobilePanel");
+
+        function setMenu(open) {
+            menuBtn.setAttribute("aria-expanded", String(open));
+            mobilePanel.hidden = !open;
+        }
+
+        menuBtn.addEventListener("click", () => {
+            const isOpen = menuBtn.getAttribute("aria-expanded") === "true";
+            setMenu(!isOpen);
+        });
+
+        $$("[data-close]", mobilePanel).forEach(a => {
+            a.addEventListener("click", () => setMenu(false));
+        });
+
+        // Reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add("on");
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        $$(".reveal").forEach(el => observer.observe(el));
+
+        // Formulario con validación simple
+        const form = $("#leadForm");
+        const submitBtn = $("#submitBtn");
+        const counter = $("#counter");
+        const details = $("#details");
+
+        const helpers = {
+            fullName: $("#nameHelp"),
+            phone: $("#phoneHelp"),
+            city: $("#cityHelp"),
+            clientType: $("#typeHelp"),
+            details: $("#detailsHelp"),
+            catalog: $("#catalogHelp")
+        };
+
+        function setHelp(el, msg, ok = false) {
+            el.textContent = msg || "";
+            el.style.color = ok ? "rgba(41,209,124,.95)" : "rgba(234,240,255,.65)";
+        }
+
+        function setFieldState(field, isError) {
+            field.classList.toggle("error", !!isError);
+        }
+
+        function normalizeSpaces(v) {
+            return (v || "").trim().replace(/\s+/g, " ");
+        }
+
+        function validPhone(v) {
+            const digits = (v || "").replace(/\D/g, "");
+            return digits.length >= 7 && digits.length <= 12;
+        }
+
+        function updateCounter() {
+            const len = details.value.length;
+            counter.textContent = len + "/150";
+            counter.classList.toggle("bad", len > 150 || len === 150);
+        }
+        details.addEventListener("input", updateCounter);
+        updateCounter();
+
+        function validate() {
+            const fullName = normalizeSpaces($("#fullName").value);
+            const phone = $("#phone").value;
+            const city = normalizeSpaces($("#city").value);
+            const clientType = $("#clientType").value;
+            const desc = normalizeSpaces($("#details").value);
+
+            let ok = true;
+
+            // Nombre
+            if (fullName.length < 5) {
+                ok = false;
+                setFieldState($("#fullName"), true);
+                setHelp(helpers.fullName, "Ingrese nombre y apellido (mínimo 5 caracteres).");
+            } else {
+                setFieldState($("#fullName"), false);
+                setHelp(helpers.fullName, "");
+            }
+
+            // Teléfono
+            if (!validPhone(phone)) {
+                ok = false;
+                setFieldState($("#phone"), true);
+                setHelp(helpers.phone, "Ingrese un celular válido (7 a 12 dígitos).");
+            } else {
+                setFieldState($("#phone"), false);
+                setHelp(helpers.phone, "");
+            }
+
+            // Ciudad
+            if (city.length < 3) {
+                ok = false;
+                setFieldState($("#city"), true);
+                setHelp(helpers.city, "Ingrese una ciudad válida.");
+            } else {
+                setFieldState($("#city"), false);
+                setHelp(helpers.city, "");
+            }
+
+            // Tipo
+            if (!clientType) {
+                ok = false;
+                setFieldState($("#clientType"), true);
+                setHelp(helpers.clientType, "Seleccione un tipo de cliente.");
+            } else {
+                setFieldState($("#clientType"), false);
+                setHelp(helpers.clientType, "");
+            }
+
+            // Descripción
+            if (desc.length < 10) {
+                ok = false;
+                setFieldState($("#details"), true);
+                setHelp(helpers.details, "Ingrese una descripción corta (mínimo 10 caracteres).");
+            } else {
+                setFieldState($("#details"), false);
+                setHelp(helpers.details, "");
+            }
+
+            submitBtn.disabled = !ok;
+            submitBtn.style.opacity = ok ? "1" : ".75";
+
+            return ok ? { fullName, phone, city, clientType, desc } : null;
+        }
+
+        // Validación en vivo
+        ["fullName", "phone", "city", "clientType"].forEach(id => {
+            $("#" + id).addEventListener("input", validate);
+            $("#" + id).addEventListener("change", validate);
+            $("#" + id).addEventListener("blur", validate);
+        });
+        details.addEventListener("blur", validate);
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const data = validate();
+            if (!data) return;
+
+            const payload = {
+                ...data,
+                createdAt: new Date().toISOString()
+            };
+
+            // Guardar localmente como ejemplo (puede reemplazar por fetch a su backend)
+            const key = "leads_iluminacion";
+            const current = JSON.parse(localStorage.getItem(key) || "[]");
+            current.unshift(payload);
+            localStorage.setItem(key, JSON.stringify(current.slice(0, 25)));
+
+            // Mensaje al usuario
+            setHelp(helpers.details, "Solicitud enviada. En breve se contactarán con usted.", true);
+
+            // Reset visual
+            form.reset();
+            updateCounter();
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = "1";
+
+            // Cierre menú móvil si estaba abierto
+            setMenu(false);
+        });
+
+        // Copiar enlace catálogo
+        const catalogLink = $("#catalogLink");
+        $("#copyCatalog").addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText(catalogLink.href);
+                setHelp(helpers.catalog, "Enlace copiado al portapapeles.", true);
+            } catch (err) {
+                setHelp(helpers.catalog, "No fue posible copiar. Copie manualmente el enlace del botón.", false);
+            }
+        });
+
+        // Estado inicial
+        validate();
+    </script>
+</body>
+
+</html>

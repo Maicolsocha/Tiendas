@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Pacman</title>
+  <style>
+    html, body { height: 100%; margin: 0; background: #0b0f1a; color: #e6e6e6; font-family: Arial, sans-serif; }
+    .wrap { height: 100%; display: grid; place-items: center; gap: 10px; padding: 16px; }
+    canvas { background: #050814; border: 2px solid #1c2a4a; border-radius: 12px; }
+    .hud { width: min(720px, 95vw); display: flex; justify-content: space-between; align-items: center; }
+    .btn { cursor: pointer; padding: 8px 12px; border-radius: 10px; border: 1px solid #2a3b66; background: #0e1630; color: #e6e6e6; }
+    .btn:active { transform: scale(0.98); }
+    .msg { opacity: 0.9; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hud">
+      <div class="msg" id="status">Flechas para mover. Come todos los puntos.</div>
+      <div>
+        <button class="btn" id="resetBtn">Reiniciar</button>
+      </div>
+    </div>
+    <canvas id="game" width="720" height="480"></canvas>
+  </div>
+
+  <script>
+    // ====== Configuración ======
+    const canvas = document.getElementById("game");
+    const ctx = canvas.getContext("2d");
+    const statusEl = document.getElementById("status");
+    const resetBtn = document.getElementById("resetBtn");
+
+    const TILE = 24;
+    const COLS = Math.floor(canvas.width / TILE);
+    const ROWS = Math.floor(canvas.height / TILE);
+
+    // Mapa: 0 = vacío, 1 = pared, 2 = punto
+    // Ajuste el mapa a su gusto (debe ser ROWS x COLS)
+    function makeLevel() {
+      const level = [];
+      for (let r = 0; r < ROWS; r++) {
+        level[r] = [];
+        for (let c = 0; c < COLS; c++) {
+          const border = (r === 0 || c === 0 || r === ROWS - 1 || c === COLS - 1);
+          level[r][c] = border ? 1 : 2;
+        }
+      }
+
+      // Paredes internas simples
+      const walls = [
+        // filas horizontales
+        { r: 4, c1: 3, c2: COLS - 4 },
+        { r: ROWS - 5, c1: 3, c2: COLS - 4 },
+        { r: 8, c1: 5, c2: 12 },
+        { r: 8, c1: COLS - 13, c2: COLS - 6 },
+        { r: ROWS - 9, c1: 5, c2: 12 },
+        { r: ROWS - 9, c1: COLS - 13, c2: COLS - 6 },
+        // columnas verticales
+        { c: 6, r1: 6, r2: ROWS - 7 },
+        { c: COLS - 7, r1: 6, r2: ROWS - 7 },
+      ];
+
+      for (const w of walls) {
+        if (w.r !== undefined) {
+          for (let c = w.c1; c <= w.c2; c++) level[w.r][c] = 1;
+        } else {
+          for (let r = w.r1; r <= w.r2; r++) level[r][w.c] = 1;
+        }
+      }
+
+      // Zona central (caja fantasmas) sin puntos
+      const midR = Math.floor(ROWS / 2);
+      const midC = Math.floor(COLS / 2);
+      for (let r = midR - 2; r <= midR + 2; r++) {
+        for (let c = midC - 3; c <= midC + 3; c++) {
+          level[r][c] = 0;
+        }
+      }
+      // Pared de la caja
+      for (let c = midC - 3; c <= midC + 3; c++) {
+        level[midR - 2][c] = 1;
+        level[midR + 2][c] = 1;
+      }
+      for (let r = midR - 2; r <= midR + 2; r++) {
+        level[r][midC - 3] = 1;
+        level[r][midC + 3] = 1;
+      }
+      // Puerta
+      level[midR - 2][midC] = 0;
+
+      // Asegurar casillas iniciales vacías
+      level[1][1] = 0;
+      level[1][2] = 0;
+
+      return level;
+    }
+
+    function clone2D(arr) {
+      return arr.map(row => row.slice());
+    }
+
+    const DIRS = {
+      ArrowUp:    { x: 0, y: -1 },
+      ArrowDown:  { x: 0, y: 1 },
+      ArrowLeft:  { x: -1, y: 0 },
+      ArrowRight: { x: 1, y: 0 },
+    };
+
+    function isWall(level, tx, ty) {
+      if (ty < 0 || ty >= ROWS || tx < 0 || tx >= COLS) return true;
+      return level[ty][tx] === 1;
+    }
+
+    function tileCenter(tx, ty) {
+      return { x: tx * TILE + TILE / 2, y: ty * TILE + TILE / 2 };
+    }
+
+    // ====== Estado del juego ======
+    let baseLevel = makeLevel();
+    let level = clone2D(baseLevel);
+
+    let score = 0;
+    let dotsLeft = 0;
+    let gameOver = false;
+    let win = false;
+
+    const pac = {
+      tx: 1, ty: 1,
+      dir: { x: 1, y: 0 },
+      nextDir: { x: 1, y: 0 },
+      speed: 5.0, // tiles por segundo aprox
+      px: 0, py: 0, // posición en pixeles
+      radius: TILE * 0.40
+    };
+
+    const ghosts = [
+      { tx: Math.floor(COLS/2), ty: Math.floor(ROWS/2), color: "#ff4d4d", dir: {x: 1, y: 0} },
+      { tx: Math.floor(COLS/2) - 1, ty: Math.floor(ROWS/2), color: "#4dd2ff", dir: {x: -1, y: 0} },
+      { tx: Math.floor(COLS/2) + 1, ty: Math.floor(ROWS/2), color: "#ffd24d", dir: {x: 0, y: 1} },
+    ].map(g => ({
+      ...g,
+      px: tileCenter(g.tx, g.ty).x,
+      py: tileCenter(g.tx, g.ty).y,
+      speed: 4.2,
+      radius: TILE * 0.38
+    }));
+
+    function recountDots() {
+      dotsLeft = 0;
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) if (level[r][c] === 2) dotsLeft++;
+      }
+    }
+
+    function resetGame() {
+      level = clone2D(baseLevel);
+      score = 0;
+      gameOver = false;
+      win = false;
+
+      pac.tx = 1; pac.ty = 1;
+      pac.dir = { x: 1, y: 0 };
+      pac.nextDir = { x: 1, y: 0 };
+      const pc = tileCenter(pac.tx, pac.ty);
+      pac.px = pc.x; pac.py = pc.y;
+
+      const midR = Math.floor(ROWS / 2);
+      const midC = Math.floor(COLS / 2);
+
+      ghosts[0].tx = midC; ghosts[0].ty = midR; ghosts[0].dir = {x: 1, y: 0};
+      ghosts[1].tx = midC - 1; ghosts[1].ty = midR; ghosts[1].dir = {x: -1, y: 0};
+      ghosts[2].tx = midC + 1; ghosts[2].ty = midR; ghosts[2].dir = {x: 0, y: 1};
+
+      for (const g of ghosts) {
+        const gc = tileCenter(g.tx, g.ty);
+        g.px = gc.x; g.py = gc.y;
+      }
+
+      // Quitar punto inicial para evitar sumar gratis si el nivel lo tuviera
+      if (level[pac.ty][pac.tx] === 2) level[pac.ty][pac.tx] = 0;
+
+      recountDots();
+      updateStatus();
+    }
+
+    function updateStatus() {
+      if (gameOver) statusEl.textContent = `Perdiste. Puntaje: ${score}. Presiona Reiniciar.`;
+      else if (win) statusEl.textContent = `Ganaste. Puntaje: ${score}. Presiona Reiniciar.`;
+      else statusEl.textContent = `Puntaje: ${score} | Puntos restantes: ${dotsLeft}`;
+    }
+
+    // ====== Input ======
+    window.addEventListener("keydown", (e) => {
+      if (DIRS[e.key]) {
+        pac.nextDir = { ...DIRS[e.key] };
+        e.preventDefault();
+      }
+    });
+
+    resetBtn.addEventListener("click", resetGame);
+
+    // ====== Movimiento y lógica ======
+    let last = performance.now();
+
+    function canTurnAtCenter(entityPx, entityPy) {
+      const cx = Math.round(entityPx / TILE) * TILE;
+      const cy = Math.round(entityPy / TILE) * TILE;
+      const dx = Math.abs(entityPx - cx);
+      const dy = Math.abs(entityPy - cy);
+      return (dx < 1.0 && dy < 1.0);
+    }
+
+    function movePac(dt) {
+      if (!canTurnAtCenter(pac.px, pac.py)) {
+        // seguir recto mientras no esté centrado
+      } else {
+        // Snap al centro de la casilla y aplicar giro si posible
+        const t = { tx: Math.round(pac.px / TILE - 0.5), ty: Math.round(pac.py / TILE - 0.5) };
+        pac.tx = Math.max(0, Math.min(COLS - 1, t.tx));
+        pac.ty = Math.max(0, Math.min(ROWS - 1, t.ty));
+        const center = tileCenter(pac.tx, pac.ty);
+        pac.px = center.x; pac.py = center.y;
+
+        const tryTx = pac.tx + pac.nextDir.x;
+        const tryTy = pac.ty + pac.nextDir.y;
+        if (!isWall(level, tryTx, tryTy)) pac.dir = { ...pac.nextDir };
+
+        const nextTx = pac.tx + pac.dir.x;
+        const nextTy = pac.ty + pac.dir.y;
+        if (isWall(level, nextTx, nextTy)) pac.dir = { x: 0, y: 0 };
+      }
+
+      const speedPx = pac.speed * TILE;
+      pac.px += pac.dir.x * speedPx * dt;
+      pac.py += pac.dir.y * speedPx * dt;
+
+      // Comer puntos al pasar por el centro
+      if (canTurnAtCenter(pac.px, pac.py)) {
+        const t = { tx: Math.round(pac.px / TILE - 0.5), ty: Math.round(pac.py / TILE - 0.5) };
+        pac.tx = t.tx; pac.ty = t.ty;
+
+        if (level[pac.ty][pac.tx] === 2) {
+          level[pac.ty][pac.tx] = 0;
+          score += 10;
+          dotsLeft--;
+          if (dotsLeft <= 0) {
+            win = true;
+            gameOver = true;
+          }
+          updateStatus();
+        }
+      }
+    }
+
+    function ghostPossibleDirs(g) {
+      const options = [];
+      const dirs = [ {x:1,y:0}, {x:-1,y:0}, {x:0,y:1}, {x:0,y:-1} ];
+      for (const d of dirs) {
+        const ntx = g.tx + d.x;
+        const nty = g.ty + d.y;
+        if (!isWall(level, ntx, nty)) options.push(d);
+      }
+      return options;
+    }
+
+    function pickGhostDir(g) {
+      const options = ghostPossibleDirs(g);
+      if (options.length === 0) return {x:0,y:0};
+
+      // Evitar devolvernos si hay alternativas
+      const back = { x: -g.dir.x, y: -g.dir.y };
+      const filtered = options.filter(d => !(d.x === back.x && d.y === back.y));
+      const pool = filtered.length ? filtered : options;
+
+      // Simple: un poco de persecución, un poco aleatorio
+      pool.sort((a,b) => {
+        const ax = g.tx + a.x, ay = g.ty + a.y;
+        const bx = g.tx + b.x, by = g.ty + b.y;
+        const da = Math.hypot((pac.tx - ax), (pac.ty - ay));
+        const db = Math.hypot((pac.tx - bx), (pac.ty - by));
+        return da - db;
+      });
+
+      const chooseChase = Math.random() < 0.7;
+      if (chooseChase) return pool[0];
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+
+    function moveGhost(g, dt) {
+      if (canTurnAtCenter(g.px, g.py)) {
+        const t = { tx: Math.round(g.px / TILE - 0.5), ty: Math.round(g.py / TILE - 0.5) };
+        g.tx = t.tx; g.ty = t.ty;
+        const center = tileCenter(g.tx, g.ty);
+        g.px = center.x; g.py = center.y;
+
+        g.dir = pickGhostDir(g);
+      }
+
+      const speedPx = g.speed * TILE;
+      g.px += g.dir.x * speedPx * dt;
+      g.py += g.dir.y * speedPx * dt;
+
+      if (canTurnAtCenter(g.px, g.py)) {
+        const t = { tx: Math.round(g.px / TILE - 0.5), ty: Math.round(g.py / TILE - 0.5) };
+        g.tx = t.tx; g.ty = t.ty;
+      }
+    }
+
+    function checkCollisions() {
+      for (const g of ghosts) {
+        const d = Math.hypot(pac.px - g.px, pac.py - g.py);
+        if (d < pac.radius + g.radius - 4) {
+          gameOver = true;
+          win = false;
+          updateStatus();
+          return;
+        }
+      }
+    }
+
+    // ====== Render ======
+    function drawLevel() {
+      // Fondo
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          const x = c * TILE;
+          const y = r * TILE;
+
+          if (level[r][c] === 1) {
+            ctx.fillStyle = "#1c2a4a";
+            ctx.fillRect(x, y, TILE, TILE);
+            ctx.strokeStyle = "#243a66";
+            ctx.strokeRect(x + 1, y + 1, TILE - 2, TILE - 2);
+          } else {
+            // Piso
+            ctx.fillStyle = "#050814";
+            ctx.fillRect(x, y, TILE, TILE);
+
+            if (level[r][c] === 2) {
+              ctx.beginPath();
+              ctx.fillStyle = "#f2f2f2";
+              ctx.arc(x + TILE/2, y + TILE/2, 3.2, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+        }
+      }
+    }
+
+    function drawPac() {
+      const mouth = (performance.now() / 120) % (Math.PI / 2);
+      const open = 0.25 + 0.20 * Math.abs(Math.sin(mouth));
+      const angle = Math.atan2(pac.dir.y, pac.dir.x);
+      const start = angle + open;
+      const end = angle + (Math.PI * 2) - open;
+
+      ctx.beginPath();
+      ctx.fillStyle = "#ffd84d";
+      ctx.moveTo(pac.px, pac.py);
+      ctx.arc(pac.px, pac.py, pac.radius, start, end);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function drawGhost(g) {
+      const w = g.radius * 2;
+      const h = g.radius * 2;
+
+      ctx.fillStyle = g.color;
+      ctx.beginPath();
+      // cabeza
+      ctx.arc(g.px, g.py - g.radius*0.2, g.radius, Math.PI, 0);
+      // cuerpo
+      ctx.lineTo(g.px + g.radius, g.py + g.radius*0.9);
+      ctx.lineTo(g.px - g.radius, g.py + g.radius*0.9);
+      ctx.closePath();
+      ctx.fill();
+
+      // ojos
+      ctx.fillStyle = "#ffffff";
+      ctx.beginPath();
+      ctx.arc(g.px - g.radius*0.35, g.py - g.radius*0.2, g.radius*0.22, 0, Math.PI*2);
+      ctx.arc(g.px + g.radius*0.35, g.py - g.radius*0.2, g.radius*0.22, 0, Math.PI*2);
+      ctx.fill();
+
+      ctx.fillStyle = "#1b1b1b";
+      ctx.beginPath();
+      ctx.arc(g.px - g.radius*0.35, g.py - g.radius*0.2, g.radius*0.10, 0, Math.PI*2);
+      ctx.arc(g.px + g.radius*0.35, g.py - g.radius*0.2, g.radius*0.10, 0, Math.PI*2);
+      ctx.fill();
+    }
+
+    function drawOverlay() {
+      if (!gameOver) return;
+      ctx.fillStyle = "rgba(0,0,0,0.55)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 34px Arial";
+      ctx.textAlign = "center";
+      ctx.fillText(win ? "GANASTE" : "PERDISTE", canvas.width/2, canvas.height/2 - 10);
+
+      ctx.font = "16px Arial";
+      ctx.fillText("Presiona Reiniciar para jugar de nuevo", canvas.width/2, canvas.height/2 + 24);
+    }
+
+    function loop(now) {
+      const dt = Math.min(0.033, (now - last) / 1000);
+      last = now;
+
+      if (!gameOver) {
+        movePac(dt);
+        for (const g of ghosts) moveGhost(g, dt);
+        checkCollisions();
+      }
+
+      drawLevel();
+      drawPac();
+      for (const g of ghosts) drawGhost(g);
+      drawOverlay();
+
+      requestAnimationFrame(loop);
+    }
+
+    // ====== Inicio ======
+    resetGame();
+    requestAnimationFrame(loop);
+  </script>
+</body>
+</html>

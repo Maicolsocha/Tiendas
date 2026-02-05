@@ -1,0 +1,1508 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Landing Iluminación</title>
+
+    <style>
+        :root {
+            --colorPrimary: #1db8dd;
+            --colorSecondary: #555658;
+
+            --bgWhite: #ffffff;
+            --text: #111418;
+            --muted: rgba(85, 86, 88, .85);
+
+            --max: 1120px;
+            --radius: 18px;
+            --radiusLg: 24px;
+
+            --shadow: 0 18px 50px rgba(17, 20, 24, .12);
+            --shadowSm: 0 10px 26px rgba(17, 20, 24, .10);
+            --border: 1px solid rgba(85, 86, 88, .16);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            background: var(--bgWhite);
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .illumLanding_container {
+            width: min(var(--max), calc(100% - 40px));
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header */
+        .illumLanding_header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(14px);
+            background: rgba(255, 255, 255, .72);
+            border-bottom: 1px solid rgba(85, 86, 88, .14);
+            transition: box-shadow .2s ease, background .2s ease;
+        }
+
+        .illumLanding_header.isScrolled {
+            box-shadow: var(--shadowSm);
+            background: rgba(255, 255, 255, .88);
+        }
+
+        .illumLanding_navBar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            gap: 16px;
+        }
+
+        .illumLanding_brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            letter-spacing: .2px;
+        }
+
+        .illumLanding_logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 14px;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(29, 184, 221, .75), transparent 55%),
+                radial-gradient(circle at 70% 70%, rgba(85, 86, 88, .45), transparent 55%),
+                rgba(29, 184, 221, .08);
+            border: 1px solid rgba(29, 184, 221, .22);
+            box-shadow: 0 10px 24px rgba(17, 20, 24, .10);
+            flex: 0 0 auto;
+        }
+
+        .illumLanding_brandTextTitle {
+            font-size: 14px;
+            opacity: .95;
+        }
+
+        .illumLanding_brandTextSub {
+            font-size: 12px;
+            color: rgba(85, 86, 88, .90);
+            font-weight: 700;
+        }
+
+        .illumLanding_links {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .illumLanding_links a {
+            padding: 10px 12px;
+            border-radius: 12px;
+            color: rgba(85, 86, 88, .92);
+            border: 1px solid transparent;
+            transition: background .2s ease, border-color .2s ease, color .2s ease;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .illumLanding_links a:hover {
+            background: rgba(29, 184, 221, .10);
+            border-color: rgba(29, 184, 221, .22);
+            color: var(--text);
+        }
+
+        .illumLanding_actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .illumLanding_btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(85, 86, 88, .22);
+            background: rgba(255, 255, 255, .85);
+            color: var(--text);
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform .12s ease, background .2s ease, border-color .2s ease;
+            user-select: none;
+            box-shadow: 0 10px 18px rgba(17, 20, 24, .06);
+        }
+
+        .illumLanding_btn:hover {
+            background: rgba(29, 184, 221, .10);
+            border-color: rgba(29, 184, 221, .28);
+        }
+
+        .illumLanding_btn:active {
+            transform: translateY(1px);
+        }
+
+        .illumLanding_btnPrimary {
+            background: linear-gradient(135deg, rgba(29, 184, 221, .95), rgba(29, 184, 221, .80));
+            border-color: rgba(29, 184, 221, .72);
+            color: #fff;
+            box-shadow: 0 18px 30px rgba(29, 184, 221, .22);
+        }
+
+        .illumLanding_btnPrimary:hover {
+            background: linear-gradient(135deg, rgba(29, 184, 221, 1), rgba(29, 184, 221, .88));
+            border-color: rgba(29, 184, 221, .86);
+        }
+
+        .illumLanding_btnPrimary:disabled {
+            opacity: .75;
+            cursor: not-allowed;
+        }
+
+        .illumLanding_menuBtn {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            border: 1px solid rgba(85, 86, 88, .22);
+            background: rgba(255, 255, 255, .85);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 18px rgba(17, 20, 24, .06);
+        }
+
+        .illumLanding_menuIcon {
+            width: 18px;
+            height: 12px;
+            position: relative;
+        }
+
+        .illumLanding_menuIcon span {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(17, 20, 24, .82);
+            border-radius: 4px;
+        }
+
+        .illumLanding_menuIcon span:nth-child(1) {
+            top: 0;
+        }
+
+        .illumLanding_menuIcon span:nth-child(2) {
+            top: 5px;
+        }
+
+        .illumLanding_menuIcon span:nth-child(3) {
+            top: 10px;
+        }
+
+        .illumLanding_mobilePanel {
+            display: none;
+            border-top: 1px solid rgba(85, 86, 88, .14);
+            padding: 10px 0 16px;
+        }
+
+        .illumLanding_mobilePanel a {
+            display: block;
+            padding: 12px 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(85, 86, 88, .18);
+            background: rgba(255, 255, 255, .92);
+            color: var(--text);
+            font-weight: 750;
+            margin-top: 10px;
+            box-shadow: 0 10px 18px rgba(17, 20, 24, .06);
+        }
+
+        /* Secciones con fondo aislado */
+        .illumLanding_section {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            border-top: 1px solid rgba(85, 86, 88, .10);
+            background: #fff;
+        }
+
+        .illumLanding_section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: #fff;
+        }
+
+        .illumLanding_section::after {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            z-index: 1;
+            pointer-events: none;
+            background: transparent;
+        }
+
+        /* 1) Hero */
+        #illumLanding_sectionHero::before {
+            background:
+                radial-gradient(1200px 760px at 10% 18%, rgba(29, 184, 221, .20), transparent 60%),
+                radial-gradient(900px 620px at 90% 12%, rgba(85, 86, 88, .12), transparent 58%),
+                linear-gradient(180deg, #fff, #fff);
+        }
+
+        #illumLanding_sectionHero::after {
+            background:
+                radial-gradient(600px 320px at 18% 55%, rgba(29, 184, 221, .10), transparent 62%),
+                radial-gradient(520px 300px at 82% 60%, rgba(85, 86, 88, .08), transparent 62%);
+            opacity: .95;
+        }
+
+        /* 2) Características */
+        #illumLanding_sectionFeatures::before {
+            background:
+                radial-gradient(900px 520px at 18% 40%, rgba(29, 184, 221, .14), transparent 62%),
+                radial-gradient(900px 520px at 82% 50%, rgba(85, 86, 88, .10), transparent 62%),
+                linear-gradient(180deg, #fff, #fff);
+        }
+
+        #illumLanding_sectionFeatures::after {
+            background:
+                repeating-linear-gradient(135deg,
+                    rgba(85, 86, 88, .04) 0px,
+                    rgba(85, 86, 88, .04) 10px,
+                    transparent 10px,
+                    transparent 24px);
+            opacity: .55;
+        }
+
+        /* 3) Galería */
+        #illumLanding_sectionGallery::before {
+            background:
+                radial-gradient(980px 560px at 12% 55%, rgba(29, 184, 221, .16), transparent 64%),
+                radial-gradient(980px 560px at 92% 52%, rgba(85, 86, 88, .10), transparent 64%),
+                linear-gradient(180deg, #fff, #fff);
+        }
+
+        #illumLanding_sectionGallery::after {
+            background:
+                radial-gradient(rgba(29, 184, 221, .10) 1px, transparent 1px),
+                radial-gradient(rgba(85, 86, 88, .08) 1px, transparent 1px);
+            background-size: 26px 26px, 34px 34px;
+            background-position: 0 0, 8px 10px;
+            opacity: .22;
+        }
+
+        /* 4) Formulario */
+        #illumLanding_sectionForm::before {
+            background:
+                radial-gradient(900px 560px at 50% 30%, rgba(29, 184, 221, .14), transparent 64%),
+                radial-gradient(900px 560px at 50% 80%, rgba(85, 86, 88, .10), transparent 64%),
+                linear-gradient(180deg, #fff, #fff);
+        }
+
+        #illumLanding_sectionForm::after {
+            background:
+                linear-gradient(90deg,
+                    rgba(29, 184, 221, .06),
+                    transparent 30%,
+                    transparent 70%,
+                    rgba(85, 86, 88, .05));
+            opacity: .65;
+        }
+
+        /* 5) Catálogo */
+        #illumLanding_sectionCatalog::before {
+            background:
+                radial-gradient(980px 560px at 20% 40%, rgba(29, 184, 221, .12), transparent 64%),
+                radial-gradient(980px 560px at 85% 75%, rgba(85, 86, 88, .12), transparent 62%),
+                linear-gradient(180deg, #fff, #fff);
+        }
+
+        #illumLanding_sectionCatalog::after {
+            background:
+                radial-gradient(520px 260px at 78% 70%, rgba(29, 184, 221, .12), transparent 62%),
+                radial-gradient(520px 260px at 24% 75%, rgba(85, 86, 88, .08), transparent 62%);
+            opacity: .85;
+        }
+
+        .illumLanding_title {
+            font-size: clamp(22px, 2.4vw, 32px);
+            margin: 0 0 10px;
+            letter-spacing: .2px;
+        }
+
+        .illumLanding_lead {
+            margin: 0;
+            color: var(--muted);
+            max-width: 70ch;
+        }
+
+        /* Hero layout */
+        .illumLanding_heroGrid {
+            padding: 58px 0 86px;
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .illumLanding_badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(29, 184, 221, .25);
+            background: rgba(29, 184, 221, .08);
+            color: rgba(85, 86, 88, .95);
+            font-weight: 750;
+            font-size: 13px;
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+
+        .illumLanding_badgeDot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(29, 184, 221, 1), rgba(29, 184, 221, .65));
+            box-shadow: 0 0 0 6px rgba(29, 184, 221, .14);
+        }
+
+        .illumLanding_h1 {
+            font-size: clamp(34px, 4.2vw, 56px);
+            line-height: 1.05;
+            margin: 0 0 14px;
+            letter-spacing: -.4px;
+        }
+
+        .illumLanding_heroText {
+            margin: 0 0 22px;
+            color: var(--muted);
+            font-size: 16px;
+            max-width: 70ch;
+        }
+
+        .illumLanding_heroActions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .illumLanding_pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .illumLanding_pill {
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(85, 86, 88, .18);
+            background: rgba(255, 255, 255, .88);
+            color: rgba(85, 86, 88, .92);
+            font-weight: 750;
+            font-size: 13px;
+            box-shadow: 0 10px 18px rgba(17, 20, 24, .05);
+        }
+
+        .illumLanding_summaryCard {
+            background: rgba(255, 255, 255, .90);
+            border: var(--border);
+            border-radius: var(--radiusLg);
+            box-shadow: var(--shadow);
+            padding: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .illumLanding_summaryCard::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background:
+                radial-gradient(520px 260px at 20% 20%, rgba(29, 184, 221, .18), transparent 62%),
+                radial-gradient(520px 260px at 80% 40%, rgba(85, 86, 88, .12), transparent 62%);
+            pointer-events: none;
+            opacity: .95;
+        }
+
+        .illumLanding_summaryInner {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            gap: 12px;
+        }
+
+        .illumLanding_preview {
+            height: 170px;
+            border-radius: 18px;
+            border: var(--border);
+            background:
+                radial-gradient(140px 110px at 25% 30%, rgba(29, 184, 221, .22), transparent 62%),
+                radial-gradient(140px 110px at 70% 55%, rgba(85, 86, 88, .14), transparent 62%),
+                linear-gradient(135deg, rgba(255, 255, 255, .95), rgba(255, 255, 255, .75));
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadowSm);
+        }
+
+        .illumLanding_preview::after {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            border-radius: 14px;
+            border: 1px dashed rgba(85, 86, 88, .22);
+            background: rgba(255, 255, 255, .72);
+        }
+
+        .illumLanding_previewLabel {
+            position: absolute;
+            left: 18px;
+            bottom: 18px;
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(29, 184, 221, .22);
+            background: rgba(255, 255, 255, .88);
+            font-size: 13px;
+            font-weight: 800;
+            box-shadow: 0 10px 18px rgba(17, 20, 24, .06);
+        }
+
+        .illumLanding_summaryGrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .illumLanding_summaryItem {
+            background: rgba(255, 255, 255, .90);
+            border: var(--border);
+            border-radius: 18px;
+            padding: 14px;
+            box-shadow: var(--shadowSm);
+        }
+
+        .illumLanding_summaryItem strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .illumLanding_summaryItem span {
+            display: block;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* Feature cards */
+        .illumLanding_cardsGrid {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .illumLanding_card {
+            background: rgba(255, 255, 255, .92);
+            border: var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            min-height: 150px;
+            box-shadow: var(--shadowSm);
+            transition: transform .16s ease, border-color .2s ease, background .2s ease;
+        }
+
+        .illumLanding_card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(29, 184, 221, .28);
+            background: rgba(255, 255, 255, .98);
+        }
+
+        .illumLanding_cardIcon {
+            width: 44px;
+            height: 44px;
+            border-radius: 16px;
+            border: 1px solid rgba(29, 184, 221, .28);
+            background: linear-gradient(135deg, rgba(29, 184, 221, .18), rgba(85, 86, 88, .10));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            color: var(--colorPrimary);
+            box-shadow: 0 12px 20px rgba(29, 184, 221, .10);
+        }
+
+        .illumLanding_card h3 {
+            margin: 0 0 8px;
+            font-size: 16px;
+            letter-spacing: .1px;
+        }
+
+        .illumLanding_card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13.5px;
+        }
+
+        /* Gallery */
+        .illumLanding_gallery {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 12px;
+        }
+
+        .illumLanding_tile {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            border: var(--border);
+            background: rgba(255, 255, 255, .94);
+            min-height: 160px;
+            box-shadow: var(--shadowSm);
+        }
+
+        .illumLanding_tileTag {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            padding: 8px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(29, 184, 221, .22);
+            background: rgba(255, 255, 255, .90);
+            font-size: 12px;
+            font-weight: 850;
+            color: rgba(85, 86, 88, .95);
+            z-index: 2;
+            box-shadow: 0 10px 18px rgba(17, 20, 24, .06);
+        }
+
+        .illumLanding_tile svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .span4 {
+            grid-column: span 4;
+        }
+
+        .span5 {
+            grid-column: span 5;
+        }
+
+        .span6 {
+            grid-column: span 6;
+        }
+
+        .span7 {
+            grid-column: span 7;
+        }
+
+        /* Form */
+        .illumLanding_formGrid {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: 1fr .9fr;
+            gap: 16px;
+            align-items: start;
+        }
+
+        .illumLanding_formCard {
+            background: rgba(255, 255, 255, .94);
+            border: var(--border);
+            border-radius: var(--radiusLg);
+            box-shadow: var(--shadow);
+            padding: 18px;
+        }
+
+        .illumLanding_formTwoCols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .illumLanding_label {
+            display: block;
+            font-weight: 850;
+            font-size: 13px;
+            margin-bottom: 8px;
+            color: rgba(17, 20, 24, .92);
+        }
+
+        .illumLanding_input {
+            background: rgba(255, 255, 255, .98);
+            border: 1px solid rgba(85, 86, 88, .22);
+            border-radius: 14px;
+            padding: 12px 12px;
+            color: var(--text);
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+            transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+        }
+
+        .illumLanding_input:focus {
+            border-color: rgba(29, 184, 221, .80);
+            box-shadow: 0 0 0 5px rgba(29, 184, 221, .16);
+            background: #fff;
+        }
+
+        .illumLanding_input.isError {
+            border-color: rgba(214, 59, 59, .70) !important;
+            box-shadow: 0 0 0 5px rgba(214, 59, 59, .12) !important;
+        }
+
+        .illumLanding_helpRow {
+            margin-top: 8px;
+            color: rgba(85, 86, 88, .88);
+            font-size: 12.5px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            min-height: 18px;
+        }
+
+        .illumLanding_counter {
+            font-weight: 900;
+            color: rgba(85, 86, 88, .92);
+        }
+
+        .illumLanding_counter.isLimit {
+            color: rgba(214, 59, 59, .95);
+        }
+
+        .illumLanding_formActions {
+            margin-top: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .illumLanding_note {
+            color: rgba(85, 86, 88, .88);
+            font-size: 12.5px;
+            max-width: 60ch;
+        }
+
+        .illumLanding_sideCard {
+            background: rgba(255, 255, 255, .94);
+            border: var(--border);
+            border-radius: var(--radiusLg);
+            padding: 18px;
+            box-shadow: var(--shadowSm);
+        }
+
+        .illumLanding_sideCard h3 {
+            margin: 0 0 10px;
+            font-size: 16px;
+        }
+
+        .illumLanding_sideCard ul {
+            margin: 0;
+            padding-left: 18px;
+            color: rgba(85, 86, 88, .92);
+        }
+
+        .illumLanding_sideCard li {
+            margin: 8px 0;
+        }
+
+        /* Catalog */
+        .illumLanding_catalogGrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 26px;
+            align-items: center;
+        }
+
+        .illumLanding_catalogCard {
+            background: rgba(255, 255, 255, .94);
+            border: var(--border);
+            border-radius: var(--radiusLg);
+            padding: 18px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .illumLanding_catalogCard::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background:
+                radial-gradient(650px 320px at 18% 20%, rgba(29, 184, 221, .16), transparent 58%),
+                radial-gradient(650px 320px at 82% 50%, rgba(85, 86, 88, .10), transparent 58%);
+            opacity: .95;
+            pointer-events: none;
+        }
+
+        .illumLanding_catalogCard>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        .illumLanding_chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .illumLanding_chip {
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(29, 184, 221, .22);
+            background: rgba(29, 184, 221, .08);
+            color: rgba(85, 86, 88, .92);
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        footer {
+            padding: 28px 0 36px;
+            border-top: 1px solid rgba(85, 86, 88, .12);
+            color: rgba(85, 86, 88, .90);
+            font-size: 13px;
+            background: #fff;
+        }
+
+        /* Reveal animation */
+        .illumLanding_reveal {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity .5s ease, transform .5s ease;
+        }
+
+        .illumLanding_reveal.isVisible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 980px) {
+            .illumLanding_heroGrid {
+                grid-template-columns: 1fr;
+            }
+
+            .illumLanding_cardsGrid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .illumLanding_formGrid {
+                grid-template-columns: 1fr;
+            }
+
+            .illumLanding_catalogGrid {
+                grid-template-columns: 1fr;
+            }
+
+            .span7 {
+                grid-column: span 12;
+            }
+
+            .span6 {
+                grid-column: span 12;
+            }
+
+            .span5 {
+                grid-column: span 6;
+            }
+
+            .span4 {
+                grid-column: span 6;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .illumLanding_section {
+                padding: 12px 0;
+            }
+
+            .illumLanding_links,
+            .illumLanding_actions {
+                display: none;
+            }
+
+            .illumLanding_menuBtn {
+                display: inline-flex;
+            }
+
+            .illumLanding_mobilePanel {
+                display: block;
+            }
+
+            .illumLanding_formTwoCols {
+                grid-template-columns: 1fr;
+            }
+
+            .illumLanding_cardsGrid {
+                grid-template-columns: 1fr;
+            }
+
+            .span5,
+            .span4 {
+                grid-column: span 12;
+            }
+
+            .illumLanding_tile {
+                min-height: 170px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="illumLanding_header" id="illumLanding_header">
+        <div class="illumLanding_container">
+            <div class="illumLanding_navBar">
+                <a class="illumLanding_brand" href="#illumLanding_sectionHero" aria-label="Ir al inicio">
+                    <div class="illumLanding_logo" aria-hidden="true"></div>
+                    <div>
+                        <div class="illumLanding_brandTextTitle">E-commerce Iluminación</div>
+                        <div class="illumLanding_brandTextSub">Compra rápida y asesoría</div>
+                    </div>
+                </a>
+
+                <nav class="illumLanding_links" aria-label="Navegación">
+                    <a href="#illumLanding_sectionHero">Inicio</a>
+                    <a href="#illumLanding_sectionFeatures">Características</a>
+                    <a href="#illumLanding_sectionGallery">Galería</a>
+                    <a href="#illumLanding_sectionForm">Cotizar</a>
+                    <a href="#illumLanding_sectionCatalog">Catálogo</a>
+                </nav>
+
+                <div class="illumLanding_actions">
+                    <a class="illumLanding_btn" href="#illumLanding_sectionForm">Solicitar asesoría</a>
+                    <a class="illumLanding_btn illumLanding_btnPrimary" href="#illumLanding_sectionCatalog">Ver
+                        catálogo</a>
+                </div>
+
+                <button class="illumLanding_menuBtn" id="illumLanding_menuButton" aria-label="Abrir menú"
+                    aria-expanded="false" aria-controls="illumLanding_mobilePanel">
+                    <div class="illumLanding_menuIcon" aria-hidden="true">
+                        <span></span><span></span><span></span>
+                    </div>
+                </button>
+            </div>
+
+            <div class="illumLanding_mobilePanel" id="illumLanding_mobilePanel" hidden>
+                <a href="#illumLanding_sectionHero" data-close-menu>Inicio</a>
+                <a href="#illumLanding_sectionFeatures" data-close-menu>Características</a>
+                <a href="#illumLanding_sectionGallery" data-close-menu>Galería</a>
+                <a href="#illumLanding_sectionForm" data-close-menu>Cotizar</a>
+                <a href="#illumLanding_sectionCatalog" data-close-menu>Catálogo</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1) Sección Hero -->
+    <section class="illumLanding_section" id="illumLanding_sectionHero">
+        <div class="illumLanding_container">
+            <div class="illumLanding_heroGrid">
+                <div class="illumLanding_reveal">
+                    <div class="illumLanding_badge">
+                        <span class="illumLanding_badgeDot" aria-hidden="true"></span>
+                        <span>Iluminación moderna para hogar, comercio e industria</span>
+                    </div>
+
+                    <h1 class="illumLanding_h1">Ilumina tus proyectos con productos confiables y compra fácil</h1>
+                    <p class="illumLanding_heroText">
+                        Encuentra paneles LED, reflectores, cintas LED, luminarias industriales y más.
+                        Te ayudamos a elegir la opción correcta con asesoría rápida y un catálogo organizado.
+                    </p>
+
+                    <div class="illumLanding_heroActions">
+                        <a class="illumLanding_btn illumLanding_btnPrimary" href="#illumLanding_sectionCatalog">Explorar
+                            catálogo</a>
+                        <a class="illumLanding_btn" href="#illumLanding_sectionForm">Recibir cotización</a>
+                    </div>
+
+                    <div class="illumLanding_pills">
+                        <span class="illumLanding_pill">Respuesta rápida</span>
+                        <span class="illumLanding_pill">Alta rotación</span>
+                        <span class="illumLanding_pill">Soporte para proyectos</span>
+                        <span class="illumLanding_pill">Atención a empresas</span>
+                    </div>
+                </div>
+
+                <div class="illumLanding_summaryCard illumLanding_reveal" aria-label="Resumen de ventajas">
+                    <div class="illumLanding_summaryInner">
+                        <div class="illumLanding_preview" aria-hidden="true">
+                            <div class="illumLanding_previewLabel">Vista previa de categorías</div>
+                        </div>
+
+                        <div class="illumLanding_summaryGrid">
+                            <div class="illumLanding_summaryItem">
+                                <strong>Variedad</strong>
+                                <span>Residencial, comercial e industrial</span>
+                            </div>
+                            <div class="illumLanding_summaryItem">
+                                <strong>Asesoría</strong>
+                                <span>Recomendación según aplicación</span>
+                            </div>
+                            <div class="illumLanding_summaryItem">
+                                <strong>Compra simple</strong>
+                                <span>Navegación clara y rápida</span>
+                            </div>
+                            <div class="illumLanding_summaryItem">
+                                <strong>Confianza</strong>
+                                <span>Información útil para decidir</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 2) Sección Características -->
+    <section class="illumLanding_section" id="illumLanding_sectionFeatures">
+        <div class="illumLanding_container">
+            <div class="illumLanding_reveal">
+                <h2 class="illumLanding_title">Características del e-commerce</h2>
+                <p class="illumLanding_lead">Diseñado para convertir visitas en compras y consultas en ventas, con una
+                    experiencia moderna.</p>
+            </div>
+
+            <div class="illumLanding_cardsGrid">
+                <article class="illumLanding_card illumLanding_reveal">
+                    <div class="illumLanding_cardIcon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M7 17l10-10" stroke="currentColor" stroke-width="2" opacity=".95"></path>
+                            <path d="M9 7h8v8" stroke="currentColor" stroke-width="2" opacity=".95"></path>
+                        </svg>
+                    </div>
+                    <h3>Catálogo organizado</h3>
+                    <p>Acceso rápido por categorías, productos destacados y opciones para distintos proyectos.</p>
+                </article>
+
+                <article class="illumLanding_card illumLanding_reveal">
+                    <div class="illumLanding_cardIcon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 12a8 8 0 1016 0 8 8 0 10-16 0Z" stroke="currentColor" stroke-width="2"
+                                opacity=".95"></path>
+                            <path d="M12 7v6l4 2" stroke="currentColor" stroke-width="2" opacity=".95"></path>
+                        </svg>
+                    </div>
+                    <h3>Respuesta ágil</h3>
+                    <p>Formulario corto y claro para acelerar cotizaciones y asesoría personalizada.</p>
+                </article>
+
+                <article class="illumLanding_card illumLanding_reveal">
+                    <div class="illumLanding_cardIcon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2l4 8-4 12-4-12 4-8Z" stroke="currentColor" stroke-width="2" opacity=".95">
+                            </path>
+                            <path d="M8.5 10h7" stroke="currentColor" stroke-width="2" opacity=".95"></path>
+                        </svg>
+                    </div>
+                    <h3>Diseño moderno</h3>
+                    <p>Estética premium con enfoque en lectura, confianza y llamados a la acción.</p>
+                </article>
+
+                <article class="illumLanding_card illumLanding_reveal">
+                    <div class="illumLanding_cardIcon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M8 12h8" stroke="currentColor" stroke-width="2" opacity=".95"></path>
+                            <path d="M12 8v8" stroke="currentColor" stroke-width="2" opacity=".95"></path>
+                            <path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="2" opacity=".95"></path>
+                        </svg>
+                    </div>
+                    <h3>Optimizado para móvil</h3>
+                    <p>Responsive real: navegación simple, grillas fluidas y botones táctiles.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3) Sección Galería -->
+    <section class="illumLanding_section" id="illumLanding_sectionGallery">
+        <div class="illumLanding_container">
+            <div class="illumLanding_reveal">
+                <h2 class="illumLanding_title">Galería visual</h2>
+                <p class="illumLanding_lead">Un mosaico moderno para reforzar marca, categorías y estilo de producto.
+                </p>
+            </div>
+
+            <div class="illumLanding_gallery">
+                <div class="illumLanding_tile span7 illumLanding_reveal">
+                    <div class="illumLanding_tileTag">Paneles LED</div>
+                    <svg viewBox="0 0 900 420" preserveAspectRatio="none" role="img" aria-label="Paneles LED">
+                        <defs>
+                            <linearGradient id="gradA" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="rgba(29,184,221,.35)"></stop>
+                                <stop offset="1" stop-color="rgba(85,86,88,.18)"></stop>
+                            </linearGradient>
+                        </defs>
+                        <rect width="900" height="420" fill="rgba(255,255,255,.92)"></rect>
+                        <circle cx="220" cy="160" r="140" fill="url(#gradA)" opacity=".95"></circle>
+                        <circle cx="620" cy="240" r="190" fill="rgba(29,184,221,.10)"></circle>
+                        <rect x="420" y="80" width="360" height="120" rx="22" fill="rgba(255,255,255,.78)"
+                            stroke="rgba(85,86,88,.16)"></rect>
+                        <rect x="460" y="220" width="280" height="120" rx="22" fill="rgba(255,255,255,.72)"
+                            stroke="rgba(85,86,88,.14)"></rect>
+                    </svg>
+                </div>
+
+                <div class="illumLanding_tile span5 illumLanding_reveal">
+                    <div class="illumLanding_tileTag">Decorativo</div>
+                    <svg viewBox="0 0 600 420" preserveAspectRatio="none" role="img" aria-label="Decorativo">
+                        <rect width="600" height="420" fill="rgba(255,255,255,.92)"></rect>
+                        <rect x="80" y="80" width="440" height="260" rx="26" fill="rgba(255,255,255,.78)"
+                            stroke="rgba(85,86,88,.16)"></rect>
+                        <circle cx="220" cy="210" r="85" fill="rgba(29,184,221,.22)"></circle>
+                        <circle cx="390" cy="210" r="65" fill="rgba(85,86,88,.10)"></circle>
+                        <path d="M300 40v70" stroke="rgba(85,86,88,.55)" stroke-width="6" stroke-linecap="round"></path>
+                        <circle cx="300" cy="140" r="46" fill="rgba(255,255,255,.86)" stroke="rgba(85,86,88,.18)">
+                        </circle>
+                    </svg>
+                </div>
+
+                <div class="illumLanding_tile span4 illumLanding_reveal">
+                    <div class="illumLanding_tileTag">Industrial</div>
+                    <svg viewBox="0 0 520 420" preserveAspectRatio="none" role="img" aria-label="Industrial">
+                        <rect width="520" height="420" fill="rgba(255,255,255,.92)"></rect>
+                        <rect x="70" y="70" width="380" height="280" rx="26" fill="rgba(255,255,255,.78)"
+                            stroke="rgba(85,86,88,.16)"></rect>
+                        <rect x="120" y="120" width="280" height="70" rx="18" fill="rgba(29,184,221,.16)"></rect>
+                        <rect x="120" y="210" width="280" height="150" rx="18" fill="rgba(85,86,88,.10)"></rect>
+                    </svg>
+                </div>
+
+                <div class="illumLanding_tile span4 illumLanding_reveal">
+                    <div class="illumLanding_tileTag">Reflectores</div>
+                    <svg viewBox="0 0 520 420" preserveAspectRatio="none" role="img" aria-label="Reflectores">
+                        <rect width="520" height="420" fill="rgba(255,255,255,.92)"></rect>
+                        <circle cx="210" cy="220" r="120" fill="rgba(29,184,221,.18)"></circle>
+                        <circle cx="350" cy="190" r="90" fill="rgba(85,86,88,.10)"></circle>
+                        <rect x="150" y="120" width="220" height="210" rx="26" fill="rgba(255,255,255,.78)"
+                            stroke="rgba(85,86,88,.16)"></rect>
+                        <path d="M260 340v48" stroke="rgba(85,86,88,.55)" stroke-width="6" stroke-linecap="round">
+                        </path>
+                    </svg>
+                </div>
+
+                <div class="illumLanding_tile span4 illumLanding_reveal">
+                    <div class="illumLanding_tileTag">Cinta LED</div>
+                    <svg viewBox="0 0 520 420" preserveAspectRatio="none" role="img" aria-label="Cinta LED">
+                        <rect width="520" height="420" fill="rgba(255,255,255,.92)"></rect>
+                        <path d="M90 240c70-110 270-110 340 0" fill="none" stroke="rgba(29,184,221,.55)"
+                            stroke-width="18" stroke-linecap="round"></path>
+                        <path d="M110 255c60-80 240-80 300 0" fill="none" stroke="rgba(85,86,88,.35)" stroke-width="12"
+                            stroke-linecap="round"></path>
+                        <circle cx="150" cy="252" r="6" fill="rgba(85,86,88,.55)"></circle>
+                        <circle cx="200" cy="220" r="6" fill="rgba(85,86,88,.55)"></circle>
+                        <circle cx="250" cy="206" r="6" fill="rgba(85,86,88,.55)"></circle>
+                        <circle cx="300" cy="220" r="6" fill="rgba(85,86,88,.55)"></circle>
+                        <circle cx="350" cy="252" r="6" fill="rgba(85,86,88,.55)"></circle>
+                    </svg>
+                </div>
+
+                <div class="illumLanding_tile span6 illumLanding_reveal">
+                    <div class="illumLanding_tileTag">Proyectos</div>
+                    <svg viewBox="0 0 720 420" preserveAspectRatio="none" role="img" aria-label="Proyectos">
+                        <rect width="720" height="420" fill="rgba(255,255,255,.92)"></rect>
+                        <rect x="70" y="90" width="580" height="240" rx="28" fill="rgba(255,255,255,.78)"
+                            stroke="rgba(85,86,88,.16)"></rect>
+                        <rect x="110" y="130" width="220" height="60" rx="16" fill="rgba(29,184,221,.16)"></rect>
+                        <rect x="110" y="210" width="500" height="36" rx="14" fill="rgba(85,86,88,.08)"></rect>
+                        <rect x="110" y="260" width="420" height="36" rx="14" fill="rgba(85,86,88,.08)"></rect>
+                        <circle cx="590" cy="160" r="50" fill="rgba(29,184,221,.16)"></circle>
+                    </svg>
+                </div>
+
+                <div class="illumLanding_tile span6 illumLanding_reveal">
+                    <div class="illumLanding_tileTag">Calidad</div>
+                    <svg viewBox="0 0 720 420" preserveAspectRatio="none" role="img" aria-label="Calidad">
+                        <rect width="720" height="420" fill="rgba(255,255,255,.92)"></rect>
+                        <circle cx="250" cy="210" r="140" fill="rgba(29,184,221,.14)"></circle>
+                        <circle cx="480" cy="210" r="140" fill="rgba(85,86,88,.10)"></circle>
+                        <path d="M360 110l90 40-90 170-90-170 90-40Z" fill="rgba(255,255,255,.78)"
+                            stroke="rgba(85,86,88,.16)" stroke-width="2"></path>
+                        <path d="M320 215l30 30 60-80" fill="none" stroke="rgba(29,184,221,.95)" stroke-width="8"
+                            stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4) Sección Formulario -->
+    <section class="illumLanding_section" id="illumLanding_sectionForm">
+        <div class="illumLanding_container">
+            <div class="illumLanding_reveal">
+                <h2 class="illumLanding_title">Solicitar asesoría o cotización</h2>
+                <p class="illumLanding_lead">Complete el formulario y se abrirá WhatsApp con el mensaje listo para
+                    enviar.</p>
+            </div>
+
+            <div class="illumLanding_formGrid">
+                <form class="illumLanding_formCard illumLanding_reveal" id="illumLanding_formLead" novalidate>
+                    <div class="illumLanding_formTwoCols">
+                        <div>
+                            <label class="illumLanding_label" for="illumLanding_fullName">Nombre completo</label>
+                            <input class="illumLanding_input" id="illumLanding_fullName" type="text"
+                                placeholder="Ej: Juan Pérez" required />
+                            <div class="illumLanding_helpRow" id="illumLanding_helpFullName"></div>
+                        </div>
+
+                        <div>
+                            <label class="illumLanding_label" for="illumLanding_phone">Celular</label>
+                            <input class="illumLanding_input" id="illumLanding_phone" type="tel" inputmode="numeric"
+                                placeholder="Ej: 3001234567" required />
+                            <div class="illumLanding_helpRow" id="illumLanding_helpPhone"></div>
+                        </div>
+
+                        <div>
+                            <label class="illumLanding_label" for="illumLanding_city">Ciudad</label>
+                            <input class="illumLanding_input" id="illumLanding_city" type="text"
+                                placeholder="Ej: Bogotá" required />
+                            <div class="illumLanding_helpRow" id="illumLanding_helpCity"></div>
+                        </div>
+
+                        <div>
+                            <label class="illumLanding_label" for="illumLanding_clientType">Tipo de cliente</label>
+                            <select class="illumLanding_input" id="illumLanding_clientType" required>
+                                <option value="" selected disabled>Seleccione una opción</option>
+                                <option value="Residencial">Residencial</option>
+                                <option value="Comercial">Comercial</option>
+                                <option value="Industria">Industria</option>
+                                <option value="Constructor">Constructor</option>
+                                <option value="Mayorista">Mayorista</option>
+                            </select>
+                            <div class="illumLanding_helpRow" id="illumLanding_helpClientType"></div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:12px;">
+                        <label class="illumLanding_label" for="illumLanding_description">Descripción (máximo 150
+                            caracteres)</label>
+                        <textarea class="illumLanding_input" id="illumLanding_description" rows="4" maxlength="150"
+                            placeholder="Ej: Necesito paneles LED 60x60 6500K, 20 unidades para oficina."
+                            required></textarea>
+
+                        <div class="illumLanding_helpRow">
+                            <span>Describa su necesidad de forma breve.</span>
+                            <span class="illumLanding_counter" id="illumLanding_descCounter">0/150</span>
+                        </div>
+                        <div class="illumLanding_helpRow" id="illumLanding_helpDescription"></div>
+                    </div>
+
+                    <div class="illumLanding_formActions">
+                        <button class="illumLanding_btn illumLanding_btnPrimary" type="submit"
+                            id="illumLanding_submitBtn">
+                            Enviar por WhatsApp
+                        </button>
+                        <div class="illumLanding_note">
+                            El botón abre WhatsApp con la información del formulario lista para enviar.
+                        </div>
+                    </div>
+                </form>
+
+                <aside class="illumLanding_sideCard illumLanding_reveal">
+                    <h3>Qué recibirá</h3>
+                    <ul>
+                        <li>Recomendación según uso y ambiente.</li>
+                        <li>Opciones por potencia, tipo y aplicación.</li>
+                        <li>Alternativas si busca ahorro o mayor desempeño.</li>
+                    </ul>
+                    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+                        <a class="illumLanding_btn" href="#illumLanding_sectionCatalog">Ver categorías</a>
+                        <a class="illumLanding_btn" href="#illumLanding_sectionHero">Volver arriba</a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5) Sección Catálogo -->
+    <section class="illumLanding_section" id="illumLanding_sectionCatalog">
+        <div class="illumLanding_container">
+            <div class="illumLanding_reveal">
+                <h2 class="illumLanding_title">Visite el catálogo de productos</h2>
+                <p class="illumLanding_lead">Actualice el enlace con la URL real de su tienda o categoría.</p>
+            </div>
+
+            <div class="illumLanding_catalogGrid">
+                <div class="illumLanding_catalogCard illumLanding_reveal">
+                    <h3 style="margin:0 0 10px;">Categorías destacadas</h3>
+                    <p style="margin:0; color:var(--muted);">Paneles LED, reflectores, cintas LED, decorativo e
+                        industrial.</p>
+                    <div class="illumLanding_chips">
+                        <span class="illumLanding_chip">Paneles</span>
+                        <span class="illumLanding_chip">Reflectores</span>
+                        <span class="illumLanding_chip">Cintas LED</span>
+                        <span class="illumLanding_chip">Industrial</span>
+                        <span class="illumLanding_chip">Decorativo</span>
+                    </div>
+                </div>
+
+                <div class="illumLanding_catalogCard illumLanding_reveal">
+                    <h3 style="margin:0 0 10px;">Ir al catálogo</h3>
+                    <p style="margin:0; color:var(--muted);">Sugerencia: abra en nueva pestaña para no perder la
+                        landing.</p>
+                    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+                        <a class="illumLanding_btn illumLanding_btnPrimary" id="illumLanding_catalogLink"
+                            href="https://tusitio.com/catalogo" target="_blank" rel="noopener">
+                            Abrir catálogo
+                        </a>
+                        <button class="illumLanding_btn" id="illumLanding_copyCatalogBtn" type="button">Copiar
+                            enlace</button>
+                    </div>
+                    <div class="illumLanding_helpRow" id="illumLanding_helpCatalog" aria-live="polite"
+                        style="margin-top:10px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="illumLanding_container">
+            <div style="display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+                <div>© <span id="illumLanding_year"></span> E-commerce Iluminación.</div>
+                <div>HTML, CSS y JavaScript. Diseño responsive.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            /* Utilidades */
+            const qs = (sel, parent = document) => parent.querySelector(sel);
+            const qsa = (sel, parent = document) => Array.from(parent.querySelectorAll(sel));
+
+            /* Año */
+            const yearEl = qs("#illumLanding_year");
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+            /* Header scroll */
+            const header = qs("#illumLanding_header");
+            const handleHeaderScroll = () => {
+                if (!header) return;
+                header.classList.toggle("isScrolled", window.scrollY > 6);
+            };
+            window.addEventListener("scroll", handleHeaderScroll, { passive: true });
+            handleHeaderScroll();
+
+            /* Menú móvil */
+            const menuButton = qs("#illumLanding_menuButton");
+            const mobilePanel = qs("#illumLanding_mobilePanel");
+
+            const setMenuOpen = (open) => {
+                if (!menuButton || !mobilePanel) return;
+                menuButton.setAttribute("aria-expanded", String(open));
+                mobilePanel.hidden = !open;
+            };
+
+            if (menuButton) {
+                menuButton.addEventListener("click", () => {
+                    const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+                    setMenuOpen(!isOpen);
+                });
+            }
+
+            if (mobilePanel) {
+                qsa("[data-close-menu]", mobilePanel).forEach((link) => {
+                    link.addEventListener("click", () => setMenuOpen(false));
+                });
+            }
+
+            /* Reveal */
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("isVisible");
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            qsa(".illumLanding_reveal").forEach((el) => revealObserver.observe(el));
+
+            /* Form */
+            const form = qs("#illumLanding_formLead");
+            const submitBtn = qs("#illumLanding_submitBtn");
+
+            const fullName = qs("#illumLanding_fullName");
+            const phone = qs("#illumLanding_phone");
+            const city = qs("#illumLanding_city");
+            const clientType = qs("#illumLanding_clientType");
+            const description = qs("#illumLanding_description");
+
+            const helpFullName = qs("#illumLanding_helpFullName");
+            const helpPhone = qs("#illumLanding_helpPhone");
+            const helpCity = qs("#illumLanding_helpCity");
+            const helpClientType = qs("#illumLanding_helpClientType");
+            const helpDescription = qs("#illumLanding_helpDescription");
+
+            const descCounter = qs("#illumLanding_descCounter");
+
+            const normalizeText = (v) => (v || "").trim().replace(/\s+/g, " ");
+            const onlyDigits = (v) => (v || "").replace(/\D/g, "");
+            const isValidPhone = (v) => {
+                const d = onlyDigits(v);
+                return d.length >= 7 && d.length <= 12;
+            };
+
+            const setHelp = (el, msg) => { if (el) el.textContent = msg || ""; };
+            const setError = (input, isErr) => { if (input) input.classList.toggle("isError", !!isErr); };
+
+            const updateCounter = () => {
+                if (!description || !descCounter) return;
+                const len = description.value.length;
+                descCounter.textContent = len + "/150";
+                descCounter.classList.toggle("isLimit", len >= 150);
+            };
+
+            const validateForm = () => {
+                if (!fullName || !phone || !city || !clientType || !description) return null;
+
+                const data = {
+                    fullName: normalizeText(fullName.value),
+                    phone: normalizeText(phone.value),
+                    city: normalizeText(city.value),
+                    clientType: clientType.value,
+                    description: normalizeText(description.value)
+                };
+
+                let ok = true;
+
+                if (data.fullName.length < 5) {
+                    ok = false; setError(fullName, true); setHelp(helpFullName, "Ingrese nombre y apellido (mínimo 5 caracteres).");
+                } else {
+                    setError(fullName, false); setHelp(helpFullName, "");
+                }
+
+                if (!isValidPhone(data.phone)) {
+                    ok = false; setError(phone, true); setHelp(helpPhone, "Ingrese un celular válido (7 a 12 dígitos).");
+                } else {
+                    setError(phone, false); setHelp(helpPhone, "");
+                }
+
+                if (data.city.length < 3) {
+                    ok = false; setError(city, true); setHelp(helpCity, "Ingrese una ciudad válida.");
+                } else {
+                    setError(city, false); setHelp(helpCity, "");
+                }
+
+                if (!data.clientType) {
+                    ok = false; setError(clientType, true); setHelp(helpClientType, "Seleccione un tipo de cliente.");
+                } else {
+                    setError(clientType, false); setHelp(helpClientType, "");
+                }
+
+                if (data.description.length < 10) {
+                    ok = false; setError(description, true); setHelp(helpDescription, "Ingrese una descripción corta (mínimo 10 caracteres).");
+                } else {
+                    setError(description, false); setHelp(helpDescription, "");
+                }
+
+                if (submitBtn) {
+                    submitBtn.disabled = !ok;
+                    submitBtn.style.opacity = ok ? "1" : ".80";
+                }
+
+                return ok ? data : null;
+            };
+
+            /* Contador */
+            if (description) {
+                description.addEventListener("input", () => {
+                    updateCounter();
+                    validateForm();
+                });
+                updateCounter();
+            }
+
+            /* Validación en vivo */
+            [fullName, phone, city].forEach((el) => {
+                if (!el) return;
+                el.addEventListener("input", validateForm);
+                el.addEventListener("blur", validateForm);
+            });
+            if (clientType) {
+                clientType.addEventListener("change", validateForm);
+                clientType.addEventListener("blur", validateForm);
+            }
+
+            /* Envío a WhatsApp */
+            const WHATSAPP_NUMBER = "573176635205"; /* +57 Colombia */
+
+            if (form) {
+                form.addEventListener("submit", (e) => {
+                    e.preventDefault();
+
+                    const data = validateForm();
+                    if (!data) return;
+
+                    const message =
+                        "Hola, deseo asesoría o cotización de iluminación.\n\n" +
+                        "Nombre: " + data.fullName + "\n" +
+                        "Celular: " + data.phone + "\n" +
+                        "Ciudad: " + data.city + "\n" +
+                        "Tipo de cliente: " + data.clientType + "\n" +
+                        "Descripción: " + data.description;
+
+                    const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+
+                    /* Redirección directa para evitar bloqueos del navegador */
+                    window.location.href = url;
+                });
+            }
+
+            /* Copiar link catálogo */
+            const catalogLink = qs("#illumLanding_catalogLink");
+            const copyCatalogBtn = qs("#illumLanding_copyCatalogBtn");
+            const helpCatalog = qs("#illumLanding_helpCatalog");
+
+            if (copyCatalogBtn && catalogLink) {
+                copyCatalogBtn.addEventListener("click", async () => {
+                    try {
+                        await navigator.clipboard.writeText(catalogLink.href);
+                        setHelp(helpCatalog, "Enlace copiado al portapapeles.");
+                        if (helpCatalog) helpCatalog.style.color = "rgba(26,154,87,.95)";
+                    } catch (err) {
+                        setHelp(helpCatalog, "No fue posible copiar. Copie manualmente el enlace del botón.");
+                        if (helpCatalog) helpCatalog.style.color = "rgba(85,86,88,.88)";
+                    }
+                });
+            }
+
+            validateForm();
+        });
+    </script>
+</body>
+
+</html>

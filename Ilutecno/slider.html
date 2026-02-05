@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider Component</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        /* COMPONENTE SLIDER - Completamente aislado */
+        .slider-component {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 29.17%;
+            /* Aspecto 1200x350 (350/1200 = 0.2917) */
+            overflow: hidden;
+        }
+
+        .slider-track {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+            width: 100%;
+        }
+
+        .slider-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slider-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* Muestra la imagen completa sin cortar */
+            object-position: center;
+            display: block;
+            background: #fff;
+        }
+
+        /* Controles de navegación */
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            z-index: 10;
+        }
+
+        .slider-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .slider-nav.prev {
+            left: 20px;
+        }
+
+        .slider-nav.next {
+            right: 20px;
+        }
+
+        /* Indicadores */
+        .slider-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .slider-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-indicator.active {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.2);
+        }
+
+        /* Auto-play pause button */
+        .slider-pause {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease;
+            z-index: 10;
+        }
+
+        .slider-pause:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            /* El padding-bottom se mantiene automáticamente proporcional */
+
+            .slider-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .slider-nav.prev {
+                left: 10px;
+            }
+
+            .slider-nav.next {
+                right: 10px;
+            }
+
+            .slider-pause {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            .slider-indicators {
+                bottom: 10px;
+            }
+
+            .slider-indicator {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slider-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+
+            .slider-nav.prev {
+                left: 5px;
+            }
+
+            .slider-nav.next {
+                right: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- COMPONENTE SLIDER - Fácil de usar -->
+    <div class="slider-component" id="mySlider">
+        <!-- El contenido se genera automáticamente con JavaScript -->
+    </div>
+
+    <script>
+        /**
+         * ImageSlider - Componente de slider completamente aislado
+         * Uso: new ImageSlider('selector', { opciones })
+         */
+        class ImageSlider {
+            constructor(selector, options = {}) {
+                this.container = document.querySelector(selector);
+                if (!this.container) {
+                    console.error('Slider container not found:', selector);
+                    return;
+                }
+
+                // Configuración por defecto
+                this.config = {
+                    images: options.images || [],
+                    autoPlay: options.autoPlay !== undefined ? options.autoPlay : true,
+                    autoPlayInterval: options.autoPlayInterval || 4000,
+                    showNav: options.showNav !== undefined ? options.showNav : true,
+                    showIndicators: options.showIndicators !== undefined ? options.showIndicators : true,
+                    showPauseButton: options.showPauseButton !== undefined ? options.showPauseButton : true,
+                };
+
+                this.currentIndex = 0;
+                this.isPaused = false;
+                this.autoPlayTimer = null;
+
+                this.init();
+            }
+
+            init() {
+                if (this.config.images.length < 2) {
+                    console.warn('Se requieren al menos 2 imágenes para el slider');
+                    return;
+                }
+
+                this.buildSlider();
+                this.attachEvents();
+
+                if (this.config.autoPlay) {
+                    this.startAutoPlay();
+                }
+            }
+
+            buildSlider() {
+                // Crear estructura del slider
+                let html = `
+                    <div class="slider-wrapper">
+                        <div class="slider-track">
+                            ${this.config.images.map((img, index) => `
+                                <div class="slider-slide">
+                                    <img src="${img}" alt="Slide ${index + 1}" loading="${index === 0 ? 'eager' : 'lazy'}">
+                                </div>
+                            `).join('')}
+                        </div>
+                `;
+
+                // Botones de navegación
+                if (this.config.showNav) {
+                    html += `
+                        <button class="slider-nav prev" aria-label="Anterior">&#10094;</button>
+                        <button class="slider-nav next" aria-label="Siguiente">&#10095;</button>
+                    `;
+                }
+
+                // Indicadores
+                if (this.config.showIndicators) {
+                    html += `
+                        <div class="slider-indicators">
+                            ${this.config.images.map((_, index) => `
+                                <div class="slider-indicator ${index === 0 ? 'active' : ''}" data-index="${index}"></div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+
+                // Botón de pausa
+                if (this.config.showPauseButton && this.config.autoPlay) {
+                    html += `<button class="slider-pause">❚❚ Pausar</button>`;
+                }
+
+                html += '</div>';
+                this.container.innerHTML = html;
+
+                // Guardar referencias
+                this.track = this.container.querySelector('.slider-track');
+                this.slides = this.container.querySelectorAll('.slider-slide');
+                this.prevBtn = this.container.querySelector('.slider-nav.prev');
+                this.nextBtn = this.container.querySelector('.slider-nav.next');
+                this.indicators = this.container.querySelectorAll('.slider-indicator');
+                this.pauseBtn = this.container.querySelector('.slider-pause');
+            }
+
+            attachEvents() {
+                // Navegación
+                if (this.prevBtn) {
+                    this.prevBtn.addEventListener('click', () => this.prev());
+                }
+                if (this.nextBtn) {
+                    this.nextBtn.addEventListener('click', () => this.next());
+                }
+
+                // Indicadores
+                this.indicators.forEach(indicator => {
+                    indicator.addEventListener('click', (e) => {
+                        const index = parseInt(e.target.dataset.index);
+                        this.goToSlide(index);
+                    });
+                });
+
+                // Botón de pausa
+                if (this.pauseBtn) {
+                    this.pauseBtn.addEventListener('click', () => this.togglePause());
+                }
+
+                // Pausar al hacer hover
+                this.container.addEventListener('mouseenter', () => {
+                    if (this.config.autoPlay && !this.isPaused) {
+                        this.stopAutoPlay();
+                    }
+                });
+
+                this.container.addEventListener('mouseleave', () => {
+                    if (this.config.autoPlay && !this.isPaused) {
+                        this.startAutoPlay();
+                    }
+                });
+
+                // Soporte para touch/swipe
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                this.container.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+
+                this.container.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    this.handleSwipe(touchStartX, touchEndX);
+                });
+            }
+
+            handleSwipe(startX, endX) {
+                const swipeThreshold = 50;
+                if (startX - endX > swipeThreshold) {
+                    this.next();
+                } else if (endX - startX > swipeThreshold) {
+                    this.prev();
+                }
+            }
+
+            goToSlide(index) {
+                this.currentIndex = index;
+                this.updateSlider();
+            }
+
+            next() {
+                this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+                this.updateSlider();
+            }
+
+            prev() {
+                this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+                this.updateSlider();
+            }
+
+            updateSlider() {
+                // Mover el track
+                this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+
+                // Actualizar indicadores
+                this.indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === this.currentIndex);
+                });
+
+                // Reiniciar autoplay si está activo
+                if (this.config.autoPlay && !this.isPaused) {
+                    this.stopAutoPlay();
+                    this.startAutoPlay();
+                }
+            }
+
+            startAutoPlay() {
+                this.autoPlayTimer = setInterval(() => {
+                    this.next();
+                }, this.config.autoPlayInterval);
+            }
+
+            stopAutoPlay() {
+                if (this.autoPlayTimer) {
+                    clearInterval(this.autoPlayTimer);
+                    this.autoPlayTimer = null;
+                }
+            }
+
+            togglePause() {
+                this.isPaused = !this.isPaused;
+
+                if (this.isPaused) {
+                    this.stopAutoPlay();
+                    if (this.pauseBtn) {
+                        this.pauseBtn.textContent = '▶ Reproducir';
+                    }
+                } else {
+                    this.startAutoPlay();
+                    if (this.pauseBtn) {
+                        this.pauseBtn.textContent = '❚❚ Pausar';
+                    }
+                }
+            }
+
+            // Método para agregar imágenes dinámicamente
+            addImage(imageUrl) {
+                this.config.images.push(imageUrl);
+                this.buildSlider();
+                this.attachEvents();
+            }
+
+            // Método para destruir el slider
+            destroy() {
+                this.stopAutoPlay();
+                this.container.innerHTML = '';
+            }
+        }
+
+        // ============================================
+        // INICIALIZACIÓN DEL SLIDER
+        // ============================================
+
+        // Crea tu slider con tus imágenes
+        const slider = new ImageSlider('#mySlider', {
+            images: [
+                'https://multimedia02.s3.us-east-2.amazonaws.com/Produccion/uploads/userfiles/276/files/productos/ilutecno-1.png',
+                'https://multimedia02.s3.us-east-2.amazonaws.com/Produccion/uploads/userfiles/276/files/productos/ilutecno-2.png',
+            ],
+            autoPlay: true,
+            autoPlayInterval: 4000,
+            showNav: true,
+            showIndicators: true,
+            showPauseButton: true
+        });
+
+        // Ejemplo: Agregar más imágenes dinámicamente
+        // slider.addImage('url-de-nueva-imagen.jpg');
+    </script>
+</body>
+
+</html>

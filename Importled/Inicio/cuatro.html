@@ -1,0 +1,1428 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Iluminación | Landing E-commerce</title>
+    <meta name="description"
+        content="E-commerce de iluminación: compra fácil, asesoría rápida y productos modernos para hogar, comercio e industria." />
+
+    <style>
+        :root {
+            --primary: #1db8dd;
+            --secondary: #555658;
+
+            --bg: #ffffff;
+            --text: #111418;
+            --muted: rgba(85, 86, 88, .82);
+            --line: rgba(85, 86, 88, .18);
+
+            --card: rgba(255, 255, 255, .92);
+            --card2: rgba(255, 255, 255, .78);
+
+            --danger: #d63b3b;
+            --ok: #1a9a57;
+
+            --shadow: 0 18px 50px rgba(17, 20, 24, .12);
+            --shadow2: 0 10px 26px rgba(17, 20, 24, .10);
+            --radius: 18px;
+            --radius2: 24px;
+            --max: 1120px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(var(--max), calc(100% - 40px));
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(14px);
+            background: rgba(255, 255, 255, .70);
+            border-bottom: 1px solid rgba(85, 86, 88, .14);
+            transition: box-shadow .2s ease, background .2s ease;
+        }
+
+        header.z9qLx_scrolled {
+            box-shadow: 0 10px 26px rgba(17, 20, 24, .10);
+            background: rgba(255, 255, 255, .86);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 750;
+            letter-spacing: .2px;
+        }
+
+        .logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 14px;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(29, 184, 221, .75), transparent 55%),
+                radial-gradient(circle at 70% 70%, rgba(85, 86, 88, .45), transparent 55%),
+                rgba(29, 184, 221, .08);
+            border: 1px solid rgba(29, 184, 221, .22);
+            box-shadow: 0 10px 24px rgba(17, 20, 24, .10);
+        }
+
+        .navlinks {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .navlinks a {
+            padding: 10px 12px;
+            border-radius: 12px;
+            color: rgba(85, 86, 88, .92);
+            border: 1px solid transparent;
+            transition: background .2s ease, color .2s ease, border-color .2s ease;
+            font-weight: 650;
+            font-size: 14px;
+        }
+
+        .navlinks a:hover {
+            background: rgba(29, 184, 221, .10);
+            color: var(--text);
+            border-color: rgba(29, 184, 221, .22);
+        }
+
+        .cta {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(85, 86, 88, .22);
+            background: rgba(255, 255, 255, .80);
+            color: var(--text);
+            font-weight: 750;
+            cursor: pointer;
+            transition: transform .12s ease, background .2s ease, border-color .2s ease;
+            user-select: none;
+            box-shadow: 0 10px 18px rgba(17, 20, 24, .06);
+        }
+
+        .btn:hover {
+            background: rgba(29, 184, 221, .10);
+            border-color: rgba(29, 184, 221, .28);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, rgba(29, 184, 221, .92), rgba(29, 184, 221, .78));
+            border-color: rgba(29, 184, 221, .65);
+            color: #ffffff;
+            box-shadow: 0 18px 30px rgba(29, 184, 221, .22);
+        }
+
+        .btn.primary:hover {
+            background: linear-gradient(135deg, rgba(29, 184, 221, .98), rgba(29, 184, 221, .86));
+            border-color: rgba(29, 184, 221, .78);
+        }
+
+        .menuBtn {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            border: 1px solid rgba(85, 86, 88, .22);
+            background: rgba(255, 255, 255, .80);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 18px rgba(17, 20, 24, .06);
+        }
+
+        .menuIcon {
+            width: 18px;
+            height: 12px;
+            position: relative;
+        }
+
+        .menuIcon span {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(17, 20, 24, .82);
+            border-radius: 4px;
+        }
+
+        .menuIcon span:nth-child(1) {
+            top: 0;
+        }
+
+        .menuIcon span:nth-child(2) {
+            top: 5px;
+        }
+
+        .menuIcon span:nth-child(3) {
+            top: 10px;
+        }
+
+        .mobilePanel {
+            display: none;
+            border-top: 1px solid rgba(85, 86, 88, .14);
+            padding: 10px 0 16px;
+        }
+
+        .mobilePanel a {
+            display: block;
+            padding: 12px 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(85, 86, 88, .18);
+            background: rgba(255, 255, 255, .90);
+            color: var(--text);
+            font-weight: 700;
+            margin-top: 10px;
+            box-shadow: 0 10px 18px rgba(17, 20, 24, .06);
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            border-top: 1px solid rgba(85, 86, 88, .10);
+        }
+
+        section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: rgba(255, 255, 255, .01);
+        }
+
+        section::after {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            z-index: 1;
+            pointer-events: none;
+            background:
+                radial-gradient(900px 420px at 20% 25%, rgba(29, 184, 221, .14), transparent 62%),
+                radial-gradient(900px 420px at 80% 35%, rgba(85, 86, 88, .10), transparent 62%);
+            opacity: .85;
+        }
+
+        /* IDs atípicos por sección */
+        #z9qLx_sIn1c10::before {
+            background:
+                radial-gradient(1200px 720px at 12% 18%, rgba(29, 184, 221, .18), transparent 60%),
+                radial-gradient(900px 640px at 88% 22%, rgba(85, 86, 88, .12), transparent 58%),
+                linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+        }
+
+        #z9qLx_sF34tU::before {
+            background:
+                radial-gradient(980px 560px at 18% 35%, rgba(29, 184, 221, .14), transparent 62%),
+                radial-gradient(980px 560px at 82% 40%, rgba(85, 86, 88, .10), transparent 62%),
+                linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+        }
+
+        #z9qLx_sG4l3r::before {
+            background:
+                radial-gradient(1050px 620px at 10% 45%, rgba(29, 184, 221, .16), transparent 64%),
+                radial-gradient(1050px 620px at 90% 50%, rgba(85, 86, 88, .10), transparent 64%),
+                linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+        }
+
+        #z9qLx_sC0n74c::before {
+            background:
+                radial-gradient(980px 560px at 22% 25%, rgba(29, 184, 221, .12), transparent 64%),
+                radial-gradient(980px 560px at 78% 35%, rgba(85, 86, 88, .10), transparent 64%),
+                linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+        }
+
+        #z9qLx_sC474l0::before {
+            background:
+                radial-gradient(1000px 580px at 20% 50%, rgba(29, 184, 221, .14), transparent 64%),
+                radial-gradient(1000px 580px at 80% 35%, rgba(85, 86, 88, .10), transparent 64%),
+                linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+        }
+
+        .sectionTitle {
+            font-size: clamp(22px, 2.4vw, 32px);
+            margin: 0 0 10px;
+            letter-spacing: .2px;
+        }
+
+        .sectionLead {
+            margin: 0;
+            color: var(--muted);
+            max-width: 70ch;
+        }
+
+        .hero {
+            padding: 58px 0 86px;
+        }
+
+        .heroGrid {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(29, 184, 221, .25);
+            background: rgba(29, 184, 221, .08);
+            color: rgba(85, 86, 88, .95);
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+
+        .badge .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(29, 184, 221, 1), rgba(29, 184, 221, .65));
+            box-shadow: 0 0 0 6px rgba(29, 184, 221, .14);
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 4.2vw, 56px);
+            line-height: 1.05;
+            margin: 0 0 14px;
+            letter-spacing: -0.4px;
+        }
+
+        .hero p {
+            margin: 0 0 22px;
+            color: var(--muted);
+            font-size: 16px;
+            max-width: 70ch;
+        }
+
+        .heroActions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .trustRow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .pill {
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(85, 86, 88, .18);
+            background: rgba(255, 255, 255, .84);
+            color: rgba(85, 86, 88, .92);
+            font-weight: 700;
+            font-size: 13px;
+            box-shadow: 0 10px 18px rgba(17, 20, 24, .05);
+        }
+
+        .heroCard {
+            background: rgba(255, 255, 255, .88);
+            border: 1px solid rgba(85, 86, 88, .16);
+            border-radius: var(--radius2);
+            box-shadow: var(--shadow);
+            padding: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heroCard::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background:
+                radial-gradient(520px 260px at 20% 20%, rgba(29, 184, 221, .18), transparent 62%),
+                radial-gradient(520px 260px at 80% 40%, rgba(85, 86, 88, .12), transparent 62%);
+            pointer-events: none;
+            opacity: .95;
+        }
+
+        .heroCardInner {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            gap: 12px;
+        }
+
+        .miniGrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .mini {
+            background: rgba(255, 255, 255, .88);
+            border: 1px solid rgba(85, 86, 88, .16);
+            border-radius: 18px;
+            padding: 14px;
+            box-shadow: var(--shadow2);
+        }
+
+        .mini strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .mini span {
+            display: block;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .preview {
+            height: 170px;
+            border-radius: 18px;
+            border: 1px solid rgba(85, 86, 88, .16);
+            background:
+                radial-gradient(140px 110px at 25% 30%, rgba(29, 184, 221, .22), transparent 62%),
+                radial-gradient(140px 110px at 70% 55%, rgba(85, 86, 88, .14), transparent 62%),
+                linear-gradient(135deg, rgba(255, 255, 255, .92), rgba(255, 255, 255, .72));
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow2);
+        }
+
+        .preview::after {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            border-radius: 14px;
+            border: 1px dashed rgba(85, 86, 88, .22);
+            background: rgba(255, 255, 255, .70);
+        }
+
+        .previewLabel {
+            position: absolute;
+            left: 18px;
+            bottom: 18px;
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(29, 184, 221, .22);
+            background: rgba(255, 255, 255, .86);
+            font-size: 13px;
+            font-weight: 750;
+            color: var(--text);
+            box-shadow: 0 10px 18px rgba(17, 20, 24, .06);
+        }
+
+        .cards {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, .90);
+            border: 1px solid rgba(85, 86, 88, .16);
+            border-radius: var(--radius);
+            padding: 16px;
+            min-height: 150px;
+            box-shadow: var(--shadow2);
+            transition: transform .16s ease, background .2s ease, border-color .2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, .98);
+            border-color: rgba(29, 184, 221, .28);
+        }
+
+        .icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 16px;
+            border: 1px solid rgba(29, 184, 221, .28);
+            background: linear-gradient(135deg, rgba(29, 184, 221, .18), rgba(85, 86, 88, .10));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            color: var(--primary);
+            box-shadow: 0 12px 20px rgba(29, 184, 221, .10);
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: 16px;
+            letter-spacing: .1px;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13.5px;
+        }
+
+        .gallery {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 12px;
+        }
+
+        .tile {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(85, 86, 88, .16);
+            background: rgba(255, 255, 255, .92);
+            min-height: 160px;
+            box-shadow: var(--shadow2);
+        }
+
+        .tile .tag {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            padding: 8px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(29, 184, 221, .22);
+            background: rgba(255, 255, 255, .88);
+            font-size: 12px;
+            font-weight: 800;
+            color: rgba(85, 86, 88, .95);
+            z-index: 2;
+            box-shadow: 0 10px 18px rgba(17, 20, 24, .06);
+        }
+
+        .tile svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .span-4 {
+            grid-column: span 4;
+        }
+
+        .span-5 {
+            grid-column: span 5;
+        }
+
+        .span-7 {
+            grid-column: span 7;
+        }
+
+        .span-6 {
+            grid-column: span 6;
+        }
+
+        .formWrap {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: 1fr .9fr;
+            gap: 16px;
+            align-items: start;
+        }
+
+        form {
+            background: rgba(255, 255, 255, .92);
+            border: 1px solid rgba(85, 86, 88, .16);
+            border-radius: var(--radius2);
+            box-shadow: var(--shadow);
+            padding: 18px;
+        }
+
+        .grid2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        label {
+            display: block;
+            font-weight: 800;
+            font-size: 13px;
+            margin-bottom: 8px;
+            color: rgba(17, 20, 24, .92);
+        }
+
+        .field {
+            background: rgba(255, 255, 255, .96);
+            border: 1px solid rgba(85, 86, 88, .22);
+            border-radius: 14px;
+            padding: 12px 12px;
+            color: var(--text);
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+            transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+        }
+
+        .field:focus {
+            border-color: rgba(29, 184, 221, .78);
+            box-shadow: 0 0 0 5px rgba(29, 184, 221, .16);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .z9qLx_errF1e1d {
+            border-color: rgba(214, 59, 59, .70) !important;
+            box-shadow: 0 0 0 5px rgba(214, 59, 59, .12) !important;
+        }
+
+        .help {
+            margin-top: 8px;
+            color: rgba(85, 86, 88, .88);
+            font-size: 12.5px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .counter {
+            font-weight: 850;
+            color: rgba(85, 86, 88, .92);
+        }
+
+        .counter.bad {
+            color: rgba(214, 59, 59, .95);
+        }
+
+        .formActions {
+            margin-top: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .note {
+            color: rgba(85, 86, 88, .88);
+            font-size: 12.5px;
+            max-width: 60ch;
+        }
+
+        .sideInfo {
+            background: rgba(255, 255, 255, .92);
+            border: 1px solid rgba(85, 86, 88, .16);
+            border-radius: var(--radius2);
+            padding: 18px;
+            box-shadow: var(--shadow2);
+        }
+
+        .sideInfo h3 {
+            margin: 0 0 10px;
+            font-size: 16px;
+        }
+
+        .sideInfo ul {
+            margin: 0;
+            padding-left: 18px;
+            color: rgba(85, 86, 88, .92);
+        }
+
+        .sideInfo li {
+            margin: 8px 0;
+        }
+
+        .catalog {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 26px;
+            align-items: center;
+        }
+
+        .catalogCard {
+            background: rgba(255, 255, 255, .92);
+            border: 1px solid rgba(85, 86, 88, .16);
+            border-radius: var(--radius2);
+            padding: 18px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .catalogCard::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background:
+                radial-gradient(650px 320px at 18% 20%, rgba(29, 184, 221, .16), transparent 58%),
+                radial-gradient(650px 320px at 82% 50%, rgba(85, 86, 88, .10), transparent 58%);
+            opacity: .95;
+            pointer-events: none;
+        }
+
+        .catalogCard>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .chip {
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(29, 184, 221, .22);
+            background: rgba(29, 184, 221, .08);
+            color: rgba(85, 86, 88, .92);
+            font-weight: 750;
+            font-size: 13px;
+        }
+
+        footer {
+            padding: 28px 0 36px;
+            border-top: 1px solid rgba(85, 86, 88, .12);
+            color: rgba(85, 86, 88, .90);
+            font-size: 13px;
+            background: #ffffff;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity .5s ease, transform .5s ease;
+        }
+
+        .reveal.on {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 980px) {
+            .heroGrid {
+                grid-template-columns: 1fr;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .formWrap {
+                grid-template-columns: 1fr;
+            }
+
+            .catalog {
+                grid-template-columns: 1fr;
+            }
+
+            .span-7 {
+                grid-column: span 12;
+            }
+
+            .span-6 {
+                grid-column: span 12;
+            }
+
+            .span-5 {
+                grid-column: span 6;
+            }
+
+            .span-4 {
+                grid-column: span 6;
+            }
+        }
+
+        @media (max-width: 720px) {
+            section {
+                padding: 64px 0;
+            }
+
+            .navlinks,
+            .cta {
+                display: none;
+            }
+
+            .menuBtn {
+                display: inline-flex;
+            }
+
+            .mobilePanel {
+                display: block;
+            }
+
+            .grid2 {
+                grid-template-columns: 1fr;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .span-5,
+            .span-4 {
+                grid-column: span 12;
+            }
+
+            .tile {
+                min-height: 170px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="z9qLx_h34dEr">
+        <div class="container">
+            <div class="nav">
+                <a class="brand" href="#z9qLx_sIn1c10" aria-label="Ir al inicio">
+                    <div class="logo" aria-hidden="true"></div>
+                    <div>
+                        <div style="font-size:14px; opacity:.95;">E-commerce Iluminación</div>
+                        <div style="font-size:12px; color:rgba(85,86,88,.90); font-weight:700;">Compra rápida y asesoría
+                        </div>
+                    </div>
+                </a>
+
+                <nav class="navlinks" aria-label="Navegación principal">
+                    <a href="#z9qLx_sIn1c10">Inicio</a>
+                    <a href="#z9qLx_sF34tU">Características</a>
+                    <a href="#z9qLx_sG4l3r">Galería</a>
+                    <a href="#z9qLx_sC0n74c">Cotizar</a>
+                    <a href="#z9qLx_sC474l0">Catálogo</a>
+                </nav>
+
+                <div class="cta">
+                    <a class="btn" href="#z9qLx_sC0n74c">Solicitar asesoría</a>
+                    <a class="btn primary" href="#z9qLx_sC474l0">Ver catálogo</a>
+                </div>
+
+                <button class="menuBtn" id="z9qLx_m3nU8tn" aria-label="Abrir menú" aria-expanded="false"
+                    aria-controls="z9qLx_m0bP4n3l">
+                    <div class="menuIcon" aria-hidden="true">
+                        <span></span><span></span><span></span>
+                    </div>
+                </button>
+            </div>
+
+            <div class="mobilePanel" id="z9qLx_m0bP4n3l" hidden>
+                <a href="#z9qLx_sIn1c10" data-z9qlx-close>Inicio</a>
+                <a href="#z9qLx_sF34tU" data-z9qlx-close>Características</a>
+                <a href="#z9qLx_sG4l3r" data-z9qlx-close>Galería</a>
+                <a href="#z9qLx_sC0n74c" data-z9qlx-close>Cotizar</a>
+                <a href="#z9qLx_sC474l0" data-z9qlx-close>Catálogo</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="z9qLx_sIn1c10">
+        <div class="container">
+            <div class="heroGrid">
+                <div class="reveal">
+                    <div class="badge">
+                        <span class="dot" aria-hidden="true"></span>
+                        <span>Iluminación moderna para hogar, comercio e industria</span>
+                    </div>
+
+                    <h1>Ilumina tus proyectos con productos confiables y compra fácil</h1>
+                    <p>
+                        Encuentra paneles LED, reflectores, lámparas decorativas, luminarias industriales y más.
+                        Te ayudamos a elegir la opción correcta con asesoría rápida y un catálogo organizado.
+                    </p>
+
+                    <div class="heroActions">
+                        <a class="btn primary" href="#z9qLx_sC474l0">Explorar catálogo</a>
+                        <a class="btn" href="#z9qLx_sC0n74c">Recibir cotización</a>
+                    </div>
+
+                    <div class="trustRow">
+                        <span class="pill">Respuesta rápida</span>
+                        <span class="pill">Productos con alta rotación</span>
+                        <span class="pill">Soporte para proyectos</span>
+                        <span class="pill">Atención a empresas y público</span>
+                    </div>
+                </div>
+
+                <div class="heroCard reveal" aria-label="Resumen de ventajas">
+                    <div class="heroCardInner">
+                        <div class="preview" aria-hidden="true">
+                            <div class="previewLabel">Vista previa de categorías</div>
+                        </div>
+
+                        <div class="miniGrid">
+                            <div class="mini">
+                                <strong>Variedad</strong>
+                                <span>Iluminación residencial, comercial e industrial</span>
+                            </div>
+                            <div class="mini">
+                                <strong>Asesoría</strong>
+                                <span>Ayuda para elegir potencia, tipo y aplicación</span>
+                            </div>
+                            <div class="mini">
+                                <strong>Compra simple</strong>
+                                <span>Catálogo claro y proceso rápido</span>
+                            </div>
+                            <div class="mini">
+                                <strong>Confianza</strong>
+                                <span>Contenido pensado para decisiones seguras</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="z9qLx_sF34tU">
+        <div class="container">
+            <div class="reveal">
+                <h2 class="sectionTitle">Características del e-commerce</h2>
+                <p class="sectionLead">Diseñado para convertir visitas en compras y consultas en ventas, con una
+                    experiencia moderna.</p>
+            </div>
+
+            <div class="cards">
+                <article class="card reveal">
+                    <div class="icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M7 17l10-10" stroke="currentColor" stroke-width="2" opacity=".95" />
+                            <path d="M9 7h8v8" stroke="currentColor" stroke-width="2" opacity=".95" />
+                        </svg>
+                    </div>
+                    <h3>Catálogo organizado</h3>
+                    <p>Acceso rápido por categorías, productos destacados y opciones para distintos proyectos.</p>
+                </article>
+
+                <article class="card reveal">
+                    <div class="icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 12a8 8 0 1016 0 8 8 0 10-16 0Z" stroke="currentColor" stroke-width="2"
+                                opacity=".95" />
+                            <path d="M12 7v6l4 2" stroke="currentColor" stroke-width="2" opacity=".95" />
+                        </svg>
+                    </div>
+                    <h3>Respuesta ágil</h3>
+                    <p>Formulario corto y claro para acelerar cotizaciones y asesoría personalizada.</p>
+                </article>
+
+                <article class="card reveal">
+                    <div class="icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2l4 8-4 12-4-12 4-8Z" stroke="currentColor" stroke-width="2" opacity=".95" />
+                            <path d="M8.5 10h7" stroke="currentColor" stroke-width="2" opacity=".95" />
+                        </svg>
+                    </div>
+                    <h3>Diseño moderno</h3>
+                    <p>Estética premium con enfoque en lectura, confianza y llamados a la acción.</p>
+                </article>
+
+                <article class="card reveal">
+                    <div class="icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M8 12h8" stroke="currentColor" stroke-width="2" opacity=".95" />
+                            <path d="M12 8v8" stroke="currentColor" stroke-width="2" opacity=".95" />
+                            <path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="2" opacity=".95" />
+                        </svg>
+                    </div>
+                    <h3>Optimizado para móvil</h3>
+                    <p>Responsive real: navegación simple, grillas fluidas y botones táctiles.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="z9qLx_sG4l3r">
+        <div class="container">
+            <div class="reveal">
+                <h2 class="sectionTitle">Galería visual</h2>
+                <p class="sectionLead">Un mosaico moderno para reforzar marca, categorías y estilo de producto.</p>
+            </div>
+
+            <div class="gallery">
+                <div class="tile span-7 reveal">
+                    <div class="tag">Paneles LED</div>
+                    <svg viewBox="0 0 900 420" preserveAspectRatio="none" role="img"
+                        aria-label="Ilustración paneles LED">
+                        <defs>
+                            <linearGradient id="z9qLx_g1" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="rgba(29,184,221,.35)" />
+                                <stop offset="1" stop-color="rgba(85,86,88,.18)" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="900" height="420" fill="rgba(255,255,255,.92)" />
+                        <circle cx="220" cy="160" r="140" fill="url(#z9qLx_g1)" opacity=".95" />
+                        <circle cx="620" cy="240" r="190" fill="rgba(29,184,221,.10)" />
+                        <rect x="420" y="80" width="360" height="120" rx="22" fill="rgba(255,255,255,.78)"
+                            stroke="rgba(85,86,88,.16)" />
+                        <rect x="460" y="220" width="280" height="120" rx="22" fill="rgba(255,255,255,.72)"
+                            stroke="rgba(85,86,88,.14)" />
+                    </svg>
+                </div>
+
+                <div class="tile span-5 reveal">
+                    <div class="tag">Decorativo</div>
+                    <svg viewBox="0 0 600 420" preserveAspectRatio="none" role="img"
+                        aria-label="Ilustración lámparas decorativas">
+                        <defs>
+                            <linearGradient id="z9qLx_g2" x1="0" y1="1" x2="1" y2="0">
+                                <stop offset="0" stop-color="rgba(29,184,221,.28)" />
+                                <stop offset="1" stop-color="rgba(85,86,88,.14)" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="600" height="420" fill="rgba(255,255,255,.92)" />
+                        <rect x="80" y="80" width="440" height="260" rx="26" fill="rgba(255,255,255,.78)"
+                            stroke="rgba(85,86,88,.16)" />
+                        <circle cx="220" cy="210" r="85" fill="url(#z9qLx_g2)" />
+                        <circle cx="390" cy="210" r="65" fill="rgba(29,184,221,.16)" />
+                        <path d="M300 40v70" stroke="rgba(85,86,88,.55)" stroke-width="6" stroke-linecap="round" />
+                        <circle cx="300" cy="140" r="46" fill="rgba(255,255,255,.86)" stroke="rgba(85,86,88,.18)" />
+                    </svg>
+                </div>
+
+                <div class="tile span-4 reveal">
+                    <div class="tag">Industrial</div>
+                    <svg viewBox="0 0 520 420" preserveAspectRatio="none" role="img"
+                        aria-label="Ilustración luminaria industrial">
+                        <rect width="520" height="420" fill="rgba(255,255,255,.92)" />
+                        <rect x="70" y="70" width="380" height="280" rx="26" fill="rgba(255,255,255,.78)"
+                            stroke="rgba(85,86,88,.16)" />
+                        <rect x="120" y="120" width="280" height="70" rx="18" fill="rgba(29,184,221,.16)" />
+                        <rect x="120" y="210" width="280" height="150" rx="18" fill="rgba(85,86,88,.10)" />
+                    </svg>
+                </div>
+
+                <div class="tile span-4 reveal">
+                    <div class="tag">Reflectores</div>
+                    <svg viewBox="0 0 520 420" preserveAspectRatio="none" role="img"
+                        aria-label="Ilustración reflectores LED">
+                        <rect width="520" height="420" fill="rgba(255,255,255,.92)" />
+                        <circle cx="210" cy="220" r="120" fill="rgba(29,184,221,.18)" />
+                        <circle cx="350" cy="190" r="90" fill="rgba(85,86,88,.10)" />
+                        <rect x="150" y="120" width="220" height="210" rx="26" fill="rgba(255,255,255,.78)"
+                            stroke="rgba(85,86,88,.16)" />
+                        <path d="M260 340v48" stroke="rgba(85,86,88,.55)" stroke-width="6" stroke-linecap="round" />
+                    </svg>
+                </div>
+
+                <div class="tile span-4 reveal">
+                    <div class="tag">Cinta LED</div>
+                    <svg viewBox="0 0 520 420" preserveAspectRatio="none" role="img" aria-label="Ilustración cinta LED">
+                        <rect width="520" height="420" fill="rgba(255,255,255,.92)" />
+                        <path d="M90 240c70-110 270-110 340 0" fill="none" stroke="rgba(29,184,221,.55)"
+                            stroke-width="18" stroke-linecap="round" />
+                        <path d="M110 255c60-80 240-80 300 0" fill="none" stroke="rgba(85,86,88,.35)" stroke-width="12"
+                            stroke-linecap="round" />
+                        <circle cx="150" cy="252" r="6" fill="rgba(85,86,88,.55)" />
+                        <circle cx="200" cy="220" r="6" fill="rgba(85,86,88,.55)" />
+                        <circle cx="250" cy="206" r="6" fill="rgba(85,86,88,.55)" />
+                        <circle cx="300" cy="220" r="6" fill="rgba(85,86,88,.55)" />
+                        <circle cx="350" cy="252" r="6" fill="rgba(85,86,88,.55)" />
+                    </svg>
+                </div>
+
+                <div class="tile span-6 reveal">
+                    <div class="tag">Proyectos</div>
+                    <svg viewBox="0 0 720 420" preserveAspectRatio="none" role="img"
+                        aria-label="Ilustración proyecto de iluminación">
+                        <rect width="720" height="420" fill="rgba(255,255,255,.92)" />
+                        <rect x="70" y="90" width="580" height="240" rx="28" fill="rgba(255,255,255,.78)"
+                            stroke="rgba(85,86,88,.16)" />
+                        <rect x="110" y="130" width="220" height="60" rx="16" fill="rgba(29,184,221,.16)" />
+                        <rect x="110" y="210" width="500" height="36" rx="14" fill="rgba(85,86,88,.08)" />
+                        <rect x="110" y="260" width="420" height="36" rx="14" fill="rgba(85,86,88,.08)" />
+                        <circle cx="590" cy="160" r="50" fill="rgba(29,184,221,.16)" />
+                    </svg>
+                </div>
+
+                <div class="tile span-6 reveal">
+                    <div class="tag">Calidad</div>
+                    <svg viewBox="0 0 720 420" preserveAspectRatio="none" role="img"
+                        aria-label="Ilustración calidad y confianza">
+                        <rect width="720" height="420" fill="rgba(255,255,255,.92)" />
+                        <circle cx="250" cy="210" r="140" fill="rgba(29,184,221,.14)" />
+                        <circle cx="480" cy="210" r="140" fill="rgba(85,86,88,.10)" />
+                        <path d="M360 110l90 40-90 170-90-170 90-40Z" fill="rgba(255,255,255,.78)"
+                            stroke="rgba(85,86,88,.16)" stroke-width="2" />
+                        <path d="M320 215l30 30 60-80" fill="none" stroke="rgba(29,184,221,.95)" stroke-width="8"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="z9qLx_sC0n74c">
+        <div class="container">
+            <div class="reveal">
+                <h2 class="sectionTitle">Solicitar asesoría o cotización</h2>
+                <p class="sectionLead">Complete el formulario y un asesor le responderá con una recomendación según su
+                    necesidad.</p>
+            </div>
+
+            <div class="formWrap">
+                <form id="z9qLx_f0rMLe4d" class="reveal" novalidate>
+                    <div class="grid2">
+                        <div>
+                            <label for="z9qLx_fN4mE">Nombre completo</label>
+                            <input class="field" id="z9qLx_fN4mE" name="z9qLx_fN4mE" type="text"
+                                placeholder="Ej: Juan Pérez" required />
+                            <div class="help" id="z9qLx_hN4mE" aria-live="polite"></div>
+                        </div>
+
+                        <div>
+                            <label for="z9qLx_ph0nE">Celular</label>
+                            <input class="field" id="z9qLx_ph0nE" name="z9qLx_ph0nE" type="tel" inputmode="numeric"
+                                placeholder="Ej: 3001234567" required />
+                            <div class="help" id="z9qLx_hPh0nE" aria-live="polite"></div>
+                        </div>
+
+                        <div>
+                            <label for="z9qLx_c17y">Ciudad</label>
+                            <input class="field" id="z9qLx_c17y" name="z9qLx_c17y" type="text" placeholder="Ej: Bogotá"
+                                required />
+                            <div class="help" id="z9qLx_hC17y" aria-live="polite"></div>
+                        </div>
+
+                        <div>
+                            <label for="z9qLx_c7ypE">Tipo de cliente</label>
+                            <select class="field" id="z9qLx_c7ypE" name="z9qLx_c7ypE" required>
+                                <option value="" selected disabled>Seleccione una opción</option>
+                                <option value="Residencial">Residencial</option>
+                                <option value="Comercial">Comercial</option>
+                                <option value="Industria">Industria</option>
+                                <option value="Constructor">Constructor</option>
+                                <option value="Mayorista">Mayorista</option>
+                            </select>
+                            <div class="help" id="z9qLx_hC7ypE" aria-live="polite"></div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:12px;">
+                        <label for="z9qLx_d3741l5">Descripción (máximo 150 caracteres)</label>
+                        <textarea class="field" id="z9qLx_d3741l5" name="z9qLx_d3741l5" rows="4" maxlength="150"
+                            placeholder="Ej: Necesito paneles LED para oficina, 6500K, 60x60, 20 unidades."
+                            required></textarea>
+                        <div class="help">
+                            <span>Describa su necesidad en una frase corta.</span>
+                            <span class="counter" id="z9qLx_c0un73r">0/150</span>
+                        </div>
+                        <div class="help" id="z9qLx_hD3741l5" aria-live="polite"></div>
+                    </div>
+
+                    <div class="formActions">
+                        <button class="btn primary" type="submit" id="z9qLx_5ubm17">Enviar solicitud</button>
+                        <div class="note">
+                            Al enviar, guardaremos su solicitud en el navegador para facilitar seguimiento (local).
+                        </div>
+                    </div>
+                </form>
+
+                <aside class="sideInfo reveal">
+                    <h3>Qué recibirá</h3>
+                    <ul>
+                        <li>Recomendación según uso (hogar, comercio o industria).</li>
+                        <li>Opciones por potencia, tipo de luminaria y ambiente.</li>
+                        <li>Alternativas si busca ahorro o mayor desempeño.</li>
+                    </ul>
+                    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+                        <a class="btn" href="#z9qLx_sC474l0">Ver categorías</a>
+                        <a class="btn" href="#z9qLx_sIn1c10">Volver arriba</a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <section id="z9qLx_sC474l0">
+        <div class="container">
+            <div class="reveal">
+                <h2 class="sectionTitle">Visite el catálogo de productos</h2>
+                <p class="sectionLead">Acceda a categorías principales y encuentre el producto ideal para su proyecto.
+                </p>
+            </div>
+
+            <div class="catalog">
+                <div class="catalogCard reveal">
+                    <h3 style="margin:0 0 10px;">Categorías destacadas</h3>
+                    <p style="margin:0; color:var(--muted);">
+                        Paneles LED, reflectores, cintas LED, lámparas decorativas, industrial y más.
+                    </p>
+                    <div class="chips">
+                        <span class="chip">Paneles</span>
+                        <span class="chip">Reflectores</span>
+                        <span class="chip">Cintas LED</span>
+                        <span class="chip">Industrial</span>
+                        <span class="chip">Decorativo</span>
+                    </div>
+                </div>
+
+                <div class="catalogCard reveal">
+                    <h3 style="margin:0 0 10px;">Ir al catálogo</h3>
+                    <p style="margin:0; color:var(--muted);">
+                        Cambie el enlace por la URL real de su tienda. Puede abrirlo en la misma pestaña o en una nueva.
+                    </p>
+                    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+                        <a class="btn primary" id="z9qLx_c474L1nK" href="https://tusitio.com/catalogo" target="_blank"
+                            rel="noopener">
+                            Abrir catálogo
+                        </a>
+                        <button class="btn" id="z9qLx_c0pyC47" type="button">Copiar enlace</button>
+                    </div>
+                    <div class="help" id="z9qLx_hC474" aria-live="polite" style="margin-top:10px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div style="display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+                <div>© <span id="z9qLx_y34rN0w"></span> E-commerce Iluminación. Todos los derechos reservados.</div>
+                <div>Hecho con HTML, CSS y JavaScript. Diseño responsive.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* Selectores con nombre atípico */
+        const z9qLx_qS = (s, p = document) => p.querySelector(s);
+        const z9qLx_qSA = (s, p = document) => Array.from(p.querySelectorAll(s));
+
+        z9qLx_qS("#z9qLx_y34rN0w").textContent = new Date().getFullYear();
+
+        const z9qLx_HdR = z9qLx_qS("#z9qLx_h34dEr");
+        const z9qLx_0nScr0ll = () => {
+            z9qLx_HdR.classList.toggle("z9qLx_scrolled", window.scrollY > 6);
+        };
+        window.addEventListener("scroll", z9qLx_0nScr0ll, { passive: true });
+        z9qLx_0nScr0ll();
+
+        const z9qLx_MnBtn = z9qLx_qS("#z9qLx_m3nU8tn");
+        const z9qLx_MbPn = z9qLx_qS("#z9qLx_m0bP4n3l");
+
+        function z9qLx_s37M3nU(open) {
+            z9qLx_MnBtn.setAttribute("aria-expanded", String(open));
+            z9qLx_MbPn.hidden = !open;
+        }
+
+        z9qLx_MnBtn.addEventListener("click", () => {
+            const isOpen = z9qLx_MnBtn.getAttribute("aria-expanded") === "true";
+            z9qLx_s37M3nU(!isOpen);
+        });
+
+        z9qLx_qSA("[data-z9qlx-close]", z9qLx_MbPn).forEach(a => {
+            a.addEventListener("click", () => z9qLx_s37M3nU(false));
+        });
+
+        const z9qLx_Obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add("on");
+                    z9qLx_Obs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        z9qLx_qSA(".reveal").forEach(el => z9qLx_Obs.observe(el));
+
+        const z9qLx_F0rm = z9qLx_qS("#z9qLx_f0rMLe4d");
+        const z9qLx_Sub = z9qLx_qS("#z9qLx_5ubm17");
+        const z9qLx_TxA = z9qLx_qS("#z9qLx_d3741l5");
+        const z9qLx_C0u = z9qLx_qS("#z9qLx_c0un73r");
+
+        const z9qLx_H3lp = {
+            nm: z9qLx_qS("#z9qLx_hN4mE"),
+            ph: z9qLx_qS("#z9qLx_hPh0nE"),
+            ct: z9qLx_qS("#z9qLx_hC17y"),
+            tp: z9qLx_qS("#z9qLx_hC7ypE"),
+            ds: z9qLx_qS("#z9qLx_hD3741l5"),
+            cg: z9qLx_qS("#z9qLx_hC474"),
+        };
+
+        function z9qLx_s37H3lp(el, msg, ok = false) {
+            el.textContent = msg || "";
+            el.style.color = ok ? "rgba(26,154,87,.95)" : "rgba(85,86,88,.88)";
+        }
+
+        function z9qLx_s37Err(field, isError) {
+            field.classList.toggle("z9qLx_errF1e1d", !!isError);
+        }
+
+        function z9qLx_n0rmSp(v) {
+            return (v || "").trim().replace(/\s+/g, " ");
+        }
+
+        function z9qLx_v4lPh(v) {
+            const d = (v || "").replace(/\D/g, "");
+            return d.length >= 7 && d.length <= 12;
+        }
+
+        function z9qLx_uPdC0u() {
+            const len = z9qLx_TxA.value.length;
+            z9qLx_C0u.textContent = len + "/150";
+            z9qLx_C0u.classList.toggle("bad", len > 150 || len === 150);
+        }
+        z9qLx_TxA.addEventListener("input", z9qLx_uPdC0u);
+        z9qLx_uPdC0u();
+
+        function z9qLx_v4l1d473() {
+            const z9qLx_nmV = z9qLx_n0rmSp(z9qLx_qS("#z9qLx_fN4mE").value);
+            const z9qLx_phV = z9qLx_qS("#z9qLx_ph0nE").value;
+            const z9qLx_ctV = z9qLx_n0rmSp(z9qLx_qS("#z9qLx_c17y").value);
+            const z9qLx_tpV = z9qLx_qS("#z9qLx_c7ypE").value;
+            const z9qLx_dsV = z9qLx_n0rmSp(z9qLx_qS("#z9qLx_d3741l5").value);
+
+            let ok = true;
+
+            if (z9qLx_nmV.length < 5) {
+                ok = false;
+                z9qLx_s37Err(z9qLx_qS("#z9qLx_fN4mE"), true);
+                z9qLx_s37H3lp(z9qLx_H3lp.nm, "Ingrese nombre y apellido (mínimo 5 caracteres).");
+            } else {
+                z9qLx_s37Err(z9qLx_qS("#z9qLx_fN4mE"), false);
+                z9qLx_s37H3lp(z9qLx_H3lp.nm, "");
+            }
+
+            if (!z9qLx_v4lPh(z9qLx_phV)) {
+                ok = false;
+                z9qLx_s37Err(z9qLx_qS("#z9qLx_ph0nE"), true);
+                z9qLx_s37H3lp(z9qLx_H3lp.ph, "Ingrese un celular válido (7 a 12 dígitos).");
+            } else {
+                z9qLx_s37Err(z9qLx_qS("#z9qLx_ph0nE"), false);
+                z9qLx_s37H3lp(z9qLx_H3lp.ph, "");
+            }
+
+            if (z9qLx_ctV.length < 3) {
+                ok = false;
+                z9qLx_s37Err(z9qLx_qS("#z9qLx_c17y"), true);
+                z9qLx_s37H3lp(z9qLx_H3lp.ct, "Ingrese una ciudad válida.");
+            } else {
+                z9qLx_s37Err(z9qLx_qS("#z9qLx_c17y"), false);
+                z9qLx_s37H3lp(z9qLx_H3lp.ct, "");
+            }
+
+            if (!z9qLx_tpV) {
+                ok = false;
+                z9qLx_s37Err(z9qLx_qS("#z9qLx_c7ypE"), true);
+                z9qLx_s37H3lp(z9qLx_H3lp.tp, "Seleccione un tipo de cliente.");
+            } else {
+                z9qLx_s37Err(z9qLx_qS("#z9qLx_c7ypE"), false);
+                z9qLx_s37H3lp(z9qLx_H3lp.tp, "");
+            }
+
+            if (z9qLx_dsV.length < 10) {
+                ok = false;
+                z9qLx_s37Err(z9qLx_qS("#z9qLx_d3741l5"), true);
+                z9qLx_s37H3lp(z9qLx_H3lp.ds, "Ingrese una descripción corta (mínimo 10 caracteres).");
+            } else {
+                z9qLx_s37Err(z9qLx_qS("#z9qLx_d3741l5"), false);
+                z9qLx_s37H3lp(z9qLx_H3lp.ds, "");
+            }
+
+            z9qLx_Sub.disabled = !ok;
+            z9qLx_Sub.style.opacity = ok ? "1" : ".80";
+
+            return ok ? { z9qLx_nmV, z9qLx_phV, z9qLx_ctV, z9qLx_tpV, z9qLx_dsV } : null;
+        }
+
+        ["#z9qLx_fN4mE", "#z9qLx_ph0nE", "#z9qLx_c17y", "#z9qLx_c7ypE"].forEach(sel => {
+            const el = z9qLx_qS(sel);
+            el.addEventListener("input", z9qLx_v4l1d473);
+            el.addEventListener("change", z9qLx_v4l1d473);
+            el.addEventListener("blur", z9qLx_v4l1d473);
+        });
+        z9qLx_TxA.addEventListener("blur", z9qLx_v4l1d473);
+
+        z9qLx_F0rm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const data = z9qLx_v4l1d473();
+            if (!data) return;
+
+            const payload = {
+                fullName: data.z9qLx_nmV,
+                phone: data.z9qLx_phV,
+                city: data.z9qLx_ctV,
+                clientType: data.z9qLx_tpV,
+                desc: data.z9qLx_dsV,
+                createdAt: new Date().toISOString()
+            };
+
+            const k = "z9qLx_leads_iluminacion_v1";
+            const cur = JSON.parse(localStorage.getItem(k) || "[]");
+            cur.unshift(payload);
+            localStorage.setItem(k, JSON.stringify(cur.slice(0, 25)));
+
+            z9qLx_s37H3lp(z9qLx_H3lp.ds, "Solicitud enviada. En breve se contactarán con usted.", true);
+
+            z9qLx_F0rm.reset();
+            z9qLx_uPdC0u();
+            z9qLx_Sub.disabled = false;
+            z9qLx_Sub.style.opacity = "1";
+            z9qLx_s37M3nU(false);
+        });
+
+        const z9qLx_C474 = z9qLx_qS("#z9qLx_c474L1nK");
+        z9qLx_qS("#z9qLx_c0pyC47").addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText(z9qLx_C474.href);
+                z9qLx_s37H3lp(z9qLx_H3lp.cg, "Enlace copiado al portapapeles.", true);
+            } catch (err) {
+                z9qLx_s37H3lp(z9qLx_H3lp.cg, "No fue posible copiar. Copie manualmente el enlace del botón.", false);
+            }
+        });
+
+        z9qLx_v4l1d473();
+    </script>
+</body>
+
+</html>

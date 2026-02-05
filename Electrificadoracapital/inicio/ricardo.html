@@ -1,0 +1,706 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&amp;display=swap"
+    rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet" />
+<style type="text/css">
+    /* VARIABLES Y RESET */
+    :root {
+        --primary: #315ee3;
+        --primary-gradient: linear-gradient(135deg, #315ee3 0%, #6366f1 100%);
+        --dark-text: #0f172a;
+        --muted-text: #64748b;
+        --white: #ffffff;
+        --radius: 24px;
+        --shadow-lg: 0 20px 40px -15px rgba(15, 23, 42, .12);
+    }
+
+    .ma-site-wrapper {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: var(--white);
+        color: var(--dark-text);
+        padding: 60px 0;
+        overflow-x: hidden;
+    }
+
+    .ma-content-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* CABECERAS */
+    .sectores__head {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .ma-pill {
+        display: inline-block;
+        padding: 8px 16px;
+        background: rgba(49, 94, 227, .1);
+        color: var(--primary);
+        border-radius: 100px;
+        font-size: 13px;
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+
+    .sectores__title {
+        font-size: clamp(2rem, 5vw, 3.2rem);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 20px;
+    }
+
+    .sectores__accent {
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .sectores__subtitle {
+        font-size: 1.15rem;
+        color: var(--muted-text);
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    /* CARRUSEL Y TARJETAS */
+    .sectores-carousel {
+        padding: 40px 10px 80px !important;
+    }
+
+    .ma-card {
+        height: 500px;
+        perspective: 1500px;
+        width: 100%;
+    }
+
+    .ma-cardInner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform .8s cubic-bezier(.4, 0, .2, 1);
+        transform-style: preserve-3d;
+    }
+
+    .ma-card.is-open .ma-cardInner {
+        transform: rotateY(180deg);
+    }
+
+    .ma-front,
+    .ma-back {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+    }
+
+    .ma-front {
+        display: flex;
+        align-items: flex-end;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .ma-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(15, 23, 42, .95) 0%, rgba(15, 23, 42, 0) 65%);
+    }
+
+    .ma-shine {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, .2), transparent);
+        transform: skewX(-25deg);
+        transition: .7s;
+    }
+
+    .ma-card:hover .ma-shine {
+        left: 150%;
+    }
+
+    .ma-frontBody {
+        position: relative;
+        padding: 30px;
+        color: var(--white);
+        width: 100%;
+    }
+
+    .ma-kicker {
+        font-size: 11px;
+        text-transform: uppercase;
+        font-weight: 700;
+        opacity: .8;
+        letter-spacing: 2px;
+    }
+
+    .ma-h3 {
+        font-size: 28px;
+        font-weight: 800;
+        margin: 10px 0 20px;
+        color: var(--primary) !important;
+    }
+
+    .ma-toggle-btn {
+        background: var(--white);
+        color: var(--dark-text);
+        border: none;
+        padding: 14px 24px;
+        border-radius: 14px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: .3s;
+        font-size: 15px;
+        width: 100%;
+    }
+
+    .ma-back {
+        background: var(--primary-gradient);
+        color: var(--white);
+        transform: rotateY(180deg);
+        padding: 40px 30px;
+    }
+
+    .ma-backBody {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .ma-backTitle {
+        font-size: 26px;
+        font-weight: 800;
+        border-bottom: 1px solid rgba(255, 255, 255, .2);
+        padding-bottom: 15px;
+    }
+
+    .ma-desc {
+        font-size: 17px;
+        line-height: 1.6;
+        color: var(--white);
+    }
+
+    .ma-callout {
+        background: rgba(0, 0, 0, .15);
+        padding: 15px;
+        border-left: 4px solid var(--white);
+        border-radius: 12px;
+        font-size: 15px;
+    }
+
+    .ma-close-btn {
+        background: rgba(255, 255, 255, .2);
+        color: var(--white);
+        border: 1px solid rgba(255, 255, 255, .4);
+        margin-top: auto;
+    }
+
+    /* CONTROLES SWIPER */
+    .swiper-button-next,
+    .swiper-button-prev {
+        color: var(--primary) !important;
+        background: var(--white);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        box-shadow: var(--shadow-lg);
+        transform: scale(.8);
+    }
+
+    .swiper-pagination-bullet-active {
+        background: var(--primary) !important;
+    }
+
+    /* FORMULARIO */
+    .ma-form-section {
+        padding: 80px 0;
+        background-color: #fbfcfe;
+    }
+
+    .ma-form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+    }
+
+    /* CLAVE: evita overflow en grid (móvil y desktop) */
+    .ma-form-grid>* {
+        min-width: 0;
+    }
+
+    .ma-form-title {
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 800;
+        margin: 15px 0;
+    }
+
+    .ma-form-lead {
+        color: var(--muted-text);
+        font-size: 1.15rem;
+        margin-bottom: 35px;
+        line-height: 1.6;
+    }
+
+    .ma-contact-list {
+        display: grid;
+        gap: 25px;
+    }
+
+    .ma-contact-item {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .ma-icon-box {
+        width: 50px;
+        height: 50px;
+        background: var(--white);
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        color: var(--primary);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, .05);
+        flex: 0 0 auto;
+    }
+
+    .ma-icon-box svg {
+        width: 24px;
+    }
+
+    .ma-label {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--muted-text);
+        margin-bottom: 4px;
+    }
+
+    .ma-val {
+        text-decoration: none;
+        color: var(--dark-text);
+        font-weight: 800;
+        font-size: 17px;
+        display: inline-block;
+        max-width: 100%;
+        word-break: break-word;
+        /* CLAVE: correos largos no dañan móvil */
+        overflow-wrap: anywhere;
+    }
+
+    .ma-form-card {
+        background: var(--white);
+        padding: 45px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-lg);
+        max-width: 100%;
+    }
+
+    .ma-modern-form {
+        display: grid;
+        gap: 18px;
+    }
+
+    .ma-input-group input,
+    .ma-modern-form select,
+    .ma-modern-form textarea {
+        width: 100%;
+        max-width: 100%;
+        padding: 16px;
+        border-radius: 14px;
+        border: 1px solid #e2e8f0;
+        font-family: inherit;
+        font-size: 16px;
+        outline: none;
+        transition: .3s;
+        box-sizing: border-box;
+        min-width: 0;
+    }
+
+    .ma-input-group input:focus,
+    .ma-modern-form select:focus,
+    .ma-modern-form textarea:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(49, 94, 227, .1);
+    }
+
+    .ma-submit-btn {
+        background: var(--primary-gradient);
+        color: var(--white);
+        border: none;
+        padding: 18px;
+        border-radius: 16px;
+        font-weight: 800;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: .3s;
+        font-size: 17px;
+    }
+
+    .ma-submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 25px rgba(49, 94, 227, .3);
+    }
+
+    /* IMÁGENES DE FONDO */
+    .ma-bg-industria {
+        background-image: url('https://admin.divisiondigital.co/uploads/userfiles/744/files/Inicio/QuienesSomos/industria.jpg');
+    }
+
+    .ma-bg-comercial {
+        background-image: url('https://admin.divisiondigital.co/uploads/userfiles/744/files/Inicio/QuienesSomos/comercial.jpg');
+    }
+
+    .ma-bg-residencial {
+        background-image: url('https://admin.divisiondigital.co/uploads/userfiles/744/files/Inicio/QuienesSomos/residencial.jpg');
+    }
+
+    .ma-bg-construccion {
+        background-image: url('https://admin.divisiondigital.co/uploads/userfiles/744/files/Inicio/QuienesSomos/construccion.jpg');
+    }
+
+    /* REVEAL ON SCROLL */
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: .8s ease-out;
+    }
+
+    .animate-on-scroll.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @media (max-width:900px) {
+        .ma-form-grid {
+            grid-template-columns: 1fr;
+            gap: 50px;
+        }
+
+        .ma-card {
+            height: 480px;
+        }
+
+        .ma-form-card {
+            padding: 30px;
+        }
+    }
+
+    /* EXTRA: AJUSTE FINO MÓVIL */
+    @media (max-width:560px) {
+        .ma-site-wrapper {
+            padding: 40px 0;
+        }
+
+        .ma-content-wrap {
+            padding: 0 14px;
+        }
+
+        .ma-form-section {
+            padding: 56px 0;
+        }
+
+        .ma-form-grid {
+            gap: 28px;
+        }
+
+        .ma-form-card {
+            padding: 20px;
+            border-radius: 18px;
+        }
+
+        .ma-frontBody {
+            padding: 22px;
+        }
+
+        .ma-back {
+            padding: 28px 20px;
+        }
+
+        .ma-contact-item {
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .ma-icon-box {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+        }
+
+        /* Opcional: en móvil se ve más limpio sin flechas */
+        .swiper-button-next,
+        .swiper-button-prev {
+            display: none;
+        }
+
+        .sectores-carousel {
+            padding: 28px 6px 54px !important;
+        }
+    }
+</style>
+<section class="ma-site-wrapper">
+    <div class="sectores__container">
+        <div class="ma-content-wrap">
+            <div class="sectores__head animate-on-scroll"><span class="ma-pill">Nuestra Experiencia</span>
+                <h2 class="sectores__title">Sectores de la industria: <span class="sectores__accent">Qui&eacute;nes
+                        somos</span>
+                </h2>
+                <p class="sectores__subtitle">Distribuidores mayoristas de materiales el&eacute;ctricos. Soluciones
+                    integrales para almacenes y proyectos en Colombia.
+                </p>
+            </div>
+            <div class="swiper mySwiper sectores-carousel animate-on-scroll">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <article class="ma-card">
+                            <div class="ma-cardInner">
+                                <div class="ma-front ma-bg-industria">
+                                    <div class="ma-overlay">&nbsp;
+                                    </div>
+                                    <div class="ma-shine">&nbsp;
+                                    </div>
+                                    <div class="ma-frontBody"><span class="ma-kicker">Sector</span>
+                                        <h3 class="ma-h3">Industria
+                                        </h3>
+                                        <button class="ma-toggle-btn" type="button">Explorar sector
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="ma-back">
+                                    <div class="ma-backBody">
+                                        <h3 class="ma-backTitle">Industria
+                                        </h3>
+                                        <p class="ma-desc">Apoyamos el crecimiento de su empresa con soluciones
+                                            el&eacute;ctricas adaptadas a sus necesidades, aumentando rentabilidad y
+                                            competitividad.
+                                        </p>
+                                        <div class="ma-callout"><strong>Dirigido a:</strong> Compa&ntilde;&iacute;as y
+                                            negocios B2B.
+                                        </div>
+                                        <button class="ma-toggle-btn ma-close-btn" type="button">Volver
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="swiper-slide">
+                        <article class="ma-card">
+                            <div class="ma-cardInner">
+                                <div class="ma-front ma-bg-comercial">
+                                    <div class="ma-overlay">&nbsp;
+                                    </div>
+                                    <div class="ma-shine">&nbsp;
+                                    </div>
+                                    <div class="ma-frontBody"><span class="ma-kicker">Sector</span>
+                                        <h3 class="ma-h3">Comercial
+                                        </h3>
+                                        <button class="ma-toggle-btn" type="button">Explorar sector
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="ma-back">
+                                    <div class="ma-backBody">
+                                        <h3 class="ma-backTitle">Comercial
+                                        </h3>
+                                        <p class="ma-desc">Soluciones el&eacute;ctricas a la medida para mejorar
+                                            operaci&oacute;n, tiempos de respuesta y m&aacute;rgenes comerciales.
+                                        </p>
+                                        <div class="ma-callout"><strong>Dirigido a:</strong> Almacenes y negocios
+                                            comerciales.
+                                        </div>
+                                        <button class="ma-toggle-btn ma-close-btn" type="button">Volver
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="swiper-slide">
+                        <article class="ma-card">
+                            <div class="ma-cardInner">
+                                <div class="ma-front ma-bg-residencial">
+                                    <div class="ma-overlay">&nbsp;
+                                    </div>
+                                    <div class="ma-shine">&nbsp;
+                                    </div>
+                                    <div class="ma-frontBody"><span class="ma-kicker">Sector</span>
+                                        <h3 class="ma-h3">Residencial
+                                        </h3>
+                                        <button class="ma-toggle-btn" type="button">Explorar sector
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="ma-back">
+                                    <div class="ma-backBody">
+                                        <h3 class="ma-backTitle">Residencial
+                                        </h3>
+                                        <p class="ma-desc">Eficiencia energ&eacute;tica y soluciones confiables para
+                                            hogares y proyectos de vivienda sostenible.
+                                        </p>
+                                        <div class="ma-callout"><strong>Dirigido a:</strong> Vivienda y hogares.
+                                        </div>
+                                        <button class="ma-toggle-btn ma-close-btn" type="button">Volver
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="swiper-slide">
+                        <article class="ma-card">
+                            <div class="ma-cardInner">
+                                <div class="ma-front ma-bg-construccion">
+                                    <div class="ma-overlay">&nbsp;
+                                    </div>
+                                    <div class="ma-shine">&nbsp;
+                                    </div>
+                                    <div class="ma-frontBody"><span class="ma-kicker">Sector</span>
+                                        <h3 class="ma-h3">Construcci&oacute;n
+                                        </h3>
+                                        <button class="ma-toggle-btn" type="button">Explorar sector
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="ma-back">
+                                    <div class="ma-backBody">
+                                        <h3 class="ma-backTitle">Construcci&oacute;n
+                                        </h3>
+                                        <p class="ma-desc">Material el&eacute;ctrico certificado para obras civiles,
+                                            urbanismos e infraestructura de gran escala.
+                                        </p>
+                                        <div class="ma-callout"><strong>Dirigido a:</strong> Constructoras y obras
+                                            civiles.
+                                        </div>
+                                        <button class="ma-toggle-btn ma-close-btn" type="button">Volver
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="swiper-pagination">&nbsp;
+                </div>
+                <div class="swiper-button-next">&nbsp;
+                </div>
+                <div class="swiper-button-prev">&nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ma-form-section animate-on-scroll">
+        <div class="ma-content-wrap">
+            <div class="ma-form-grid">
+                <div class="ma-form-info"><span class="ma-pill">Contacto directo</span>
+                    <h2 class="ma-form-title">Estamos para servirle
+                    </h2>
+                    <p class="ma-form-lead">Solicite su cotizaci&oacute;n o asesor&iacute;a t&eacute;cnica. Nuestro
+                        equipo comercial le responder&aacute; en el menor tiempo posible.
+                    </p>
+                    <div class="ma-contact-list">
+                        <div class="ma-contact-item">
+                            <div class="ma-icon-box">
+                                <svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                    <path
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.49a1 1 0 01-.5 1.21l-2.26 1.13a11.04 11.04 0 005.52 5.52l1.13-2.26a1 1 0 011.21-.5l4.49 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"
+                                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="ma-label">L&iacute;neas de atenci&oacute;n
+                                </p>
+                                <a class="ma-val" href="tel:+573246089710">(+57) 324 608 9710</a>
+                            </div>
+                        </div>
+                        <div class="ma-contact-item">
+                            <div class="ma-icon-box">
+                                <svg fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                                    <path
+                                        d="M3 8l7.9 5.26a2 2 0 002.2 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="ma-label">Correo electr&oacute;nico
+                                </p>
+                                <a class="ma-val"
+                                    href="mailto:soportecomercial3@maelectricos.com">soportecomercial3@maelectricos.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ma-form-card">
+                    <form class="ma-modern-form" id="contact-form">
+                        <div class="ma-input-group">
+                            <input name="name" placeholder="Nombre completo" required="" type="text" />
+                        </div>
+                        <div class="ma-input-group">
+                            <input name="email" placeholder="Correo electrónico" required="" type="email" />
+                        </div>
+                        <div class="ma-input-group">
+                            <select name="sector" required="">
+                                <option disabled="disabled" selected="selected" value="">Seleccione el sector</option>
+                                <option>Industria</option>
+                                <option>Comercial</option>
+                                <option>Residencial</option>
+                                <option>Construcci&oacute;n</option>
+                            </select>
+                        </div>
+                        <div class="ma-input-group"><textarea name="message" placeholder="Escriba su mensaje aquí..."
+                                required="" rows="4"></textarea>
+                        </div>
+                        <button class="ma-submit-btn" type="submit">Enviar solicitud
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js">
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 25,
+            grabCursor: true,
+            pagination: { el: ".swiper-pagination", clickable: true },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+                1300: { slidesPerView: 4 }
+            }
+        });
+        document.querySelectorAll('.ma-toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const card = btn.closest('.ma-card');
+                if (card) card.classList.toggle('is-open');
+            });
+        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('is-visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    });
+</script>
