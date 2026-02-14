@@ -1,0 +1,561 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title></title>
+
+<style type="text/css">
+    :root {
+        --ec-bg: #ffffff;
+        --ec-panel: #ffffff;
+        --ec-accent: #1db8dd;
+        --ec-accent-dark: #159ab8;
+        --ec-text: #0b0b0b;
+        --ec-muted: #475569;
+        --ec-border: rgba(0, 0, 0, .10);
+        --ec-surface: rgba(0, 0, 0, .03);
+        --ec-shadow: 0 18px 60px rgba(0, 0, 0, .10);
+        --ec-shadow-soft: 0 10px 30px rgba(0, 0, 0, .08);
+        --ec-max: 1200px;
+        --ec-radius: 26px;
+    }
+
+    * {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--ec-text);
+        background: var(--ec-bg);
+        line-height: 1.6;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+        transition: .2s;
+    }
+
+    .ec-wrap {
+        max-width: var(--ec-max);
+        margin: 0 auto;
+        padding: 28px 20px 90px;
+    }
+
+    /* TOPBAR */
+    .ec-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 14px 20px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, .92);
+        border: 1px solid var(--ec-border);
+        box-shadow: var(--ec-shadow-soft);
+        position: sticky;
+        top: 16px;
+        z-index: 50;
+        backdrop-filter: blur(10px);
+        max-width: 100%;
+    }
+
+    .ec-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        min-width: 0;
+    }
+
+    .ec-logo {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background: #0b0b0b;
+        border: 1px solid rgba(29, 184, 221, .35);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, .10);
+        overflow: hidden;
+        flex: 0 0 auto;
+        position: relative;
+    }
+
+    .ec-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        padding: 8px;
+        filter: drop-shadow(0 0 10px rgba(29, 184, 221, .35));
+    }
+
+    .ec-logo-fallback {
+        display: none;
+        font-weight: 900;
+        color: #ffffff;
+        font-size: 18px;
+        letter-spacing: -.02em;
+    }
+
+    .ec-logo.is-fallback .ec-logo-fallback {
+        display: block;
+    }
+
+    .ec-brand-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.12;
+        min-width: 0;
+    }
+
+    .ec-brand-name {
+        font-weight: 900;
+        font-size: 14px;
+        letter-spacing: -.02em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .ec-brand-sub {
+        font-size: 12px;
+        color: var(--ec-muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* BOTONES */
+    .ec-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .ec-btn {
+        padding: 10px 18px;
+        border-radius: 12px;
+        border: 1px solid var(--ec-border);
+        background: #fff;
+        font-weight: 750;
+        font-size: 13px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+    }
+
+    .ec-btn:hover {
+        transform: translateY(-1px);
+        border-color: rgba(29, 184, 221, .65);
+        box-shadow: 0 12px 26px rgba(0, 0, 0, .10);
+    }
+
+    .ec-btn-primary {
+        border: none;
+        color: #001217;
+        background: linear-gradient(135deg, var(--ec-accent), var(--ec-accent-dark));
+        box-shadow: 0 12px 30px rgba(29, 184, 221, .25);
+    }
+
+    .ec-btn-primary:hover {
+        box-shadow: 0 16px 40px rgba(29, 184, 221, .35);
+    }
+
+    /* HERO (Vitrina digital) */
+    .ec-hero {
+        margin-top: 24px;
+        border-radius: var(--ec-radius);
+        background: #ffffff;
+        border: 1px solid var(--ec-border);
+        box-shadow: var(--ec-shadow);
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Haz de luz que sigue el cursor */
+    .ec-hero::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        pointer-events: none;
+        background: radial-gradient(560px 420px at var(--spot-x, 50%) var(--spot-y, 40%), rgba(29, 184, 221, .22), rgba(29, 184, 221, .12) 25%, rgba(29, 184, 221, .06) 45%, rgba(255, 255, 255, 0) 70%);
+        opacity: 0;
+        transition: opacity 180ms ease;
+    }
+
+    .ec-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        border-radius: var(--ec-radius);
+        box-shadow: 0 0 0 1px rgba(29, 184, 221, .12) inset, 0 0 0 1px rgba(0, 0, 0, .06) inset;
+        opacity: .9;
+    }
+
+    .ec-hero.is-active::before {
+        opacity: 1;
+    }
+
+    .ec-hero-inner {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 44px;
+        padding: 48px;
+    }
+
+    @media (min-width: 992px) {
+        .ec-hero-inner {
+            grid-template-columns: 1.2fr .8fr;
+            align-items: start;
+        }
+    }
+
+    /* CONTENIDO */
+    .ec-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(29, 184, 221, .25);
+        background: rgba(29, 184, 221, .08);
+        color: var(--ec-accent-dark);
+        font-size: 13px;
+        font-weight: 800;
+        width: fit-content;
+    }
+
+    .ec-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--ec-accent);
+        box-shadow: 0 0 0 8px rgba(29, 184, 221, .18);
+        /* ✅ corregido */
+    }
+
+    .ec-h1 {
+        margin: 16px 0 14px;
+        font-size: clamp(32px, 4vw, 52px);
+        line-height: 1.08;
+        letter-spacing: -.04em;
+    }
+
+    .ec-p {
+        margin: 0 0 28px;
+        color: var(--ec-muted);
+        font-size: 16.8px;
+        max-width: 62ch;
+    }
+
+    /* GRID */
+    .ec-grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .ec-card {
+        padding: 22px;
+        border-radius: 18px;
+        border: 1px solid rgba(0, 0, 0, .08);
+        background: rgba(0, 0, 0, .02);
+        transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .ec-card::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        pointer-events: none;
+        background: radial-gradient(280px 220px at var(--spot-x, 50%) var(--spot-y, 40%), rgba(29, 184, 221, .18), rgba(29, 184, 221, .08) 35%, rgba(255, 255, 255, 0) 70%);
+        opacity: 0;
+        transition: opacity 200ms ease;
+    }
+
+    .ec-hero.is-active .ec-card::before {
+        opacity: .55;
+    }
+
+    .ec-card:hover {
+        transform: translateY(-3px);
+        background: #fff;
+        border-color: rgba(29, 184, 221, .45);
+        box-shadow: 0 18px 45px rgba(0, 0, 0, .10);
+    }
+
+    .ec-card h3 {
+        margin: 0 0 8px;
+        font-size: 15px;
+        font-weight: 900;
+        letter-spacing: -.01em;
+    }
+
+    .ec-card p {
+        margin: 0;
+        font-size: 13.7px;
+        color: var(--ec-muted);
+    }
+
+    /* MAPA */
+    .ec-map-card {
+        background: #ffffff;
+        border-radius: 22px;
+        border: 1px solid rgba(0, 0, 0, .10);
+        overflow: hidden;
+        box-shadow: var(--ec-shadow-soft);
+    }
+
+    .ec-map-header {
+        padding: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, .08);
+    }
+
+    .ec-map-title {
+        font-weight: 900;
+        margin-bottom: 6px;
+    }
+
+    .ec-map-sub {
+        font-size: 13px;
+        color: var(--ec-muted);
+    }
+
+    .ec-map-frame {
+        width: 100%;
+        height: 320px;
+        border: 0;
+        filter: grayscale(.2);
+        transition: .3s;
+    }
+
+    .ec-map-frame:hover {
+        filter: grayscale(0);
+    }
+
+    .ec-map-actions {
+        padding: 20px;
+        display: grid;
+        gap: 10px;
+    }
+
+    .ec-map-note {
+        padding: 16px 20px;
+        font-size: 12px;
+        background: rgba(0, 0, 0, .02);
+        color: var(--ec-muted);
+        border-top: 1px solid rgba(0, 0, 0, .08);
+    }
+
+    /* ===== SECCIÓN CALIDAD / CERTIFICACIÓN ===== */
+    .ec-quality {
+        margin-top: 40px;
+        border-radius: var(--ec-radius);
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, .10);
+        box-shadow: var(--ec-shadow);
+        overflow: hidden;
+    }
+
+    .ec-quality-inner {
+        padding: 56px 48px;
+        display: grid;
+        gap: 28px;
+    }
+
+    @media (max-width: 700px) {
+        .ec-quality-inner {
+            padding: 32px 26px;
+        }
+    }
+
+    .ec-quality-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(29, 184, 221, .25);
+        background: rgba(29, 184, 221, .08);
+        color: var(--ec-accent-dark);
+        font-size: 13px;
+        font-weight: 800;
+        width: fit-content;
+    }
+
+    .ec-quality-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--ec-accent);
+        box-shadow: 0 0 0 8px rgba(29, 184, 221, .18);
+    }
+
+    .ec-quality-title {
+        margin: 0;
+        font-size: clamp(28px, 3.6vw, 44px);
+        line-height: 1.1;
+        letter-spacing: -.04em;
+        font-weight: 900;
+    }
+
+    .ec-quality-sub {
+        margin: 0;
+        max-width: 70ch;
+        font-size: 16.5px;
+        color: var(--ec-muted);
+    }
+
+    .ec-quality-grid {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .ec-quality-card {
+        padding: 26px;
+        border-radius: 18px;
+        border: 1px solid rgba(0, 0, 0, .08);
+        background: rgba(0, 0, 0, .02);
+        transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+    }
+
+    .ec-quality-card:hover {
+        transform: translateY(-4px);
+        background: #ffffff;
+        border-color: rgba(29, 184, 221, .45);
+        box-shadow: 0 18px 45px rgba(0, 0, 0, .10);
+    }
+
+    .ec-quality-card h3 {
+        margin: 0 0 10px;
+        font-size: 16px;
+        font-weight: 900;
+        letter-spacing: -.02em;
+    }
+
+    .ec-quality-card p {
+        margin: 0;
+        font-size: 14px;
+        color: var(--ec-muted);
+        line-height: 1.6;
+    }
+
+    .ec-quality-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    .ec-quality-note {
+        padding-top: 14px;
+        border-top: 1px solid rgba(0, 0, 0, .08);
+        font-size: 12.5px;
+        color: var(--ec-muted);
+    }
+
+    /* MÓVIL */
+    @media (max-width: 600px) {
+        .ec-actions {
+            display: none;
+        }
+
+        .ec-hero-inner {
+            padding: 28px;
+        }
+    }
+
+    /* ACCESIBILIDAD */
+    @media (prefers-reduced-motion: reduce) {
+
+        .ec-btn,
+        .ec-card,
+        .ec-quality-card {
+            transition: none !important;
+        }
+
+        .ec-btn:hover,
+        .ec-card:hover,
+        .ec-quality-card:hover {
+            transform: none;
+        }
+
+        .ec-hero::before {
+            transition: none !important;
+        }
+    }
+</style>
+<main class="ec-wrap">
+    <header class="ec-topbar">
+        <div class="ec-brand">
+            <div class="ec-logo"><img alt="Vincent LED" src="/ruta/logo-vincent-led.png" /> <span aria-hidden="true"
+                    class="ec-logo-fallback">V</span> </div>
+            <div class="ec-brand-text">
+                <div class="ec-brand-name">Vincent LED </div>
+                <div class="ec-brand-sub">Grupo Electrificadora Capital SAS </div>
+            </div>
+        </div>
+        <nav class="ec-actions"><a class="ec-btn" href="#">Cat&aacute;logo</a> <a class="ec-btn ec-btn-primary"
+                href="https://api.whatsapp.com/send/?phone=573158411487" rel="noopener" target="_blank"> WhatsApp </a>
+        </nav>
+    </header>
+    <section class="ec-hero" id="ecHero">
+        <div class="ec-hero-inner">
+            <article>
+                <div class="ec-kicker"><span aria-hidden="true" class="ec-dot"></span> Solo calidad certificada &bull;
+                    Entrega inmediata en Ch&iacute;a </div>
+                <h1 class="ec-h1">Productos LED confiables, listos para entregar hoy </h1>
+                <p class="ec-p">En Vincent LED <strong>solo comercializamos productos de calidad</strong>, con
+                    certificaci&oacute;n y fichas t&eacute;cnicas disponibles. Contamos con inventario en Ch&iacute;a
+                    para <strong>entrega inmediata</strong>, sin tiempos de espera ni promesas. Somos parte del
+                    <strong>Grupo Electrificadora Capital SAS</strong>.
+                </p>
+                <div class="ec-grid">
+                    <div class="ec-card">
+                        <h3>Calidad Verificada </h3>
+                        <p>Referencias seleccionadas por desempe&ntilde;o, eficiencia y vida &uacute;til real. </p>
+                    </div>
+                    <div class="ec-card">
+                        <h3>Certificaci&oacute;n y Cumplimiento </h3>
+                        <p>Productos con documentaci&oacute;n t&eacute;cnica y normativas aplicables. </p>
+                    </div>
+                    <div class="ec-card">
+                        <h3>Entrega inmediata &mdash; Ch&iacute;a </h3>
+                        <p>Disponible para despacho o recogida directa en nuestro punto de atenci&oacute;n. </p>
+                    </div>
+                </div>
+                <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;"><a class="ec-btn ec-btn-primary"
+                        href="https://api.whatsapp.com/send/?phone=573158411487&amp;text=Hola%2C%20quiero%20confirmar%20productos%20certificados%20con%20entrega%20inmediata%20en%20Ch%C3%ADa"
+                        rel="noopener" target="_blank">Confirmar stock por WhatsApp </a> <a class="ec-btn"
+                        href="https://www.google.com/maps?q=Cra.+11+%2314-22,+Ch%C3%ADa,+Cundinamarca,+Colombia"
+                        rel="noopener" target="_blank"> Ver punto de atenci&oacute;n </a> </div>
+            </article>
+            <aside class="ec-map-card">
+                <div class="ec-map-header">
+                    <div class="ec-map-title">Punto de Atenci&oacute;n &mdash; Ch&iacute;a </div>
+                    <div class="ec-map-sub">Cra. 11 #14-22, Ch&iacute;a, Cundinamarca, Colombia </div>
+                </div> <iframe class="ec-map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                    sandbox=""
+                    src="https://www.google.com/maps?q=Cra.+11+%2314-22,+Ch%C3%ADa,+Cundinamarca,+Colombia&amp;output=embed">
+                </iframe>
+                <div class="ec-map-actions"><a class="ec-btn ec-btn-primary"
+                        href="https://api.whatsapp.com/send/?phone=573158411487&amp;text=Hola%2C%20necesito%20asesor%C3%ADa%20y%20confirmar%20entrega%20inmediata%20en%20Ch%C3%ADa"
+                        rel="noopener" target="_blank">Contactar por WhatsApp </a> <a class="ec-btn"
+                        href="https://www.google.com/maps?q=Cra.+11+%2314-22,+Ch%C3%ADa,+Cundinamarca,+Colombia"
+                        rel="noopener" target="_blank"> C&oacute;mo llegar (Google Maps) </a> </div>
+                <div class="ec-map-note">Vincent LED es una marca que hace parte del <strong>Grupo Electrificadora
+                        Capital SAS</strong>. Comercializaci&oacute;n responsable con respaldo t&eacute;cnico y
+                    estructura empresarial. <span aria-hidden="true" class="ec-quality-dot"></span> </div>
+            </aside>
+        </div>
+    </section>
+    <!-- SECCIÓN EXTRA: SELLO DE CONFIANZA --><!-- Si quieres, aquí te la armo completa con la .ec-quality que ya dejaste lista -->
+</main>
